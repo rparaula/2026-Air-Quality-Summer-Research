@@ -2,7 +2,7 @@ name: Daily AQ Ingest
 
 on:
   schedule:
-    - cron: "0 14 * * *"   # 9:00 AM CDT (UTC-5) every day
+    - cron: "30 18 * * *"   # 9:00 AM CDT (UTC-5) every day
   workflow_dispatch:         # Allow manual trigger from the GitHub Actions tab
 
 permissions:
