@@ -40,4 +40,6 @@ jobs:
           git add -f data/
           # Only commit if something actually changed (skips silently if already up to date)
           git diff --staged --quiet || git commit -m "chore: daily ingest $(date -u +%F)"
+          # Pull --rebase first so we fast-forward over any commits pushed while the job was running
+          git pull --rebase origin master
           git push
