@@ -2,7 +2,7 @@ name: Daily AQ Ingest
 
 on:
   schedule:
-    - cron: "30 18 * * *"   # 9:00 AM CDT (UTC-5) every day
+    - cron: "30 18 * * *"   # 1:30 PM CDT (UTC-5) every day
   workflow_dispatch:         # Allow manual trigger from the GitHub Actions tab
 
 permissions:
@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          lfs: true   # uszips.csv is stored in Git LFS — must download the real file
+          lfs: true   # uszips.csv is stored in Git LFS -- must download the real file
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
@@ -39,30 +39,13 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Make sure we’re on the branch (not detached) and have the latest remote state
-          git fetch origin master
-          git checkout master
-
-          # Rebase our working tree on top of the latest master (prevents non-fast-forward push)
-          git pull --rebase origin master
-
+          # Stage outputs FIRST (before any rebase) so there are no unstaged changes
           git add state.json
           git add -f data/
 
           # Commit only if staged changes exist
           git diff --staged --quiet || git commit -m "chore: daily ingest $(date -u +%F)"
 
-          # Rebase again right before pushing (handles races with other runs)
+          # Now pull --rebase is safe: working tree is clean
           git pull --rebase origin master
-
-          # Push with a small retry to handle near-simultaneous updates
-          for i in 1 2 3; do
-            if git push origin master; then
-              exit 0
-            fi
-            git pull --rebase origin master
-            sleep 2
-          done
-
-          echo "Push failed after retries" >&2
-          exit 1
+          git push origin master
