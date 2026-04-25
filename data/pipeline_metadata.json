@@ -1823,5 +1823,78 @@
       }
     ],
     "error": null
+  },
+  {
+    "run_id": "20260425_192509",
+    "script": "collect",
+    "status": "success",
+    "started_at": "2026-04-25T19:25:09.790135",
+    "finished_at": "2026-04-25T19:25:11.795008",
+    "duration_seconds": 2.0,
+    "parameters": {
+      "cities": "Houston,TX",
+      "start_date": "2026-04-20",
+      "end_date": "2026-04-20",
+      "timezone": "America/Chicago",
+      "batch_size": 50,
+      "uszips": "uszips.csv",
+      "zip_traffic": null,
+      "out_dir": "data",
+      "out_prefix": "april_20"
+    },
+    "locations": {
+      "total_zip_centroids": 97,
+      "cities_found": [
+        "Houston,TX"
+      ],
+      "cities_skipped": []
+    },
+    "outputs": [
+      {
+        "type": "air_quality",
+        "file": "data/april_20_air_quality_hourly_20260425_192509.csv",
+        "row_count": 2328,
+        "size_bytes": 272894,
+        "variable_count": 11,
+        "variables": [
+          "us_aqi",
+          "pm10",
+          "pm2_5",
+          "carbon_monoxide",
+          "nitrogen_dioxide",
+          "sulphur_dioxide",
+          "ozone",
+          "uv_index_clear_sky",
+          "uv_index",
+          "dust",
+          "aerosol_optical_depth"
+        ],
+        "api_url": "https://customer-air-quality-api.open-meteo.com/v1/air-quality?apikey=3HO8nE2N8vCbAKm5",
+        "batch_size_used": 50
+      },
+      {
+        "type": "weather",
+        "file": "data/april_20_weather_hourly_20260425_192509.csv",
+        "row_count": 2328,
+        "size_bytes": 330497,
+        "variable_count": 11,
+        "variables": [
+          "temperature_2m",
+          "relative_humidity_2m",
+          "precipitation",
+          "wind_speed_10m",
+          "wind_speed_100m",
+          "wind_direction_10m",
+          "wind_direction_100m",
+          "wind_gusts_10m",
+          "shortwave_radiation",
+          "diffuse_radiation",
+          "cloud_cover"
+        ],
+        "api_url": "https://archive-api.open-meteo.com/v1/archive",
+        "batch_size_used": 50
+      }
+    ],
+    "error": null
   }
 ]
