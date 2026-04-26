@@ -17,7 +17,13 @@ retry_session = retry(cache_session, retries=5, backoff_factor=0.2)
 openmeteo = openmeteo_requests.Client(session=retry_session)
 
 # Will have to manually switch between forecast and archive endpoints, idk how to implement both
-AQ_URL = "https://customer-air-quality-api.open-meteo.com/v1/air-quality?apikey=" + os.environ["OPENMETEO_API_KEY"]
+AQ_FREE_URL = "https://air-quality-api.open-meteo.com/v1/air-quality"  # Open-Meteo free tier (no key required)
+_api_key = os.environ.get("OPENMETEO_API_KEY")
+if _api_key:
+    AQ_URL = "https://customer-air-quality-api.open-meteo.com/v1/air-quality?apikey=" + _api_key
+else:
+    print("WARNING: OPENMETEO_API_KEY not set — falling back to Open-Meteo free tier for air quality.")
+    AQ_URL = AQ_FREE_URL
 WEATHER_URL = "https://archive-api.open-meteo.com/v1/archive" # only use archive endpoint, not forecast
 
 MAX_WEIGHT_PER_MIN = 600.0
@@ -160,6 +166,12 @@ def compute_safe_batch_size(hourly_vars: list[str], start_date: str, end_date: s
 def chunked(df: pd.DataFrame, size: int):
     for i in range(0, len(df), size):
         yield df.iloc[i: i + size]
+
+
+def _is_auth_error(exc: Exception) -> bool:
+    """Return True if the exception looks like an API key / authentication failure."""
+    msg = str(exc).lower()
+    return any(token in msg for token in ("401", "403", "unauthorized", "forbidden", "invalid api key", "apikey"))
 
 
 def fetch_and_save_csv(
@@ -329,18 +341,39 @@ def main():
     shared_limiter = WeightRateLimiter(max_weight=600.0, window_seconds=60)
 
     try:
-        fetch_and_save_csv(
-            loc_df=loc_df,
-            start_date=args.start_date,
-            end_date=args.end_date,
-            output_file=output_file,
-            timezone=args.timezone,
-            batch_size=batch_size,
-            url=AQ_URL,
-            hourly_vars=HOURLY_VARS,
-            limiter=shared_limiter,
-        )
-        tracker.record_output("air_quality", output_file, HOURLY_VARS, AQ_URL,
+        aq_url_used = AQ_URL
+        try:
+            fetch_and_save_csv(
+                loc_df=loc_df,
+                start_date=args.start_date,
+                end_date=args.end_date,
+                output_file=output_file,
+                timezone=args.timezone,
+                batch_size=batch_size,
+                url=AQ_URL,
+                hourly_vars=HOURLY_VARS,
+                limiter=shared_limiter,
+            )
+        except Exception as aq_exc:
+            if AQ_URL != AQ_FREE_URL and _is_auth_error(aq_exc):
+                print(f"WARNING: Paid AQ endpoint failed ({aq_exc}). Retrying with Open-Meteo free tier...")
+                if output_file.exists():  # remove any partial output before retry
+                    output_file.unlink()
+                aq_url_used = AQ_FREE_URL
+                fetch_and_save_csv(
+                    loc_df=loc_df,
+                    start_date=args.start_date,
+                    end_date=args.end_date,
+                    output_file=output_file,
+                    timezone=args.timezone,
+                    batch_size=batch_size,
+                    url=AQ_FREE_URL,
+                    hourly_vars=HOURLY_VARS,
+                    limiter=shared_limiter,
+                )
+            else:
+                raise
+        tracker.record_output("air_quality", output_file, HOURLY_VARS, aq_url_used,
                               batch_size)  # added by rparaula to log the details of the air quality data fetching to the metadata log, including which variables we fetched, which API endpoint we used, and what batch size we used
 
         # second pass to fetch weather data for the same locations and time range, using the same batching and rate limiting logic
