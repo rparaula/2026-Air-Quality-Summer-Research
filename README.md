@@ -1,3 +1,13 @@
+# [Project Title]
+# One-sentence description of what this project does and what problem it solves.
+
+
+OVERVIEW
+--------
+# Explain the goal of the project in 2-3 sentences.
+# What question are we trying to answer? What is the ML task?
+# What is the general approach (data collection -> preprocessing -> training)?
+
 Basically, how this all works is that we aim for data to be pulled from:
   - [Open-Meteo Air Quality API](https://open-meteo.com/en/docs/air-quality-api)  (PM2.5, PM10, AQI, CO, NO2, ozone, etc.)
   - [Open-Meteo Weather API](https://open-meteo.com/en/docs)      (temperature, humidity, wind, precipitation, etc.)
@@ -10,8 +20,32 @@ All output CSVs are saved to the data/ folder.
 Each run is logged to data/pipeline_metadata.json for tracking and deduplication.
 
 
-FILES AT A GLANCE
+PREREQUISITES
+-------------
+# List everything someone needs BEFORE they can run a single line of code.
+# - Python version required (e.g., Python 3.10+)
+# - Any system-level libraries needed (especially for osmnx/geopandas on Linux/Mac)
+# - API keys required: which APIs need them, how to sign up, and where to put the key
+#   (environment variable? config file? hardcoded constant?)
+# - External files that must be manually downloaded and where to place them
+#   (uszips.csv from simplemaps, TRI .txt files from EPA, etc.)
+
+
+INSTALLATION
+------------
+# Step-by-step commands to get the repo set up from scratch.
+# Example structure:
+#   1. Clone the repo
+#   2. Create and activate a virtual environment (optional but recommended)
+#   3. pip install -r requirements.txt
+# If any package has known install issues on certain OS, note it here.
+
+
+PROJECT STRUCTURE
 -----------------
+# Brief description of each file/folder and its role.
+# Reader should understand which files they need to touch vs. which are internal.
+
 `run_pipeline.py`          
 - Main entry point. Orchestrates everything. Run this.
 
@@ -45,6 +79,9 @@ FILES AT A GLANCE
 
 HOW TO RUN
 ----------
+# Show the most common commands with real example values, not just placeholders.
+# Someone should be able to copy-paste and have it work.
+
 1. Install dependencies:
        `pip install -r requirements.txt`
 
@@ -67,6 +104,13 @@ HOW TO RUN
        `python run_pipeline.py --refresh-static`
 
 
+HOW IT WORKS
+------------
+# Explain the pipeline end-to-end in plain English, in the order things happen.
+# A simple numbered list or diagram works well here.
+# Example: 1. state.py checks the last collected date -> 2. collect.py fetches new data -> etc.
+# The goal is that someone can follow the logic without reading any code.
+
 HOW INCREMENTAL COLLECTION WORKS
 ---------------------------------
 `state.py` stores the last successfully collected end date in `data/pipeline_state.json.`
@@ -77,6 +121,9 @@ If a run crashes mid-way, the next run will detect the incomplete state and retr
 
 OUTPUT FILES
 ------------
+# Describe every output file: its name pattern, location, and what columns/data it contains.
+# Include a sample row or schema if the format isn't obvious.
+
 `data/<prefix>_air_quality_hourly_<timestamp>.csv`   Hourly AQ data per ZIP centroid
 
 `data/<prefix>_weather_hourly_<timestamp>.csv`        Hourly weather data per ZIP centroid
@@ -90,12 +137,19 @@ OUTPUT FILES
 `data/pipeline_metadata.json`                         Log of every pipeline run
 
 
-NOTES
------
+KNOWN LIMITATIONS / NOTES
+--------------------------
+# Anything that might trip someone up that isn't obvious from the code.
+# - API rate limits or data lags
+# - Manual steps that can't be automated
+# - Things that are known to break and why
+# - What is intentionally out of scope
+
 - The uszips.csv file is required. Download it from: https://simplemaps.com/data/us-zips
 - TRI data (process_tri_data.py) requires manually downloaded TXT files from the
   EPA TRI website. Expected files: US_1a_2023.txt, US_1a_2024.txt
 - The Open-Meteo forecast endpoint is used (covers recent history + today).
   There is roughly a 5-day lag on the archive endpoint if you switch to that.
 
-================================================================================
+
+
