@@ -1,0 +1,24 @@
+{
+  "file": "tri_chemicals_houston.csv",
+  "collected_at": "2026-03-12T20:22:15.814074+00:00",
+  "rows": 4821,
+  "columns": [
+    "trifd",
+    "facility",
+    "zip",
+    "latitude",
+    "longitude",
+    "chemical",
+    "carcinogen",
+    "hap",
+    "fugitive_lbs",
+    "stack_lbs",
+    "total_air_emissions_lbs",
+    "reporting_year"
+  ],
+  "source": {
+    "name": "EPA Toxic Release Inventory Basic Plus \u2014 File Type 1A",
+    "url": "https://www.epa.gov/toxics-release-inventory-tri-program/tri-basic-plus-data-files-calendar-years"
+  },
+  "notes": "Reporting years: 2023, 2024. Houston metro \u2014 Harris, Fort Bend, Brazoria, Galveston, Montgomery counties."
+}
