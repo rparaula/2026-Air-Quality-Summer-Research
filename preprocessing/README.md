@@ -1,6 +1,6 @@
 # Houston AQ/Weather Preprocessing Pipeline
 
-This README documents the preprocessing workflow used to convert streamed Houston air-quality and weather CSV files into a single machine-learning-ready feature table. The pipeline merges hourly air-quality and weather data, normalizes time formatting, optionally removes redundant columns, filters ZIP Code Tabulation Area geometry to only the ZIP codes present in the dataset, precomputes static spatial relationships, and writes a final feature CSV with temporal, wind-direction, spatial-impact, lag, cardinality, and optional variance-filter metadata.
+This README documents the preprocessing workflow used to the various data sources gathered into a single machine-learning-ready feature table. The pipeline merges hourly air-quality and weather data, normalizes time formatting, optionally removes redundant columns, filters ZIP Code Tabulation Area geometry to only the ZIP codes present in the dataset, precomputes static spatial relationships, and writes a final feature CSV with temporal, wind-direction, spatial-impact, lag, cardinality, and optional variance-filter metadata.
 
 The workflow is built around these scripts:
 
@@ -9,8 +9,6 @@ The workflow is built around these scripts:
 - `remove_column.py`
 - `filter_houston_zcta.py`
 - `preprocessing.py`
-
-`filter_houston_zcta.py` is referenced by the pipeline comments, but its script body was not included in the provided files. The command and purpose below are based on the header documentation in `preprocessing.py`.
 
 ---
 
@@ -38,7 +36,7 @@ Depending on the command-line options used, the final table can include:
   - `road_impact_score`
   - `facility_impact_score`
 - Lag features such as `us_aqi_past_1`, `us_aqi_past_2`, etc.
-- Optional low-cardinality-filtered and variance-filtered columns.
+- Optionally low-cardinality-filtered and variance-filtered columns are removed.
 
 The main script also writes metadata and logs:
 
@@ -70,107 +68,55 @@ Temporary sorted run files are created during external sorting. They are removed
 
 **Purpose:**
 
-The air-quality files provide pollutant and AQI features by ZIP code and time. They are first appended into a single master air-quality CSV, then time-zone suffixes are stripped, and then they are merged with the weather master file in `preprocessing.py`.
+The air-quality files provide pollutant and AQI features, and the weather files provide weather data such as percepitation, temperature, and wind speed/direction, both using ZIP code and time as primary keys. 
+They are first appended into a master CSVs using `merge_data_into_master_file.py`, then time-zone suffixes are stripped using `strip_tz_info.py`. Sorting, feature engineering, and cardinality and variance filtering is then done by `preprocessing.py` to produce the final result.
 
-Expected filenames must contain:
+The pipeline begins by gathering data from data-collection and merging it into one master file using `merge_data_into_master_file.py`
 
-```text
-_air_quality_
-```
+**How to gather data:**
 
-For example:
+Data-collection data is stored in this github in the `data/` and `static_data/` folder, only the `data/` folder is preprocessed using `merge_data_into_master_file.py`. This data is stored in Git Large File Storage (Git LFS).
 
-```text
-feb_4thweek_air_quality_hourly_20260312_210107.csv
-march_10_air_quality_hourly_20260401_120609.csv
-```
+These files can either be downloaded directly from the remote github repo, or by cloning the repo into your local machine and using git lfs commands like so:
 
-The merge script sorts files using the month token and numeric part of the second token in the filename. That means the naming convention matters.
+1) install git-lfs into your local system by running `sudo apt install git-lfs`
+2) clone this repo to your local machine
+3) cd into the local repo, and run `git lfs pull`
 
-**How to gather:**
+Note: running these commands will install all files in this repo which are stored in Git LFS, which is all the data you will need to run the preprocessing portion of the code. These files include data in folders `data/` and `static_data/`, as well as `preprocessing/houston-zip-shapefiles` and `preprocessing/road-data`.
 
-The referenced upstream GitHub repository documents hourly air-quality collection through the Open-Meteo Air Quality API. It also stores generated CSV outputs in its `data/` folder. The repository can be used as a reference implementation for gathering the streamed air-quality files:
+`preprocessing/houston-zip-shapefiles` contains the Zip polygon information gathered from [US Census Zip Shapefiles for 2020 download](https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2020&layergroup=ZIP%20Code%20Tabulation%20Areas) filtered through `filter_houston_zcta.py`.
+If you are using this data, there is no need to run `filter_houston_zcta.py`. 
+These files are used in `preprocessing.py`
 
-```text
-https://github.com/GlowSand/AQ_ML_Pipeline/tree/master
-```
+`preprocessing/road-data` contains the road information gathered from [US Census Primary and Secondary Roads for 2025 download](https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2025&layergroup=Roads). 
+No further preprocessing is done to this file. 
+These files are using in `preprocessing.py`
 
-That repository lists Open-Meteo Air Quality API as the source for PM2.5, PM10, AQI, CO, NO2, ozone, and related air-quality variables.
+`data/` holds the time variant data collected by data-collection (the air-quality and weather data). 
+This is used in `merge_data_into_master_file`, then the output files of this script are used in `preprocessing.py`, `strip_tz_info.py`, and `remove_column.py`.
 
----
+`static_data/` holds the time invariant data gathered by data-collection (`tri_checmials_houston.csv` and `tri_facilities_houston.csv` are using in the `preprocessing.py` script. 
+This contains information on important facilities and their emmissions which is used to caluclate the facility_impact_score feature.
 
-### 2.2 Streamed weather CSV files
+**Running `merge_data_into_master_file.py`**
+This script is used to combine all data from `data/` into two master files, one containing all air-quality rows and one containing all weather rows. 
 
-**Used by:**
+##Note: For this script to work in its current implementation, the air-quality data must have `_air_quality_` and `_weather_` included in the file name for the respective data type. 
+The current implementation appends files based on earliest data first, so the date is also required in the filename. This restriction can be removed since these files are sorted later in `preprocessing.py`
 
-- `merge_data_into_master_file.py`
-- `strip_tz_info.py`
-- `remove_column.py`, optional
-- `preprocessing.py`
+This script uses a state file to track which csv's from the `data/` folder have already been appended into the 'master' files. 
+This allows you to rerun this command on the same 'master' files multiple times without appending the same file twice. 
+This state file is stored as a json and is given as a command line argument. If the argument given does not point to a state file json, it creates one.
+The merge script sorts files using the month token and numeric part of the second token in the filename to append by earliest time first.
 
-**Purpose:**
+This script has 4 command line arguments:
 
-The weather files provide hourly meteorological features by ZIP code and time. In the current spatial-impact logic, the most important weather variables are:
+1) `--input-dir` takes the path to your `data/` folder.
+2) `--state-file` takes the path to your statefile.
+3) `--air-master` takes the path to the output file of air-quality (the 'master' file with all appended rows from `_air_quality_` files).
+4) `--weather-master` takes the path to the outout file of weather (the 'master' file with all appended rows from `_weather_` files).
 
-```text
-wind_speed_10m
-wind_speed_100m
-wind_direction_10m
-wind_direction_100m
-```
-
-or, after direction expansion:
-
-```text
-wind_direction_10m_cos
-wind_direction_10m_sin
-wind_direction_100m_cos
-wind_direction_100m_sin
-```
-
-These are used to compute downwind road and facility impact scores.
-
-Expected filenames must contain:
-
-```text
-_weather_
-```
-
-For example:
-
-```text
-march_1stweek_weather_hourly_20260315_120000.csv
-```
-
-**How to gather:**
-
-The referenced upstream GitHub repository documents hourly weather collection through the Open-Meteo Weather API. It lists weather variables such as temperature, humidity, wind, and precipitation as collected data sources.
-
----
-
-### 2.3 TRI facilities CSV
-
-**Used by:**
-
-- `preprocessing.py`
-
-**Expected file:**
-
-```text
-tri_facilities_houston.csv
-```
-
-**Purpose:**
-
-This file provides the locations of toxic-release facilities near Houston. The current preprocessing script expects columns equivalent to:
-
-```text
-trifd
-latitude
-longitude
-facility
-total_air_emissions_lbs
-```
 
 The important columns used directly by `preprocessing.py` are:
 
@@ -189,135 +135,12 @@ The provided `preprocessing.py` header says this project used `tri_facilities_ho
 
 The referenced upstream GitHub repository also includes `process_tri_data.py` and notes that TRI text files are processed separately. Use that repository as a reference if regenerating TRI CSVs from raw EPA TRI files.
 
----
-
-### 2.4 TRI chemicals CSV
-
-**Used by:**
-
-- `preprocessing.py`
-
-**Expected file:**
-
-```text
-tri_chemicals_houston.csv
-```
-
-**Purpose:**
-
-This file provides chemical-level release information for each TRI facility. The current preprocessing script expects columns equivalent to:
-
-```text
-trifd
-chemical
-total_air_emissions_lbs
-```
-
-It groups chemical data by facility and computes:
-
-- Total reported air emissions per facility.
-- Number of unique chemicals per facility.
-
-Those values are combined into a facility severity term used in `facility_impact_score`.
-
-**How to gather:**
-
-Use the provided `tri_chemicals_houston.csv` from the project data/static data if available through Git LFS. If regenerating from raw TRI files, use the referenced AQ pipeline repository as a guide.
-
----
-
-### 2.5 US Census ZIP Code Tabulation Area shapefile
-
-**Used by:**
-
-- `filter_houston_zcta.py`
-- `preprocessing.py`
-
-**Purpose:**
-
-The ZCTA shapefile provides ZIP polygon geometry. The pipeline uses it to:
-
-1. Filter the national ZCTA file to only ZIP codes appearing in the collected Houston data.
-2. Compute ZIP centroids.
-3. Measure distances and directions from ZIP centroids to roads and facilities.
-
-The preprocessing script tries to detect one of these ZIP columns:
-
-```text
-ZCTA5CE20
-ZCTA5CE10
-GEOID20
-GEOID10
-zip
-zcta
-```
-
-**How to gather:**
-
-Download the 2020 national ZIP Code Tabulation Area shapefile from the US Census TIGER/Line shapefile portal:
-
-```text
-https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2020&layergroup=ZIP%20Code%20Tabulation%20Areas
-```
-
-Select the national ZIP Code Tabulation Areas file, unzip it, and point `filter_houston_zcta.py` to the `.shp` file.
-
----
-
-### 2.6 US Census TIGER/Line Texas roads shapefile
-
-**Used by:**
-
-- `preprocessing.py`
-
-**Purpose:**
-
-The roads shapefile provides road geometry for spatial-impact scoring. The pipeline finds roads within `--road-radius-km` of each ZIP centroid, computes the direction from the road to the ZIP centroid, and combines that direction with wind vectors to estimate a downwind road-impact score.
-
-**How to gather:**
-
-Download the 2025 Texas Primary and Secondary Roads shapefile from the US Census TIGER/Line roads portal:
-
-```text
-https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2025&layergroup=Roads
-```
-
-Under `Primary and Secondary Roads`, select Texas and download the shapefile. No size reduction is required before using it in this pipeline.
-
----
-
-## 3. Getting data through Git LFS
-
-Some project data is stored through Git Large File Storage. To download those files from a repository that uses Git LFS:
-
-```bash
-sudo apt install git-lfs
-
-git lfs install
-
-git clone <repo-url>
-cd <repo-name>
-
-git lfs pull
-```
-
-For this project, the expected project data includes the repository `data/` folder plus:
-
-```text
-tri_chemicals_houston.csv
-tri_facilities_houston.csv
-```
-
-The referenced AQ pipeline repository contains `data/` and `static data/` folders and can be used as a model for organizing the data files.
-
----
-
 ## 4. Recommended directory layout
 
 A clean project layout might look like this:
 
 ```text
-project-root/
+preprocessing-root/
 ├── scripts/
 │   ├── merge_data_into_master_file.py
 │   ├── strip_tz_info.py
@@ -464,7 +287,9 @@ If you remove the columns here, use the `*-clean.csv` files in `preprocessing.py
 
 ---
 
-### Step 4: Filter the ZCTA shapefile to ZIP codes in the data
+### Step 4: Filter the ZCTA shapefile to ZIP codes in the data. 
+
+**This step is redundant if using data from the `preprocessing/houston-zip-shapefiles` directory.**
 
 After downloading the 2020 national ZCTA shapefile, run:
 
@@ -807,16 +632,3 @@ python preprocessing.py \
   --right-drop-columns city state \
   --feats-for-past us_aqi pm2_5 ozone wind_speed_100m wind_direction_100m_cos wind_direction_100m_sin \
   --num-past-feats 24
-```
-
----
-
-## 12. Reference repository
-
-The following GitHub repository is useful as a reference for the original data-collection side of the project:
-
-```text
-https://github.com/GlowSand/AQ_ML_Pipeline/tree/master
-```
-
-Its README describes a broader AQ/ML pipeline that pulls from Open-Meteo Air Quality, Open-Meteo Weather, EPA FRS, US Census ACS, OSMnx/OpenStreetMap, and TRI files. This preprocessing pipeline mainly consumes the resulting streamed air-quality/weather CSVs, TRI CSVs, Census ZCTA shapefiles, and Census roads shapefiles.
