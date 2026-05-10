@@ -1,12 +1,11 @@
-# [Project Title]
-# One-sentence description of what this project does and what problem it solves.
+Data Collection for the Air Quality Pipeline
 
 
 OVERVIEW
 --------
 # Explain the goal of the project in 2-3 sentences.
 # What question are we trying to answer? What is the ML task?
-# What is the general approach (data collection -> preprocessing -> training)?
+
 
 Basically, how this all works is that we aim for data to be pulled from:
   - [Open-Meteo Air Quality API](https://open-meteo.com/en/docs/air-quality-api)  (PM2.5, PM10, AQI, CO, NO2, ozone, etc.)
@@ -22,65 +21,76 @@ Each run is logged to data/pipeline_metadata.json for tracking and deduplication
 
 PREREQUISITES
 -------------
-# List everything someone needs BEFORE they can run a single line of code.
-# - Python version required (e.g., Python 3.10+)
-# - Any system-level libraries needed (especially for osmnx/geopandas on Linux/Mac)
-# - API keys required: which APIs need them, how to sign up, and where to put the key
-#   (environment variable? config file? hardcoded constant?)
-# - External files that must be manually downloaded and where to place them
-#   (uszips.csv from simplemaps, TRI .txt files from EPA, etc.)
+
+- Python 3.10+ is required
+- uszips.csv must be manually downloaded from (https://simplemaps.com/data/us-zips) and placed within the root folder before running anything.
+- TRI csv and json files from (Ask Tabriz for source) into project folder
+- OpenMeteo API Key may be needed if using a large data range when using the backfill mode; however, it is not required. API key access is managed through github secrets..
+
 
 
 INSTALLATION
 ------------
-# Step-by-step commands to get the repo set up from scratch.
-# Example structure:
-#   1. Clone the repo
-#   2. Create and activate a virtual environment (optional but recommended)
-#   3. pip install -r requirements.txt
-# If any package has known install issues on certain OS, note it here.
+
+1. Clone the repo: 
+       - git clone https://github.com/GlowSand/AQ_ML_Pipeline.git
+       - cd AQ_ML_Pipelinne
+2. (optional but recommended) Create a virtual environment:
+       - python -m venv .venv
+       .venv\Scripts\activate
+
+3. Install dependencies:
+       pip install -r requirements.txt
+
 
 
 PROJECT STRUCTURE
 -----------------
-# Brief description of each file/folder and its role.
-# Reader should understand which files they need to touch vs. which are internal.
 
-`run_pipeline.py`          
-- Main entry point. Orchestrates everything. Run this.
 
-`collect.py`            
-- Fetches hourly air quality + weather data via Open-Meteo.
+Orchestration & State:
 
-`collect_population.py`    
-- Pulls population data by ZIP from the US Census API.
+       - 'run_pipeline.py': The main entry point. Determines what date range is missing, then calls the other scripts in order using the missing date range. This is done in both incremental backfill modes.
 
-`dump_pollution_sources.py` 
-- Queries EPA FRS for industrial facilities by ZIP code.
+       - 'state.py': Reads/writes state.json to track the last successfully ingested date. Also writes a in_progress lock so crashed runs can detected an retired.
 
-`dump_zip_road_density.py` 
-- Computes road density per ZIP using OpenStreetMap.
+       - 'metadata_tracker.py': Logs a structured JSON record to pipeline_metadata.json after every run of the pipeline. This includes details like timing, output files, row counts, covered ZIPs, etc.
 
-`process_tri_data.py`
-- Processes TRI toxic release inventory text files.
+Data Ingestion (Dynamic Data):
 
-`metadata_tracker.py`      
-- Logs metadata for every pipeline run (timing, files, etc.)
+       - 'collect.py': Fetches hourly air quality (PM2.5, PM10, NO2, ozone, CO, etc.) and hourly weather (temperature, humidity, wind, precipitation, etc.) from the Open-Meteo APIs, batched by ZIP code centroid. Produces the air_quality_hourly and weather_hourly csvs within the data folder.
 
-`state.py`                 
-- Tracks the last collected date so runs stay incremental.
+       - All dynamic CSVs land in the '/data/' folder.
 
-`uszips.csv`               
-- ZIP code reference data (from [simplemaps.com](https://simplemaps.com/data/us-zips)).
+Static Dimension Tables (regenerated only with --refresh-static)
 
-`houston_zips.csv`         
-- List of Houston ZIP codes used for population collection.
+       - 'collect_population.py': Queries the US Census ACS API for population by ZIP, using 'houston_zips.csv' as reference. Outputs population_density.csv
+
+       - 'dump_pollution_sources.py': Queries the EPA FRS API for nearby industrial facilities per ZIP. Outputs 'zip_pollution_sources_<state>_<timestamp>.csv.
+
+       - 'dump_zip_road_density.py': Uses OSMnx / OpenStreetMap to compute road density (road length per area) for each ZIP polygon. Outputs 'zip_road_density_<timestamp>.csv'.
+
+       - 'process_tri_data.py' - Processes manually downloaded TRI (Toxics Release Inventory) text files from the EPA into a structured CSV. Standalone script, not called by 'run_pipeline.py'.
+
+       - 'dump_zip_building_types.py' (WIP): Original goal was to use OOpenStreetMap to fetch info tags for every building within a radius of each ZIP code cenntroid.
+
+       - All static CSVs land in the '/static data/' folder.
+
+Reference Data
+
+       - 'uszips.csv': Full US ZIP code lookup table. Used by 'collect.py' to resolve ZIP -> coordinates for API calls.
+
+       - 'houston_zips.csv': Filtered ZIP list for Houston, used by 'collect_population.py'.
+
+
+
 
 
 HOW TO RUN
 ----------
-# Show the most common commands with real example values, not just placeholders.
-# Someone should be able to copy-paste and have it work.
+
+--- Incremental Mode (default) ---
+Fetches only the data that is missing since the last successful run.
 
 1. Install dependencies:
        `pip install -r requirements.txt`
@@ -96,6 +106,8 @@ HOW TO RUN
        --zip-traffic road_density.csv    Attach precomputed road density
        --refresh-static                  Also regenerate slow static tables
                                          (population, pollution sources, road density)
+       --out-prefix (default: aq)        Controls filename prefix of CSVs
+       --start-date + --per-day          Enables backfill mode
 
 3. To manually collect a specific date range:
        `python collect.py --cities "Houston,TX" --start-date 2025-01-01 --end-date 2025-01-07`
@@ -103,13 +115,41 @@ HOW TO RUN
 4. To regenerate static dimension tables only:
        `python run_pipeline.py --refresh-static`
 
+For how incremental and backfill modes differ, see HOW IT WORKS below.
+
+--- Backfill Mode ---
+Collects one CSV per caledar day from a specific start date up to 5 days before today (the Open-Meteo archive limit).
+
+Already-collected days are skipped automatically.
+
+--- Regenerate Static Tables ---
+Static tables (population, road density, pollution sources) are slow and only need to be regenerated occasionally via:
+       'python run_pipeline.py --refresh-static'
+
+--
+
+
+
 
 HOW IT WORKS
 ------------
-# Explain the pipeline end-to-end in plain English, in the order things happen.
-# A simple numbered list or diagram works well here.
-# Example: 1. state.py checks the last collected date -> 2. collect.py fetches new data -> etc.
-# The goal is that someone can follow the logic without reading any code.
+
+
+--- Incremental Mode (default) ---
+'state.py' reads 'state.json' to find the last successfully collected date. 'run_pipeline.py' computes the missing window and collects one day at a time, saving a checkpoint after each day. If a run crashes mid-way, the next run detects the in-progress lock and retries from the last saved checkpoint.
+
+--- Backfill Mode ---
+Instead of reading the 'state.json' file, the pipeline iterates from '--start-date' up to 5 days before today (the Open-Meteo archive lag). Days that are already collected are skipped automatically via metadata checks.
+
+
+--- Regenerate Static Tables ---
+Population, road density, and polllution source data rarely change and are computationally way more expensive, and thus are only refresh occasionally via:
+       'python run_pipeline.py --refresh-static'
+
+
+--- Automation ---
+The incremental mode runs daily via GitHub Actions. The workflow triggers run_pipeline.py with no extra flags, so it always collects whatever is missing. Manual runs are onlly needed for backfills or regenerating static tables.
+
 
 HOW INCREMENTAL COLLECTION WORKS
 ---------------------------------
@@ -121,8 +161,6 @@ If a run crashes mid-way, the next run will detect the incomplete state and retr
 
 OUTPUT FILES
 ------------
-# Describe every output file: its name pattern, location, and what columns/data it contains.
-# Include a sample row or schema if the format isn't obvious.
 
 `data/<prefix>_air_quality_hourly_<timestamp>.csv`   Hourly AQ data per ZIP centroid
 
@@ -139,11 +177,7 @@ OUTPUT FILES
 
 KNOWN LIMITATIONS / NOTES
 --------------------------
-# Anything that might trip someone up that isn't obvious from the code.
-# - API rate limits or data lags
-# - Manual steps that can't be automated
-# - Things that are known to break and why
-# - What is intentionally out of scope
+
 
 - The uszips.csv file is required. Download it from: https://simplemaps.com/data/us-zips
 - TRI data (process_tri_data.py) requires manually downloaded TXT files from the
