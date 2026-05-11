@@ -54,11 +54,11 @@ Each run is logged to data/pipeline_metadata.json for tracking and deduplication
 
 ### Orchestration & State:
 
-       'run_pipeline.py' - The main entry point. Determines what date range is missing, then calls the other scripts in order using the missing date range. This is done in both incremental backfill modes.
+       `run_pipeline.py` - The main entry point. Determines what date range is missing, then calls the other scripts in order using the missing date range. This is done in both incremental backfill modes.
 
-       'state.py' - Reads/writes state.json to track the last successfully ingested date. Also writes a in_progress lock so crashed runs can detected an retired.
+       `state.py` - Reads/writes state.json to track the last successfully ingested date. Also writes a in_progress lock so crashed runs can detected an retired.
 
-       'metadata_tracker.py' - Logs a structured JSON record to pipeline_metadata.json after every run of the pipeline. This includes details like timing, output files, row counts, covered ZIPs, etc.
+       `metadata_tracker.py` - Logs a structured JSON record to pipeline_metadata.json after every run of the pipeline. This includes details like timing, output files, row counts, covered ZIPs, etc.
 
 ### Data Ingestion (Dynamic Data):
 
