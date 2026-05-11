@@ -54,31 +54,29 @@ Each run is logged to data/pipeline_metadata.json for tracking and deduplication
 
 ### Orchestration & State:
 
-       `run_pipeline.py` - The main entry point. Determines what date range is missing, then calls the other scripts in order using the missing date range. This is done in both incremental backfill modes.
-
-       `state.py` - Reads/writes state.json to track the last successfully ingested date. Also writes a in_progress lock so crashed runs can detected an retired.
-
-       `metadata_tracker.py` - Logs a structured JSON record to pipeline_metadata.json after every run of the pipeline. This includes details like timing, output files, row counts, covered ZIPs, etc.
+- `run_pipeline.py` - The main entry point. Determines what date range is missing, then calls the other scripts.
+- `state.py` - Reads/writes `state.json` to track the last successfully ingested date.
+- `metadata_tracker.py` - Logs a structured JSON record to `pipeline_metadata.json`.
 
 ### Data Ingestion (Dynamic Data):
 
-       - 'collect.py': Fetches hourly air quality (PM2.5, PM10, NO2, ozone, CO, etc.) and hourly weather (temperature, humidity, wind, precipitation, etc.) from the Open-Meteo APIs, batched by ZIP code centroid. Produces the air_quality_hourly and weather_hourly csvs within the data folder.
+- `collect.py`: Fetches hourly air quality (PM2.5, PM10, NO2, ozone, CO, etc.) and hourly weather (temperature, humidity, wind, precipitation, etc.) from the Open-Meteo APIs, batched by ZIP code centroid. Produces the air_quality_hourly and weather_hourly csvs within the data folder.
 
-       - All dynamic CSVs land in the '/data/' folder.
+- All dynamic CSVs land in the '/data/' folder.
 
 ### Static Dimension Tables (regenerated only with --refresh-static)
 
-       - 'collect_population.py': Queries the US Census ACS API for population by ZIP, using 'houston_zips.csv' as reference. Outputs population_density.csv
+- `collect_population.py`: Queries the US Census ACS API for population by ZIP, using 'houston_zips.csv' as reference. Outputs population_density.csv
 
-       - 'dump_pollution_sources.py': Queries the EPA FRS API for nearby industrial facilities per ZIP. Outputs 'zip_pollution_sources_<state>_<timestamp>.csv.
+- `dump_pollution_sources.py`: Queries the EPA FRS API for nearby industrial facilities per ZIP. Outputs 'zip_pollution_sources_<state>_<timestamp>.csv.
 
-       - 'dump_zip_road_density.py': Uses OSMnx / OpenStreetMap to compute road density (road length per area) for each ZIP polygon. Outputs 'zip_road_density_<timestamp>.csv'.
+- `dump_zip_road_density.py`: Uses OSMnx / OpenStreetMap to compute road density (road length per area) for each ZIP polygon. Outputs 'zip_road_density_<timestamp>.csv'.
 
-       - 'process_tri_data.py' - Processes manually downloaded TRI (Toxics Release Inventory) text files from the EPA into a structured CSV. Standalone script, not called by 'run_pipeline.py'.
+- `process_tri_data.py` - Processes manually downloaded TRI (Toxics Release Inventory) text files from the EPA into a structured CSV. Standalone script, not called by 'run_pipeline.py'.
 
-       - 'dump_zip_building_types.py' (WIP): Original goal was to use OOpenStreetMap to fetch info tags for every building within a radius of each ZIP code cenntroid.
+- `dump_zip_building_types.py` (WIP): Original goal was to use OOpenStreetMap to fetch info tags for every building within a radius of each ZIP code cenntroid.
 
-       - All static CSVs land in the '/static data/' folder.
+- All static CSVs land in the '/static data/' folder.
 
 ### Reference Data
 
