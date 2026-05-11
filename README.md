@@ -350,7 +350,7 @@ conda install -c conda-forge pandas numpy geopandas shapely pyogrio fiona pyproj
 
 ---
 
-#### 6. Full pipeline order
+#### 5. Full pipeline order
 
 Run the scripts in this order:
 
@@ -362,7 +362,7 @@ Run the scripts in this order:
 
 ---
 
-#### 5. Step-by-step commands
+#### 6. Step-by-step commands
 
 The commands below assume you are running them from the directory containing the scripts. Adjust paths as needed.
 
@@ -374,7 +374,7 @@ Use `merge_data_into_master_file.py` to append all collected air-quality and wea
 **Running `merge_data_into_master_file.py`**
 This script is used to combine all data from `data/` into two master files, one containing all air-quality rows and one containing all weather rows. 
 
-##Note: For this script to work in its current implementation, the air-quality data must have `_air_quality_` and `_weather_` included in the file name for the respective data type. 
+## Note: For this script to work in its current implementation, the air-quality data must have `_air_quality_` and `_weather_` included in the file name for the respective data type. 
 The current implementation appends files based on earliest data first, so the date is also required in the filename. This restriction can be removed since these files are sorted later in `preprocessing.py`
 
 This script uses a state file to track which csv's from the `data/` folder have already been appended into the 'master' files. 
