@@ -52,21 +52,21 @@ Each run is logged to data/pipeline_metadata.json for tracking and deduplication
 -----------------
 
 
-Orchestration & State:
+### Orchestration & State:
 
-       - 'run_pipeline.py': The main entry point. Determines what date range is missing, then calls the other scripts in order using the missing date range. This is done in both incremental backfill modes.
+       'run_pipeline.py' - The main entry point. Determines what date range is missing, then calls the other scripts in order using the missing date range. This is done in both incremental backfill modes.
 
-       - 'state.py': Reads/writes state.json to track the last successfully ingested date. Also writes a in_progress lock so crashed runs can detected an retired.
+       'state.py' - Reads/writes state.json to track the last successfully ingested date. Also writes a in_progress lock so crashed runs can detected an retired.
 
-       - 'metadata_tracker.py': Logs a structured JSON record to pipeline_metadata.json after every run of the pipeline. This includes details like timing, output files, row counts, covered ZIPs, etc.
+       'metadata_tracker.py' - Logs a structured JSON record to pipeline_metadata.json after every run of the pipeline. This includes details like timing, output files, row counts, covered ZIPs, etc.
 
-Data Ingestion (Dynamic Data):
+### Data Ingestion (Dynamic Data):
 
        - 'collect.py': Fetches hourly air quality (PM2.5, PM10, NO2, ozone, CO, etc.) and hourly weather (temperature, humidity, wind, precipitation, etc.) from the Open-Meteo APIs, batched by ZIP code centroid. Produces the air_quality_hourly and weather_hourly csvs within the data folder.
 
        - All dynamic CSVs land in the '/data/' folder.
 
-Static Dimension Tables (regenerated only with --refresh-static)
+### Static Dimension Tables (regenerated only with --refresh-static)
 
        - 'collect_population.py': Queries the US Census ACS API for population by ZIP, using 'houston_zips.csv' as reference. Outputs population_density.csv
 
@@ -80,7 +80,7 @@ Static Dimension Tables (regenerated only with --refresh-static)
 
        - All static CSVs land in the '/static data/' folder.
 
-Reference Data
+### Reference Data
 
        - 'uszips.csv': Full US ZIP code lookup table. Used by 'collect.py' to resolve ZIP -> coordinates for API calls.
 
@@ -121,16 +121,16 @@ Fetches only the data that is missing since the last successful run.
 
 For how incremental and backfill modes differ, see HOW IT WORKS below.
 
---- Backfill Mode ---
+#### Backfill Mode
 Collects one CSV per caledar day from a specific start date up to 5 days before today (the Open-Meteo archive limit).
 
 Already-collected days are skipped automatically.
 
---- Regenerate Static Tables ---
+#### Regenerate Static Tables
 Static tables (population, road density, pollution sources) are slow and only need to be regenerated occasionally via:
        'python run_pipeline.py --refresh-static'
 
---
+----
 
 
 
@@ -139,19 +139,19 @@ Static tables (population, road density, pollution sources) are slow and only ne
 ------------
 
 
---- Incremental Mode (default) ---
+#### --- Incremental Mode (default) ---
 'state.py' reads 'state.json' to find the last successfully collected date. 'run_pipeline.py' computes the missing window and collects one day at a time, saving a checkpoint after each day. If a run crashes mid-way, the next run detects the in-progress lock and retries from the last saved checkpoint.
 
---- Backfill Mode ---
+#### --- Backfill Mode ---
 Instead of reading the 'state.json' file, the pipeline iterates from '--start-date' up to 5 days before today (the Open-Meteo archive lag). Days that are already collected are skipped automatically via metadata checks.
 
 
---- Regenerate Static Tables ---
+#### --- Regenerate Static Tables ---
 Population, road density, and polllution source data rarely change and are computationally way more expensive, and thus are only refresh occasionally via:
        'python run_pipeline.py --refresh-static'
 
 
---- Automation ---
+#### --- Automation ---
 The incremental mode runs daily via GitHub Actions. The workflow triggers run_pipeline.py with no extra flags, so it always collects whatever is missing. Manual runs are onlly needed for backfills or regenerating static tables.
 
 
