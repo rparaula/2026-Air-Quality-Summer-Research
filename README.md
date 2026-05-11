@@ -3,7 +3,7 @@
 This README text file contains the combined documentation that was written by each team/phase.
 
 
-<h1 align="center">Data Collection Phase</h1>
+<h1 align="center">📥Data Collection Phase📥</h1>
 
 
 ### OVERVIEW
@@ -193,7 +193,7 @@ If a run crashes mid-way, the next run will detect the incomplete state and retr
 
  
 
-<h2 align="center">Preprocessing</h2>
+<h2 align="center">🧹Preprocessing🧹</h2>
 
 ### Houston AQ/Weather Preprocessing Pipeline
 
@@ -833,7 +833,7 @@ A better implementation of this stage would be to merge all of these scripts int
 <br><br>
 
 
-<h2 align="center">Exploratory Data Analysis Phase</h2>
+<h2 align="center">📊Exploratory Data Analysis Phase📊</h2>
 
 
 #### Overview
@@ -1071,7 +1071,7 @@ Claude (Anthropic) used as AI coding assistant.
 
 
 
-<h2 align="center">Training Phase</h2>
+<h2 align="center">🧠Training Phase🧠</h2>
 
 ### AQI Autoencoder + LSTM Training
 
@@ -1282,7 +1282,7 @@ Otherwise, it runs on CPU.
 
 
 
-<h2 align="center">Validation Phase</h2>
+<h2 align="center">🔧Validation Phase🔧</h2>
 
 **Authors:** Alfredo Hernandez, Jose Perla  
 **Project:** Houston Area Air Quality Index (AQI) Forecasting — Phase 2 Validation
