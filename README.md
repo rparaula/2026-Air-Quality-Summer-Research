@@ -19,8 +19,8 @@ Basically, how this all works is that we aim for data to be pulled from:
   - [OSMnx](https://osmnx.readthedocs.io/en/stable/) / [OpenStreetMap](https://www.openstreetmap.org)       (road density by ZIP code)
   - TRI text files              (Toxics Release Inventory, processed separately)
 
-All output CSVs are saved to the data/ folder.
-Each run is logged to data/pipeline_metadata.json for tracking and deduplication.
+All output CSVs are saved to the 'data/' folder.
+Each run is logged to 'data/pipeline_metadata.json' for tracking and deduplication.
 
 
 ### PREREQUISITES
@@ -28,8 +28,8 @@ Each run is logged to data/pipeline_metadata.json for tracking and deduplication
 
 - Python 3.10+ is required
 - uszips.csv must be manually downloaded from (https://simplemaps.com/data/us-zips) and placed within the root folder before running anything.
-- TRI csv and json files from (Ask Tabriz for source) into project folder
-- OpenMeteo API Key may be needed if using a large data range when using the backfill mode; however, it is not required. API key access is managed through github secrets..
+- TRI data files (US_1a_2023.txt, US_1a_2024.txt) must be manually downloaded from the [EPA TRI website](https://www.epa.gov/toxics-release-inventory-tri-program/tri-basic-plus-data-files-calendar-years-1987-present) and placed in the project folder.
+- OpenMeteo API Key may be needed if using a large data range when using the backfill mode; however, it is not required. API key access is managed through GitHub secrets.
 
 
 
@@ -38,7 +38,7 @@ Each run is logged to data/pipeline_metadata.json for tracking and deduplication
 
 1. Clone the repo: 
        - git clone https://github.com/GlowSand/AQ_ML_Pipeline.git
-       - cd AQ_ML_Pipelinne
+       - cd AQ_ML_Pipeline
 2. (optional but recommended) Create a virtual environment:
        - python -m venv .venv
        .venv\Scripts\activate
@@ -52,19 +52,19 @@ Each run is logged to data/pipeline_metadata.json for tracking and deduplication
 -----------------
 
 
-### Orchestration & State:
+#### Orchestration & State:
 
 - `run_pipeline.py` - The main entry point. Determines what date range is missing, then calls the other scripts.
 - `state.py` - Reads/writes `state.json` to track the last successfully ingested date.
 - `metadata_tracker.py` - Logs a structured JSON record to `pipeline_metadata.json`.
 
-### Data Ingestion (Dynamic Data):
+#### Data Ingestion (Dynamic Data):
 
 - `collect.py`: Fetches hourly air quality (PM2.5, PM10, NO2, ozone, CO, etc.) and hourly weather (temperature, humidity, wind, precipitation, etc.) from the Open-Meteo APIs, batched by ZIP code centroid. Produces the air_quality_hourly and weather_hourly csvs within the data folder.
 
 - All dynamic CSVs land in the '/data/' folder.
 
-### Static Dimension Tables (regenerated only with --refresh-static)
+#### Static Dimension Tables (regenerated only with --refresh-static)
 
 - `collect_population.py`: Queries the US Census ACS API for population by ZIP, using 'houston_zips.csv' as reference. Outputs population_density.csv
 
@@ -74,15 +74,15 @@ Each run is logged to data/pipeline_metadata.json for tracking and deduplication
 
 - `process_tri_data.py` - Processes manually downloaded TRI (Toxics Release Inventory) text files from the EPA into a structured CSV. Standalone script, not called by 'run_pipeline.py'.
 
-- `dump_zip_building_types.py` (WIP): Original goal was to use OOpenStreetMap to fetch info tags for every building within a radius of each ZIP code cenntroid.
+- `dump_zip_building_types.py` (WIP): Original goal was to use OpenStreetMap to fetch info tags for every building within a radius of each ZIP code centroid.
 
 - All static CSVs land in the '/static data/' folder.
 
-### Reference Data
+#### Reference Data
 
-       - 'uszips.csv': Full US ZIP code lookup table. Used by 'collect.py' to resolve ZIP -> coordinates for API calls.
+- `uszips.csv` : Full US ZIP code lookup table. Used by 'collect.py' to resolve ZIP -> coordinates for API calls.
 
-       - 'houston_zips.csv': Filtered ZIP list for Houston, used by 'collect_population.py'.
+- `houston_zips.csv`: Filtered ZIP list for Houston, used by 'collect_population.py'.
 
 
 
@@ -120,7 +120,7 @@ Fetches only the data that is missing since the last successful run.
 For how incremental and backfill modes differ, see HOW IT WORKS below.
 
 #### Backfill Mode
-Collects one CSV per caledar day from a specific start date up to 5 days before today (the Open-Meteo archive limit).
+Collects one CSV per calendar day from a specific start date up to 5 days before today (the Open-Meteo archive limit).
 
 Already-collected days are skipped automatically.
 
@@ -145,28 +145,101 @@ Instead of reading the 'state.json' file, the pipeline iterates from '--start-da
 
 
 #### --- Regenerate Static Tables ---
-Population, road density, and polllution source data rarely change and are computationally way more expensive, and thus are only refresh occasionally via:
+Population, road density, and pollution source data rarely change and are computationally way more expensive, and thus are only refresh occasionally via:
        'python run_pipeline.py --refresh-static'
 
 
 #### --- Automation ---
-The incremental mode runs daily via GitHub Actions. The workflow triggers run_pipeline.py with no extra flags, so it always collects whatever is missing. Manual runs are onlly needed for backfills or regenerating static tables.
+The incremental mode runs daily via GitHub Actions. The workflow triggers run_pipeline.py with no extra flags, so it always collects whatever is missing. Manual runs are only needed for backfills or regenerating static tables.
 
 
-### HOW INCREMENTAL COLLECTION WORKS
----------------------------------
-`state.py` stores the last successfully collected end date in `data/pipeline_state.json.`
-On each run, `run_pipeline.py` automatically figures out what date window is missing
-and only fetches new data. Already-collected windows are skipped (checked via metadata).
-If a run crashes mid-way, the next run will detect the incomplete state and retry.
+#### --- State Tracking ---
+`state.json` stores two fields that control where the next incremental run starts:
+
+```json
+{
+  "last_ingested_date": "YYYY-MM-DD",
+  "last_run_timestamp": "YYYY-MM-DD"
+}
+```
+
+`run_pipeline.py` reads `last_ingested_date` on startup to compute the missing date window, then updates it after each successfully collected day. If a run is interrupted mid-collection, the file retains the last *fully completed* date so the next run resumes from the correct point.
+
+
+#### --- Metadata Logging ---
+Every pipeline run appends one JSON object to `data/pipeline_metadata.json`, regardless of success or failure. Key fields per entry:
+
+| Field | Description |
+|---|---|
+| `run_id` | Timestamp-based unique identifier (`YYYYMMDD_HHMMSS`) |
+| `script` | Script that produced the entry (`collect`, `dump_pollution_sources`, etc.) |
+| `status` | `"success"` or `"error"` |
+| `started_at` / `finished_at` | ISO 8601 start and end timestamps |
+| `duration_seconds` | Wall-clock runtime |
+| `parameters` | All CLI flags used for that run (cities, date range, batch size, etc.) |
+| `locations.total_zip_centroids` | Number of ZIP codes processed |
+| `outputs[].file` | Path of each output CSV produced |
+| `outputs[].row_count` | Row count of that output file |
+| `outputs[].variables` | List of data columns written (excludes key columns like zip/time) |
+| `error` | Exception message if the run failed, otherwise `null` |
+
+This log is what deduplication checks against — if a date window already appears as a successful `collect` run, `run_pipeline.py` skips it automatically on the next execution.
+
+
+#### --- API Batching ---
+The Open-Meteo API has a request payload limit. `collect.py` groups ZIP centroids into batches (default: 50 per request via `--batch-size`) to minimize HTTP calls while staying within those limits. For Houston's 97 ZIP codes, this results in 2 API requests per variable type per day. Reducing `--batch-size` can help if requests time out on slower connections or if a free-tier rate limit is reached.
 
 
 ### OUTPUT FILES
 ------------
 
-`data/<prefix>_air_quality_hourly_<timestamp>.csv`   Hourly AQ data per ZIP centroid
+#### Dynamic Outputs (produced on every run)
 
-`data/<prefix>_weather_hourly_<timestamp>.csv`        Hourly weather data per ZIP centroid
+**`data/<prefix>_air_quality_hourly_<timestamp>.csv`** — Hourly air quality readings per ZIP centroid
+
+A typical daily run produces **2,328 rows** (97 ZIP codes × 24 hours).
+
+| Column | Description |
+|---|---|
+| `city` | City name |
+| `state` | State abbreviation |
+| `zip` | ZIP code |
+| `latitude` / `longitude` | ZIP centroid coordinates |
+| `time` | Hourly timestamp (timezone-aware) |
+| `us_aqi` | US Air Quality Index (0–500 scale) |
+| `pm10` | PM10 particulate matter (µg/m³) |
+| `pm2_5` | PM2.5 fine particulate matter (µg/m³) |
+| `carbon_monoxide` | CO concentration (µg/m³) |
+| `nitrogen_dioxide` | NO₂ concentration (µg/m³) |
+| `sulphur_dioxide` | SO₂ concentration (µg/m³) |
+| `ozone` | Ozone concentration (µg/m³) |
+| `uv_index` | UV index |
+| `uv_index_clear_sky` | UV index under clear-sky conditions |
+| `dust` | Dust concentration (µg/m³) |
+| `aerosol_optical_depth` | Aerosol optical depth (dimensionless) |
+
+**`data/<prefix>_weather_hourly_<timestamp>.csv`** — Hourly weather readings per ZIP centroid
+
+Same row count as the air quality file.
+
+| Column | Description |
+|---|---|
+| `city` | City name |
+| `state` | State abbreviation |
+| `zip` | ZIP code |
+| `latitude` / `longitude` | ZIP centroid coordinates |
+| `time` | Hourly timestamp (timezone-aware) |
+| `temperature_2m` | Air temperature at 2 m height (°C) |
+| `relative_humidity_2m` | Relative humidity at 2 m height (%) |
+| `precipitation` | Total precipitation (mm) |
+| `wind_speed_10m` / `wind_speed_100m` | Wind speed at 10 m and 100 m (km/h) |
+| `wind_direction_10m` / `wind_direction_100m` | Wind direction at 10 m and 100 m (°) |
+| `wind_gusts_10m` | Wind gusts at 10 m height (km/h) |
+| `shortwave_radiation` | Shortwave solar radiation (W/m²) |
+| `diffuse_radiation` | Diffuse solar radiation (W/m²) |
+| `cloud_cover` | Total cloud cover (%) |
+
+#### Static Outputs (produced only with --refresh-static)
 
 `data/population_density.csv`                         Population per ZIP (static)
 
@@ -174,7 +247,34 @@ If a run crashes mid-way, the next run will detect the incomplete state and retr
 
 `data/zip_road_density_<timestamp>.csv`               Road density per ZIP (static)
 
-`data/pipeline_metadata.json`                         Log of every pipeline run
+#### Metadata
+
+`data/pipeline_metadata.json`                         Append-only log of every pipeline run (see HOW IT WORKS for field descriptions)
+
+
+### TROUBLESHOOTING
+----------------
+
+#### `uszips.csv` not found
+The pipeline exits immediately if `uszips.csv` is missing from the project root. Download it from https://simplemaps.com/data/us-zips and place it in the root directory before running anything.
+
+#### Lock file from a crashed run
+If a previous run crashed mid-collection, `state.json` may hold an in-progress marker. The next run detects this automatically and retries from the last successful checkpoint — no manual intervention is needed.
+
+#### API rate limits / 429 errors
+The free Open-Meteo tier has a limited request quota per day. This is rarely hit for a single daily incremental run, but large backfills spanning many dates can exceed it. Solutions:
+- Use an API key (configured via GitHub Secrets) — it is passed to the API automatically.
+- Reduce `--batch-size` to spread work across more, smaller requests.
+- Split a large backfill into smaller date-range chunks run across multiple sessions.
+
+#### Empty or short output files
+The Open-Meteo archive endpoint has a **5-day lag** — data is not finalized until roughly 5 days after the observation date. The pipeline limits backfill to `today - 5 days` to avoid this automatically. If you manually pass a `--start-date` too close to today and get empty or single-row CSVs, this is the cause.
+
+#### TRI files missing for `process_tri_data.py`
+This script expects `US_1a_2023.txt` and `US_1a_2024.txt` in the project root. Download them from the [EPA TRI Basic Plus Data Files page](https://www.epa.gov/toxics-release-inventory-tri-program/tri-basic-plus-data-files-calendar-years-1987-present). Note that `process_tri_data.py` is standalone and is **not** called by `run_pipeline.py`.
+
+#### Static table scripts are slow
+`dump_zip_road_density.py` queries OpenStreetMap geometry across 97 ZIP polygons and can take 10–30 minutes. `dump_zip_building_types.py` can take 20+ minutes. This is expected — only regenerate static tables with `--refresh-static` when the underlying data actually needs updating.
 
 
 ### KNOWN LIMITATIONS / NOTES
