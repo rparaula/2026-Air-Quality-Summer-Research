@@ -1,0 +1,7 @@
+csv_count=232
+extras_22_count=22
+universe_count=254
+census_shapes_found=252
+census_shapes_missing=2
+all_overlap_pairs_count=0
+subset_22_vs_csv_overlap_pairs_count=0

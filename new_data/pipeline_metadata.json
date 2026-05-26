@@ -1,0 +1,127 @@
+[
+  {
+    "run_id": "20260521_234415",
+    "script": "grid_collect",
+    "status": "error",
+    "started_at": "2026-05-21T23:44:15.189303",
+    "finished_at": "2026-05-22T00:24:49.946683",
+    "duration_seconds": 2434.76,
+    "parameters": {
+      "start_date": "2026-02-22",
+      "end_date": "2026-04-15",
+      "timezone": "America/Chicago",
+      "batch_size": 50,
+      "grid_centroids": "static data\\houston_grid_centroids.csv",
+      "out_dir": "new data",
+      "out_prefix": "grid"
+    },
+    "locations": {
+      "total_zip_centroids": 10354,
+      "cities_found": [
+        "Houston,TX"
+      ],
+      "cities_skipped": []
+    },
+    "outputs": [],
+    "error": "failed to request 'https://air-quality-api.open-meteo.com/v1/air-quality': {'reason': 'Hourly API request limit exceeded. Please try again in the next hour.', 'error': True}"
+  },
+  {
+    "run_id": "20260522_004646",
+    "script": "grid_collect",
+    "status": "error",
+    "started_at": "2026-05-22T00:46:46.577603",
+    "finished_at": "2026-05-22T00:46:47.503117",
+    "duration_seconds": 0.93,
+    "parameters": {
+      "start_date": "2026-02-22",
+      "end_date": "2026-04-15",
+      "timezone": "America/Chicago",
+      "batch_size": 50,
+      "grid_centroids": "new data/missing_centroids_after_20260521_234415.csv",
+      "out_dir": "new data",
+      "out_prefix": "grid_resume"
+    },
+    "locations": {
+      "total_zip_centroids": 8354,
+      "cities_found": [
+        "Houston,TX"
+      ],
+      "cities_skipped": []
+    },
+    "outputs": [],
+    "error": "failed to request 'https://air-quality-api.open-meteo.com/v1/air-quality': {'error': True, 'reason': 'Hourly API request limit exceeded. Please try again in the next hour.'}"
+  },
+  {
+    "run_id": "20260522_024545",
+    "script": "grid_collect",
+    "status": "error",
+    "started_at": "2026-05-22T02:45:45.334701",
+    "finished_at": "2026-05-22T02:45:45.335716",
+    "duration_seconds": 0.0,
+    "parameters": {
+      "start_date": "2026-02-22",
+      "end_date": "2026-04-15",
+      "timezone": "America/Chicago",
+      "batch_size": 50,
+      "grid_centroids": "new data/houston_grid_centroids_2x2.csv",
+      "out_dir": "new data",
+      "out_prefix": "grid_resume"
+    },
+    "locations": {
+      "total_zip_centroids": null,
+      "cities_found": [],
+      "cities_skipped": []
+    },
+    "outputs": [],
+    "error": "[Errno 2] No such file or directory: 'new data/houston_grid_centroids_2x2.csv'"
+  },
+  {
+    "run_id": "20260522_030932",
+    "script": "grid_collect",
+    "status": "error",
+    "started_at": "2026-05-22T03:09:32.394711",
+    "finished_at": "2026-05-22T03:57:22.486155",
+    "duration_seconds": 2870.09,
+    "parameters": {
+      "start_date": "2026-02-22",
+      "end_date": "2026-03-28",
+      "timezone": "America/Chicago",
+      "batch_size": 50,
+      "grid_centroids": "static data/houston_grid_centroids_2x2.csv",
+      "out_dir": "new data",
+      "out_prefix": "grid_resume"
+    },
+    "locations": {
+      "total_zip_centroids": 2575,
+      "cities_found": [
+        "Houston,TX"
+      ],
+      "cities_skipped": []
+    },
+    "outputs": [
+      {
+        "type": "air_quality",
+        "file": "new data\\grid_resume_air_quality_hourly_20260522_030932.csv",
+        "row_count": 2163000,
+        "size_bytes": 263420366,
+        "variable_count": 11,
+        "variables": [
+          "us_aqi",
+          "pm10",
+          "pm2_5",
+          "carbon_monoxide",
+          "nitrogen_dioxide",
+          "sulphur_dioxide",
+          "ozone",
+          "uv_index_clear_sky",
+          "uv_index",
+          "dust",
+          "aerosol_optical_depth"
+        ],
+        "api_url": "https://customer-air-quality-api.open-meteo.com/v1/air-quality?apikey=7VFoaNAvRwC1eTo9",
+        "batch_size_used": 50
+      }
+    ],
+    "error": "failed to request 'https://archive-api.open-meteo.com/v1/archive': {'reason': 'Hourly API request limit exceeded. Please try again in the next hour.', 'error': True}"
+  }
+]

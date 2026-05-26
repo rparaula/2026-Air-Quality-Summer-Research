@@ -1,0 +1,244 @@
+
+File
+Edit
+View
+Window
+Help
+Add NOAA ISD station pipeline
+
+
+VS Code
+
+
+
+Can you help me design a new data ingestion pipeline similar to how we incoporated the AQS api to use the grid centroids; however, now we'll use the NOAA Integrated Surface Database for weather hourly variables instead.
+
+First, as we did before we'll define the Greater Houston area as anything within the Austin, Brazoria, Chambers, Fort Bend, Galveston, Harris, Liberty, Montgomery, and Waller Counties.
+
+
+Then, I want a python script that creates another csv that holds all the needed information of every NOAA ISD monitor station within the greater Houston area. To do so, I want to query all locational information for each monitor station that is within one of the "Houston counties", and whether that monitor station tracks any of the weather variables we tracked using Open-Meteo. Make sure to map to the actual parameter names the NOAA ISD uses.
+
+
+
+
+
+So that every row represents where the station is and what they are capable of measuring.
+
+Have the python script be called "NOAA_collect.py" and the output CSVs should be generated in \AQS_data\monitor_locations
+
+Show more
+5:44 PM
+
+
+Worked for 27m 20s
+Done. I added NOAA_collect.py and generated the inventory CSV at greater_houston_noaa_isd_monitor_locations_20260522_180759.csv.
+
+The script:
+
+Uses the nine-county Greater Houston definition.
+Pulls NOAA ISD station history/location metadata.
+Uses Census TIGERweb county boundaries to keep only stations inside those counties.
+Scans each station’s latest available ISD Global Hourly CSV years for Open-Meteo weather-variable equivalents.
+Maps to actual ISD fields like TMP, DEW, WND, AA1-AA4, GD1-GD6, OC1, and GH1.
+Flags unsupported Open-Meteo variables: wind_speed_100m, wind_direction_100m, and diffuse_radiation.
+Verification passed:
+
+py_compile succeeded.
+Full run completed with 39 NOAA ISD stations.
+Active stations: 18.
+Capability counts: temperature 36, RH-derived 25, precipitation 17, 10m/surface wind speed 36, gusts 27, cloud cover 24.
+One important date note: the latest ISD station-history end date returned by the run was 2025-08-28. NOAA now says GHCNh is the next-generation hourly dataset replacing ISD, so for future 2026+ hourly weather ingestion we may want the next script to target GHCNh instead of legacy ISD. Sources: NOAA ISD overview, NOAA station histories, NOAA ISD on AWS, NOAA GHCNh replacement note.
+
+
+Z:Computer ScienceGitHub RepositoriesPersonal Projects2026-Air-Quality-Summer-ResearchAQS_datamonitor_locationsgreater_houston_noaa_isd_monitor_locations_20260522_180759.csv
+Spreadsheet · CSV
+Open in
+
+Edited NOAA_collect.py
++1,271
+-7
+Undo
+Review
+Details
+
+
+
+
+6:11 PM
+Let's move on to the next part of the data ingestion pipeline.
+
+
+
+Next, I want to create a second python script that uses the output CSVs that collect_NOAA_monitors.py (renamed from NOAA_collect.py) produces to query the weather variables from every monitor station, in hourly intervals, in a given time range (similar to the how collect.py operates). 
+
+
+
+So that every row within the CSV would represent the a set of key info to identify the monitor station, the timestamp we're pulling the data from, and the pollutant concentrations from that monitor station at that specific timestamp.
+
+
+
+If the monitor station is unable to track a certain weather variablle, just fill with NaNs. 
+
+Have the python script be called "NOAA_variables" and have the output CSVs be generated within the \NNOAA_data\weather_data folder.
+
+Also keep in mind, I moved the "greater_houston_noaa_isd_monitor_locations_20260522_180759.csv" you're supposed to use to the \NOAA_data\monitor_locations folder.
+
+Show more
+6:18 PM
+
+
+Worked for 6m 33s
+Done. I added NOAA_variables.py and renamed the prior monitor script to collect_NOAA_monitors.py.
+
+The new script defaults to:
+
+monitor input: NOAA_data\monitor_locations\*_noaa_isd_monitor_locations_*.csv
+hourly output: NOAA_data\weather_data
+NOAA source: https://noaa-global-hourly-pds.s3.amazonaws.com
+Example run:
+
+.\.venv\Scripts\python.exe .\NOAA_data\NOAA_variables.py `
+  --start-date 2025-01-01 `
+  --end-date 2025-01-31 `
+  --active-only
+It builds one row per station per local hour, keeps station identifiers/location metadata, and fills unsupported or unavailable station variables as blank/NaN. It parses NOAA ISD fields into the Open-Meteo-style weather columns: temp in C, RH derived from TMP/DEW, precipitation in mm, wind/gusts in km/h, wind direction degrees, and cloud cover percent.
+
+Verification passed: both NOAA scripts compile, and a one-station one-day smoke run produced 24 hourly rows successfully.
+
+
+Edited NOAA_variables.py
++785
+-5
+Undo
+Review
+Details
+
+
+
+
+6:24 PM
+Now for the final part.
+
+
+
+Can you make a third python script that maps a time series of each centroid from the "houston_grid"centroids_2x2.csv" to the monitor station that is closest to their location? Essentially, where every row within this CSV would represent a specific centroid at a certain timestamp, the associated monitor station at that specific timestamp, and the weather variables from that centroid's assigned monitor station at that specific timestamp.
+
+
+
+The goal of this script is to transform the third csv to mimic the CSV format that is required by the preprocessing stage.
+
+
+
+Have the script be called "mapping_NOAA_to_2x2centroids.py" and have the output CSVs be generate within the \new_data folder.
+6:30 PM
+
+
+Worked for 4m 36s
+Implemented mapping_NOAA_to_2x2centroids.py.
+
+It defaults to:
+
+grid input: static data\houston_grid_centroids_2x2.csv
+NOAA weather input: newest NOAA_data\weather_data\*_noaa_weather_hourly_*.csv
+output folder: new_data
+Example:
+
+.\.venv\Scripts\python.exe .\NOAA_data\mapping_NOAA_to_2x2centroids.py
+It outputs one row per grid_id/timestamp, assigns the nearest NOAA monitor station by haversine distance, preserves the centroid city,state,zip,latitude,longitude,time fields needed by preprocessing, and appends the Open-Meteo-style weather columns.
+
+Verification: the script compiles and a 2-centroid smoke run produced the expected 1678 rows. One caveat: your current latest NOAA weather file is for 2026-02-22 to 2026-03-28, but its weather variables are all blank/NaN because ISD data appears unavailable for that range in the mirror. I added a warning so a full mapped output does not silently look valid while containing no weather values.
+
+
+Edited mapping_NOAA_to_2x2centroids.py
++427
+-1
+Undo
+Review
+Details
+
+
+
+
+6:34 PM
+So before I run this script, I realized that the NOAA ISD stopped collecting hourly weather observations in the year 2026, which is very limiting as rn we are focusing on air quality prediction within the year 2026.
+
+Thus, I was wondering if it was possible to convert all the logic with all the programs we made in this session to use NOAA GHCNh api: https://www.ncei.noaa.gov/products/global-historical-climatology-network-hourly
+
+If it is possible, do not change the original scripts but create copies and edit them to fix the new logic. Make sure the copies rename any prefixes with "NOAA" to "NOAA_GHCNh".
+6:51 PM
+
+
+
+Worked for 28m 45s
+Yes, it’s possible, and I built the parallel GHCNh version without changing the original ISD scripts.
+
+Added:
+
+collect_NOAA_GHCNh_monitors.py
+NOAA_GHCNh_variables.py
+mapping_NOAA_GHCNh_to_2x2centroids.py
+Defaults now use:
+
+monitor output: NOAA_GHCNh_data\monitor_locations
+weather output: NOAA_GHCNh_data\weather_data
+centroid mapped output: new_data
+filename prefixes: noaa_ghcnh
+Run order:
+
+.\.venv\Scripts\python.exe .\NOAA_GHCNh_data\collect_NOAA_GHCNh_monitors.py --capability-years 2026
+.\.venv\Scripts\python.exe .\NOAA_GHCNh_data\NOAA_GHCNh_variables.py `
+  --start-date 2026-02-22 `
+  --end-date 2026-03-28 `
+  --active-only
+.\.venv\Scripts\python.exe .\NOAA_GHCNh_data\mapping_NOAA_GHCNh_to_2x2centroids.py
+I verified all three scripts compile, and I smoke-tested the centroid mapper with a tiny local GHCNh-shaped weather file. The NCEI GHCNh HTTPS endpoints timed out from this sandbox, so I could not live-fetch a real 2026 station file here, but the scripts are pointed at the official GHCNh station list and station-year PSV access patterns.
+
+Sources used: NOAA GHCNh product page, GHCNh documentation PDF, NOAA metadata record.
+
+
+_ghcnh_mapping_smoke.csv
+Spreadsheet · CSV
+Open in
+
+Edited 4 files
++1,573
+-0
+Undo
+Review
+NOAA_GHCNh_data/collect_NOAA_GHCNh_monitors.py
+NOAA_GHCNh_data/NOAA_GHCNh_variables.py
+NOAA_GHCNh_data/mapping_NOAA_GHCNh_to_2x2centroids.py
+
+Show 1 more file
+
+
+
+
+7:20 PM
+
+
+
+
+
+Default permissions
+
+5.5
+Extra High
+
+
+
+Progress
+
+Environment
+
+Changes
++8,492
+-6
+Local
+Grid-Ingestion
+Commit
+
+GitHub CLI unavailable
+
+Sources
+Web search

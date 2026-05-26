@@ -1,0 +1,296 @@
+
+File
+Edit
+View
+Window
+Help
+Create AQS monitor CSV pipeline
+
+
+VS Code
+
+
+
+Can you help me design a new data ingestion pipeline if we define the Greater Houston area as anything within the Austin, Brazoria, Chambers, Fort Bend, Galveston, Harris, Liberty, Montgomery, and Waller Counties?
+
+First, I want a python script that creates another csv that holds all the needed information of every EPA AQS monitor station within the greater Houston area. To do so, I want to query all locational information for each monitor station that is within one of the "Houston counties", and whether that monitor station tracks any of the pollutants we tracked using Open-Meteo. Each row should have something like:
+
+monitor_site_id,
+state_code,
+county_code,
+county_name,
+site_number,
+site_name,
+latitude,
+longitude,
+datum,
+address,
+city,
+cbsa_code,
+open_date,
+close_date,
+active,
+measures_pm2_5,
+measures_pm10,
+measures_ozone,
+measures_carbon_monoxide,
+measures_nitrogen_dioxide,
+measures_sulphur_dioxide,
+available_parameter_codes
+
+So that every row represents where the station is and what they are capable of measuring.
+
+Have the python script be called "AQS_collect.py" and the output CSVs should be generated in \AQS_data\monitor_locations.
+
+Show more
+4:17 PM
+
+
+Worked for 7m 44s
+Implemented AQS_collect.py (line 1).
+
+It now:
+
+Defines Greater Houston as the 9 counties you listed.
+Queries EPA AQS monitors/byCounty for Open-Meteo pollutant equivalents.
+Collapses parameter-level monitors into one row per AQS site.
+Writes the inventory to AQS_data/monitor_locations.
+Includes flags like measures_pm2_5, measures_ozone, etc., plus semicolon-delimited available_parameter_codes.
+Verified:
+
+py_compile passes in the project venv.
+AQS_collect.py --help loads correctly.
+I could not generate the live CSV yet because AQS_EMAIL and AQS_KEY are not set in this environment. Once those are set, run:
+
+.\.venv\Scripts\python.exe .\AQS_collect.py
+I also checked the official EPA AQS docs for the monitor endpoint shape: EPA AQS API docs.
+
+
+Edited AQS_collect.py
++615
+-0
+Undo
+Review
+Details
+
+
+
+
+4:25 PM
+So what would be the terminal command I type with CLI arguments if I wanted to use this script to pull what Houston monitor stations pull least one of pollutants we track within collect.py, have been active starting from the beginninng of the 2026 year to this present day, and for the output CSVs to be generated within the AQS_data\monitor_locations folder?
+4:32 PM
+
+In PowerShell, after setting your AQS credentials, run:
+
+$env:AQS_EMAIL="your.email@example.com"
+$env:AQS_KEY="your_aqs_key"
+
+.\.venv\Scripts\python.exe .\AQS_collect.py `
+  --start-date 2026-01-01 `
+  --end-date 2026-05-22 `
+  --active-as-of 2026-05-22 `
+  --pollutants pm2_5,pm10,ozone,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide `
+  --out-dir "AQS_data\monitor_locations" `
+  --out-prefix "greater_houston"
+That pulls Greater Houston AQS sites that measure at least one of the pollutants tracked in collect.py, checks the 2026-to-present operating window, and writes the CSV under AQS_data\monitor_locations.
+
+Small caveat: the script includes an active column, but it does not currently drop inactive rows from the CSV. If you want the CSV to contain only currently active stations, I should add a --active-only flag.
+
+
+
+
+
+4:32 PM
+I ran the script (renamed to collect_AQS_monitors.py) but it is empty. Are you sure you mapped the variables names appopriately? While I did draft a column schema for you, you should map the idea of what columns I want to the actual parameter/variable names the AQS api uses.
+
+Or is there another issue that is the reason why the collect_AQS_monitors.py script generated a header-only CSV?
+4:45 PM
+
+
+Worked for 7m 36s
+You were right to question it. The pollutant parameter codes were fine, but the script was reading the wrong response field.
+
+EPA AQS is returning monitor rows under top-level Data, not Body. The script was doing payload.get("Body", []), so every successful API response looked empty. I patched collect_AQS_monitors.py locally to read Data first, then fall back to Body.
+
+I verified with a smoke test:
+
+.\.venv\Scripts\python.exe .\collect_AQS_monitors.py `
+  --email test@aqs.api `
+  --key test `
+  --counties Harris `
+  --pollutants ozone `
+  --start-date 2026-01-01 `
+  --end-date 2026-05-22 `
+  --active-as-of 2026-05-22 `
+  --request-delay 0 `
+  --output-file "AQS_data\monitor_locations\_debug_harris_ozone.csv"
+That returned 17 Harris ozone monitor rows. I also added row-count logging and a fail-fast guard so future no-row runs won’t silently write a header-only CSV unless you pass --allow-empty.
+
+Use your real command again:
+
+.\.venv\Scripts\python.exe .\collect_AQS_monitors.py `
+  --start-date 2026-01-01 `
+  --end-date 2026-05-22 `
+  --active-as-of 2026-05-22 `
+  --out-dir "AQS_data\monitor_locations"
+EPA’s docs confirm the monitor endpoint shape: AQS monitors/byCounty docs.
+
+
+Edited collect_AQS_monitors.py
++19
+-4
+Undo
+Review
+Details
+
+
+
+
+4:51 PM
+Let's move on to the next part of the data ingestion pipeline.
+
+Next, I want to create a second python script that uses the output CSVs that collect_AQS_monitors.py produces to query the air pollutant concentrations from every monitor station, in hourly intervals, in a given time range (similar to the how collect.py operates). 
+
+So that every row within the CSV would represent the a set of key info to identify the monitor station, the timestamp we're pulling the data from, and the pollutant concentrations from that monitor station at that specific timestamp.
+
+If the monitor station is unable to track a certain pollutant, just fill with NaNs.
+
+Have the python script be called "AQS_concentrations.py" and have the output CSVs be generated within the \AQS_data\air_data folder.
+5:09 PM
+
+
+Worked for 4m 29s
+Built AQS_concentrations.py.
+
+It reads the latest collect_AQS_monitors.py output by default, queries AQS sampleData/bySite, and writes a complete hourly monitor-site grid to AQS_data\air_data. Pollutants a station cannot measure, or hours with no AQS reading, stay blank/NaN. If AQS returns multiple readings for the same site/pollutant/hour, the script averages them into one value.
+
+Example full run:
+
+.\.venv\Scripts\python.exe .\AQS_concentrations.py `
+  --start-date 2026-01-01 `
+  --end-date 2026-05-22 `
+  --active-only `
+  --out-dir "AQS_data\air_data"
+You can also pin the monitor inventory explicitly:
+
+--monitor-csv "AQS_data\monitor_locations\greater_houston_aqs_monitor_locations_20260522_165239.csv"
+Verified with a one-site smoke test: 48-201-0024, ozone only, 2026-01-01, returned 24 hourly rows and wrote _debug_harris_aldine_ozone_20260101.csv under AQS_data\air_data.
+
+
+Edited AQS_concentrations.py
++628
+-2
+Undo
+Review
+Details
+
+
+
+
+5:14 PM
+Now for the final part.
+
+Can you make a third python script that maps a time series of each centroid from the "houston_grid"centroids_2x2.csv" to the monitor station that is closest to their location? Essentially, where every row within this CSV would represent a specific centroid at a certain timestamp, the associated monitor station at that specific timestamp, and the pollutant concentrations from that centroid's assigned monitor station at that specific timestamp.
+
+The goal of this script is to transform the third csv to mimic the CSV format that is required by the preprocessing stage.
+
+Have the script be called "mapping_AQS_to_2x2centroids.py" and have the output CSVs be generate within the \new_data folder.
+5:29 PM
+
+
+Worked for 4m 51s
+Built mapping_AQS_to_2x2centroids.py.
+
+It:
+
+Reads static data\houston_grid_centroids_2x2.csv.
+Reads the latest AQS_data\air_data\*_aqs_concentrations_hourly_*.csv by default.
+Assigns each centroid to its nearest AQS monitor by haversine distance.
+Emits one row per centroid x timestamp.
+Includes assigned monitor metadata plus pollutant columns.
+Writes to new_data by default.
+Full run:
+
+.\.venv\Scripts\python.exe .\mapping_AQS_to_2x2centroids.py `
+  --out-dir "new_data"
+With explicit files/date range:
+
+.\.venv\Scripts\python.exe .\mapping_AQS_to_2x2centroids.py `
+  --grid-centroids "static data\houston_grid_centroids_2x2.csv" `
+  --aqs-concentrations "AQS_data\air_data\greater_houston_aqs_concentrations_hourly_20260222_20260328_20260522_171657.csv" `
+  --start-date 2026-02-22 `
+  --end-date 2026-03-28 `
+  --out-dir "new_data"
+Verified with:
+
+py_compile
+CLI --help
+3-centroid smoke test: 72 rows
+larger smoke test: 1,264 centroids x 24 hours = 30,336 rows, including non-null pollutant values
+One important note: since many 2x2 centroids share the same ZIP, the output preserves grid_id, grid_row, and grid_col. For true centroid-level preprocessing, grid_id,time is the cleaner key than zip,time.
+
+
+Edited 2 files
++762
+-0
+Undo
+Review
+mapping_AQS_to_2x2centroids.py
+mapping_AQS_to_2x2centroids.py
+
+
+
+
+5:34 PM
+Lastly can you create a README.txt within the \AQS_data folder that explains how this 3 part data ingestion pipeline works?
+5:39 PM
+
+
+
+Worked for 54s
+Created AQS_data/README.txt.
+
+It documents the full 3-part AQS ingestion flow:
+
+collect_AQS_monitors.py for monitor inventory
+AQS_concentrations.py for hourly station pollutant readings
+mapping_AQS_to_2x2centroids.py for centroid-to-nearest-monitor mapping
+It also includes credentials setup, example commands, output folders, key columns, preprocessing notes, and debug options.
+
+
+Edited README.txt
++235
+-0
+Undo
+Review
+Details
+
+
+
+
+5:40 PM
+
+
+
+
+
+Default permissions
+
+5.5
+Extra High
+
+
+
+Environment
+
+Changes
++8,492
+-6
+Local
+Grid-Ingestion
+Commit
+
+GitHub CLI unavailable
+
+Sources
+Web search

@@ -174,6 +174,26 @@ def _is_auth_error(exc: Exception) -> bool:
     return any(token in msg for token in ("401", "403", "unauthorized", "forbidden", "invalid api key", "apikey"))
 
 
+def _is_transient_request_error(exc: Exception) -> bool:
+    """Return True for request failures that may improve with a smaller batch."""
+    msg = str(exc).lower()
+    return any(
+        token in msg
+        for token in (
+            "timeout",
+            "timed out",
+            "max retries",
+            "connection aborted",
+            "connection reset",
+            "temporarily unavailable",
+            "500 internal server error",
+            "502",
+            "503",
+            "504",
+        )
+    )
+
+
 def fetch_and_save_csv(
         loc_df: pd.DataFrame,
         start_date: str,
@@ -184,8 +204,10 @@ def fetch_and_save_csv(
         url: str,  # Added by rparaula for dynamic open meteo queries
         hourly_vars: list[str],
         limiter: WeightRateLimiter = None,
+        request_timeout=(15, 180),
 ):
-    first_write = True
+    output_file = Path(output_file)
+    first_write = not output_file.exists() or output_file.stat().st_size == 0
 
     if limiter is None:
         limiter = WeightRateLimiter(max_weight=600.0, window_seconds=60)
@@ -195,7 +217,10 @@ def fetch_and_save_csv(
     days = int((d1 - d0).days) + 1
     days = max(days, 1)
 
-    for batch in chunked(loc_df, batch_size):
+    pending_batches = [batch.reset_index(drop=True) for batch in chunked(loc_df, batch_size)]
+
+    while pending_batches:
+        batch = pending_batches.pop(0)
         req_weight = compute_request_weight(
             num_vars=len(hourly_vars),
             days=days,
@@ -213,7 +238,22 @@ def fetch_and_save_csv(
             "timezone": timezone,
         }
 
-        responses = openmeteo.weather_api(url, params=params)
+        try:
+            responses = openmeteo.weather_api(url, params=params, timeout=request_timeout)
+        except Exception as exc:
+            if len(batch) > 1 and _is_transient_request_error(exc):
+                midpoint = max(1, len(batch) // 2)
+                first_half = batch.iloc[:midpoint].reset_index(drop=True)
+                second_half = batch.iloc[midpoint:].reset_index(drop=True)
+                pending_batches.insert(0, second_half)
+                pending_batches.insert(0, first_half)
+                print(
+                    "WARNING: Open-Meteo request failed for "
+                    f"{len(batch)} locations ({exc}). Retrying as smaller batches."
+                )
+                time.sleep(2)
+                continue
+            raise
 
         batch_frames = []
         for i, resp in enumerate(responses):
