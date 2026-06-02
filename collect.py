@@ -173,6 +173,30 @@ def _is_auth_error(exc: Exception) -> bool:
     msg = str(exc).lower()
     return any(token in msg for token in ("401", "403", "unauthorized", "forbidden", "invalid api key", "apikey"))
 
+def response_to_dataframe(resp, location_row, hourly_vars: list[str], timezone: str) -> pd.DataFrame:
+    hourly = resp.Hourly()
+
+    times = pd.date_range(
+        start=pd.to_datetime(hourly.Time(), unit="s", utc=True),
+        end=pd.to_datetime(hourly.TimeEnd(), unit="s", utc=True),
+        freq=pd.Timedelta(seconds=hourly.Interval()),
+        inclusive="left",
+    ).tz_convert(timezone)
+
+    data = {
+        "city": location_row["city"],
+        "state": location_row["state"],
+        "zip": location_row["zip"],
+        "latitude": location_row["latitude"],
+        "longitude": location_row["longitude"],
+        "time": times,
+    }
+
+    for j, var in enumerate(hourly_vars):
+        data[var] = hourly.Variables(j).ValuesAsNumpy()
+
+    return pd.DataFrame(data)
+
 
 def fetch_and_save_csv(
         loc_df: pd.DataFrame,
@@ -217,30 +241,15 @@ def fetch_and_save_csv(
 
         batch_frames = []
         for i, resp in enumerate(responses):
-            hourly = resp.Hourly()
-
-            times = pd.date_range(
-                start=pd.to_datetime(hourly.Time(), unit="s", utc=True),
-                end=pd.to_datetime(hourly.TimeEnd(), unit="s", utc=True),
-                freq=pd.Timedelta(seconds=hourly.Interval()),
-                inclusive="left",
-            ).tz_convert(timezone)
-
             row = batch.iloc[i]
-
-            data = {
-                "city": row["city"],
-                "state": row["state"],
-                "zip": row["zip"],
-                "latitude": row["latitude"],
-                "longitude": row["longitude"],
-                "time": times,
-            }
-
-            for j, var in enumerate(hourly_vars):
-                data[var] = hourly.Variables(j).ValuesAsNumpy()
-
-            batch_frames.append(pd.DataFrame(data))
+            batch_frames.append(
+                response_to_dataframe(
+                    resp=resp,
+                    location_row=row,
+                    hourly_vars=hourly_vars,
+                    timezone=timezone,
+                )
+            )
 
         batch_df = pd.concat(batch_frames, ignore_index=True)
 

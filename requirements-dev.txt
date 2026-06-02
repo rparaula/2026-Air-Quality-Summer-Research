@@ -1,0 +1,5 @@
+# Depenndencies for CI workflow
+
+pytest
+pytest-cov
+ruff
