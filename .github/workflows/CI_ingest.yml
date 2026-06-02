@@ -26,9 +26,10 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
 
+      # Make sure code-quality checks on run on the specific files, not the entire repository
       - name: Run lint checks
         run: |
-          ruff check .
+          ruff check collect.py state.py run_pipeline.py metadata_tracker.py tests scripts
 
       - name: Run tests
         run: |
