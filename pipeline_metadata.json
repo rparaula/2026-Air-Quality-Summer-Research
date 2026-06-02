@@ -77,5 +77,84 @@
       }
     ],
     "error": null
+  },
+  {
+    "run_id": "20260602_130751",
+    "script": "collect",
+    "status": "success",
+    "started_at": "2026-06-02T13:07:51.692042",
+    "finished_at": "2026-06-02T13:07:52.161270",
+    "duration_seconds": 0.47,
+    "parameters": {
+      "cities": "Houston,TX",
+      "start_date": "2026-04-01",
+      "end_date": "2026-04-01",
+      "timezone": "America/Chicago",
+      "batch_size": 50,
+      "uszips": "uszips.csv",
+      "zip_traffic": null,
+      "out_dir": ".",
+      "out_prefix": "multi"
+    },
+    "locations": {
+      "total_zip_centroids": 97,
+      "cities_found": [
+        "Houston,TX"
+      ],
+      "cities_skipped": []
+    },
+    "outputs": [
+      {
+        "type": "air_quality",
+        "file": "bronze\\air\\multi_air_quality_hourly_20260602_130751",
+        "row_count": 2328,
+        "size_bytes": 30726,
+        "variable_count": 11,
+        "variables": [
+          "us_aqi",
+          "pm10",
+          "pm2_5",
+          "carbon_monoxide",
+          "nitrogen_dioxide",
+          "sulphur_dioxide",
+          "ozone",
+          "uv_index_clear_sky",
+          "uv_index",
+          "dust",
+          "aerosol_optical_depth"
+        ],
+        "api_url": "https://air-quality-api.open-meteo.com/v1/air-quality",
+        "batch_size_used": 50,
+        "format": "parquet",
+        "part_count": 2,
+        "column_count": 17
+      },
+      {
+        "type": "weather",
+        "file": "bronze\\weather\\multi_weather_hourly_20260602_130751",
+        "row_count": 2328,
+        "size_bytes": 64568,
+        "variable_count": 11,
+        "variables": [
+          "temperature_2m",
+          "relative_humidity_2m",
+          "precipitation",
+          "wind_speed_10m",
+          "wind_speed_100m",
+          "wind_direction_10m",
+          "wind_direction_100m",
+          "wind_gusts_10m",
+          "shortwave_radiation",
+          "diffuse_radiation",
+          "cloud_cover"
+        ],
+        "api_url": "https://archive-api.open-meteo.com/v1/archive",
+        "batch_size_used": 50,
+        "format": "parquet",
+        "part_count": 2,
+        "column_count": 17
+      }
+    ],
+    "error": null
   }
 ]
