@@ -344,3 +344,34 @@ def test_add_spatial_scores_to_row_raises_value_error_for_bad_facility_wind_mode
             road_wind_mode="10m",
             road_wind_blend_100m=0.0,
         )
+
+
+
+def test_add_direction_features_to_row_marks_blank_direction_as_nan():
+    row = {"wind_direction_10m": ""}
+
+    add_direction_features_to_row(
+        row,
+        direction_columns=["wind_direction_10m"],
+        drop_original=False,
+    )
+
+    assert row["wind_direction_10m_sin"] == "nan"
+    assert row["wind_direction_10m_cos"] == "nan"
+    assert row["wind_direction_10m"] == ""
+    
+    
+
+
+def test_add_direction_features_to_row_marks_none_direction_as_nan():
+    row = {"wind_direction_10m": None}
+
+    add_direction_features_to_row(
+        row,
+        direction_columns=["wind_direction_10m"],
+        drop_original=False,
+    )
+
+    assert row["wind_direction_10m_sin"] == "nan"
+    assert row["wind_direction_10m_cos"] == "nan"
+    assert row["wind_direction_10m"] is None

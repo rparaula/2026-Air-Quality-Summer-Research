@@ -635,21 +635,19 @@ def add_direction_features_to_row(row, direction_columns, drop_original):
 
         raw_value = row.get(c)
 
+        # Missing direction values should not crash the whole pipeline.
         if raw_value is None or str(raw_value).strip() == "":
             row[f"{c}_sin"] = "nan"
             row[f"{c}_cos"] = "nan"
+
             if drop_original:
                 row.pop(c, None)
+
             continue
 
-        try:
-            value = float(raw_value)
-        except (TypeError, ValueError):
-            row[f"{c}_sin"] = "nan"
-            row[f"{c}_cos"] = "nan"
-            if drop_original:
-                row.pop(c, None)
-            continue
+        # Keep the original fail-fast behavior for truly invalid values
+        # such as "north" or "not-a-number".
+        value = float(raw_value)
 
         radians = math.radians(value)
         row[f"{c}_sin"] = math.sin(radians)
