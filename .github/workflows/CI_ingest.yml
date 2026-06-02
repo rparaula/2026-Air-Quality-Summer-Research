@@ -2,9 +2,9 @@ name: CI Tests
 #Adding comment to test workflow
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, Parquet-Storage]
   pull_request:
-    branches: [main, master]
+    branches: [main, master, Parquet-Storage]
 
 jobs:
   test:
