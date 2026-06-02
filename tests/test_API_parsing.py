@@ -1,5 +1,4 @@
 import pandas as pd
-import requests_cache
 from collect import response_to_dataframe
 
 
