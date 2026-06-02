@@ -1,4 +1,4 @@
-name: CI Ingestion Tests
+name: CI Preprocessing Tests
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main, master]
 
 jobs:
-  test:
+  preprocessing-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,10 +26,9 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
 
-      # Make sure code-quality checks on run on the specific files, not the entire repository
       - name: Run lint checks
         run: |
-          ruff check collect.py state.py run_pipeline.py metadata_tracker.py tests
+          ruff check preprocessing/filter_houston_zcta.py preprocessing/merge_data_into_master_file.py preprocessing/strip_tz_info.py preprocessing/preprocessing.py tests
 
       - name: Run tests
         run: |
