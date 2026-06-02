@@ -626,16 +626,33 @@ def compute_wind_vector(row: Dict[str, Any], mode: str, blend_100m: float) -> Tu
     wind_y = w10 * speed10 * sin10 + w100 * speed100 * sin100
     return wind_x, wind_y
 
-
-def add_direction_features_to_row(row: Dict[str, Any], direction_columns: Sequence[str], drop_original: bool) -> None:
+#Edited by rparaula because somehow a weather recorrd from 2026-04-02 2026-04-02 15:00:00-05:00 has missing winnd direction
+def add_direction_features_to_row(row, direction_columns, drop_original):
     """Expand direction columns into sine/cosine features for one output row."""
     for c in direction_columns:
         if c not in row:
             continue
-        value = float(row.get(c))
-        radians = math.radians(value) if value is not None else None
-        row[f"{c}_sin"] = math.sin(radians) if radians is not None else "nan"
-        row[f"{c}_cos"] = math.cos(radians) if radians is not None else "nan"
+
+        raw_value = row.get(c)
+
+        # Missing direction values should not crash the whole pipeline.
+        if raw_value is None or str(raw_value).strip() == "":
+            row[f"{c}_sin"] = "nan"
+            row[f"{c}_cos"] = "nan"
+
+            if drop_original:
+                row.pop(c, None)
+
+            continue
+
+        # Keep the original fail-fast behavior for truly invalid values
+        # such as "north" or "not-a-number".
+        value = float(raw_value)
+
+        radians = math.radians(value)
+        row[f"{c}_sin"] = math.sin(radians)
+        row[f"{c}_cos"] = math.cos(radians)
+
         if drop_original:
             row.pop(c, None)
 
