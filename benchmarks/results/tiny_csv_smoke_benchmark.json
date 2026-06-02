@@ -4,12 +4,12 @@
   "description": "Generates tiny synthetic ingestion-like air-quality and weather CSV files, then runs merge -> strip_tz_info -> preprocessing.",
   "parameters": {
     "runs": 3,
-    "hours": 24,
+    "hours": 2500,
     "zips": [
       "77002",
       "77003"
     ],
-    "rows_per_generated_file": 48
+    "rows_per_generated_file": 5000
   },
   "runs": [
     {
@@ -19,9 +19,9 @@
         "input_dir": "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\benchmarks\\runs\\tiny_csv_smoke\\run_1\\input_data",
         "air_quality_csv": "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\benchmarks\\runs\\tiny_csv_smoke\\run_1\\input_data\\april_1_air_quality_hourly_smoke.csv",
         "weather_csv": "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\benchmarks\\runs\\tiny_csv_smoke\\run_1\\input_data\\april_1_weather_hourly_smoke.csv",
-        "air_quality_rows": 48,
-        "weather_rows": 48,
-        "hours": 24,
+        "air_quality_rows": 5000,
+        "weather_rows": 5000,
+        "hours": 2500,
         "zips": [
           "77002",
           "77003"
@@ -29,25 +29,25 @@
       },
       "step_times": {
         "generate_inputs_seconds": 0.0,
-        "merge_to_master_seconds": 0.1061,
-        "strip_air_seconds": 0.0764,
-        "strip_weather_seconds": 0.095,
-        "preprocessing_seconds": 1.8059
+        "merge_to_master_seconds": 0.1692,
+        "strip_air_seconds": 0.1084,
+        "strip_weather_seconds": 0.1072,
+        "preprocessing_seconds": 8.3422
       },
-      "total_seconds": 2.0834,
+      "total_seconds": 8.727,
       "output_rows": {
-        "air_quality_master": 48,
-        "weather_master": 48,
-        "air_quality_master_tz_stripped": 48,
-        "weather_master_tz_stripped": 48,
-        "all_features": 48
+        "air_quality_master": 5000,
+        "weather_master": 5000,
+        "air_quality_master_tz_stripped": 5000,
+        "weather_master_tz_stripped": 5000,
+        "all_features": 5000
       },
       "output_sizes_mib": {
-        "air_quality_master": 0.0051,
-        "weather_master": 0.0055,
-        "air_quality_master_tz_stripped": 0.0051,
-        "weather_master_tz_stripped": 0.0055,
-        "all_features": 0.0177
+        "air_quality_master": 0.5942,
+        "weather_master": 0.6023,
+        "air_quality_master_tz_stripped": 0.5942,
+        "weather_master_tz_stripped": 0.6023,
+        "all_features": 1.8636
       },
       "internal_preprocessing_summary": {
         "inputs": {
@@ -101,13 +101,13 @@
         },
         "timing": {
           "step_runtime_seconds": {
-            "pass1_external_sort": 0.020384999996167608,
-            "static_spatial_precompute": 0.7013460000016494,
-            "pass2_stream_merge_transform": 0.08530510000127833,
+            "pass1_external_sort": 0.14020569999411236,
+            "static_spatial_precompute": 0.7258285999996588,
+            "pass2_stream_merge_transform": 6.458907000007457,
             "cardinality_filter": 0.0,
             "variance_filter": 0.0
           },
-          "total_pipeline_runtime_seconds": 0.8079231000010623
+          "total_pipeline_runtime_seconds": 7.32596360000025
         },
         "io_summary": {
           "total_read_ops": 8,
@@ -128,43 +128,43 @@
         "cardinality_summary": {
           "column_cardinality": {
             "aerosol_optical_depth": 1,
-            "carbon_monoxide": 24,
+            "carbon_monoxide": 2500,
             "cloud_cover": 1,
-            "day": 1,
-            "day_of_week": 1,
-            "day_of_week_cos": 1,
-            "day_of_week_sin": 1,
-            "day_of_year": 1,
+            "day": 31,
+            "day_of_week": 7,
+            "day_of_week_cos": 7,
+            "day_of_week_sin": 7,
+            "day_of_year": 105,
             "diffuse_radiation": 1,
             "dust": 1,
-            "facility_impact_score": 48,
+            "facility_impact_score": 4101,
             "hour": 24,
             "hour_cos": 22,
             "hour_sin": 21,
-            "is_weekend": 1,
+            "is_weekend": 2,
             "latitude": 2,
             "longitude": 2,
-            "month": 1,
-            "month_cos": 1,
-            "month_sin": 1,
+            "month": 4,
+            "month_cos": 4,
+            "month_sin": 4,
             "nitrogen_dioxide": 2,
-            "ozone": 24,
-            "pm10": 24,
-            "pm2_5": 24,
+            "ozone": 2500,
+            "pm10": 2500,
+            "pm2_5": 2500,
             "precipitation": 1,
-            "relative_humidity_2m": 24,
-            "road_impact_score": 34,
-            "shortwave_radiation": 24,
+            "relative_humidity_2m": 2500,
+            "road_impact_score": 3167,
+            "shortwave_radiation": 2500,
             "sulphur_dioxide": 1,
-            "temperature_2m": 24,
-            "time": 24,
-            "us_aqi": 25,
+            "temperature_2m": 2500,
+            "time": 2500,
+            "us_aqi": 2501,
             "uv_index": 1,
             "uv_index_clear_sky": 1,
-            "wind_direction_100m_cos": 24,
-            "wind_direction_100m_sin": 24,
-            "wind_direction_10m_cos": 24,
-            "wind_direction_10m_sin": 24,
+            "wind_direction_100m_cos": 2051,
+            "wind_direction_100m_sin": 2037,
+            "wind_direction_10m_cos": 2045,
+            "wind_direction_10m_sin": 2042,
             "wind_gusts_10m": 1,
             "wind_speed_100m": 2,
             "wind_speed_10m": 2,
@@ -181,7 +181,7 @@
           "summary_json": "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\benchmarks\\runs\\tiny_csv_smoke\\run_1\\features\\metadata\\pipeline_summary.json"
         }
       },
-      "wall_clock_seconds": 2.1068
+      "wall_clock_seconds": 8.9307
     },
     {
       "run": 2,
@@ -190,9 +190,9 @@
         "input_dir": "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\benchmarks\\runs\\tiny_csv_smoke\\run_2\\input_data",
         "air_quality_csv": "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\benchmarks\\runs\\tiny_csv_smoke\\run_2\\input_data\\april_1_air_quality_hourly_smoke.csv",
         "weather_csv": "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\benchmarks\\runs\\tiny_csv_smoke\\run_2\\input_data\\april_1_weather_hourly_smoke.csv",
-        "air_quality_rows": 48,
-        "weather_rows": 48,
-        "hours": 24,
+        "air_quality_rows": 5000,
+        "weather_rows": 5000,
+        "hours": 2500,
         "zips": [
           "77002",
           "77003"
@@ -200,25 +200,25 @@
       },
       "step_times": {
         "generate_inputs_seconds": 0.0,
-        "merge_to_master_seconds": 0.0962,
-        "strip_air_seconds": 0.0755,
-        "strip_weather_seconds": 0.0806,
-        "preprocessing_seconds": 1.6012
+        "merge_to_master_seconds": 0.1677,
+        "strip_air_seconds": 0.1081,
+        "strip_weather_seconds": 0.113,
+        "preprocessing_seconds": 8.322
       },
-      "total_seconds": 1.8533,
+      "total_seconds": 8.7109,
       "output_rows": {
-        "air_quality_master": 48,
-        "weather_master": 48,
-        "air_quality_master_tz_stripped": 48,
-        "weather_master_tz_stripped": 48,
-        "all_features": 48
+        "air_quality_master": 5000,
+        "weather_master": 5000,
+        "air_quality_master_tz_stripped": 5000,
+        "weather_master_tz_stripped": 5000,
+        "all_features": 5000
       },
       "output_sizes_mib": {
-        "air_quality_master": 0.0051,
-        "weather_master": 0.0055,
-        "air_quality_master_tz_stripped": 0.0051,
-        "weather_master_tz_stripped": 0.0055,
-        "all_features": 0.0177
+        "air_quality_master": 0.5942,
+        "weather_master": 0.6023,
+        "air_quality_master_tz_stripped": 0.5942,
+        "weather_master_tz_stripped": 0.6023,
+        "all_features": 1.8636
       },
       "internal_preprocessing_summary": {
         "inputs": {
@@ -272,13 +272,13 @@
         },
         "timing": {
           "step_runtime_seconds": {
-            "pass1_external_sort": 0.019760499999392778,
-            "static_spatial_precompute": 0.662651000006008,
-            "pass2_stream_merge_transform": 0.06472689998918213,
+            "pass1_external_sort": 0.15553570000338368,
+            "static_spatial_precompute": 0.6738295000104699,
+            "pass2_stream_merge_transform": 6.5742160999943735,
             "cardinality_filter": 0.0,
             "variance_filter": 0.0
           },
-          "total_pipeline_runtime_seconds": 0.7480165999877499
+          "total_pipeline_runtime_seconds": 7.405486600007862
         },
         "io_summary": {
           "total_read_ops": 8,
@@ -299,43 +299,43 @@
         "cardinality_summary": {
           "column_cardinality": {
             "aerosol_optical_depth": 1,
-            "carbon_monoxide": 24,
+            "carbon_monoxide": 2500,
             "cloud_cover": 1,
-            "day": 1,
-            "day_of_week": 1,
-            "day_of_week_cos": 1,
-            "day_of_week_sin": 1,
-            "day_of_year": 1,
+            "day": 31,
+            "day_of_week": 7,
+            "day_of_week_cos": 7,
+            "day_of_week_sin": 7,
+            "day_of_year": 105,
             "diffuse_radiation": 1,
             "dust": 1,
-            "facility_impact_score": 48,
+            "facility_impact_score": 4101,
             "hour": 24,
             "hour_cos": 22,
             "hour_sin": 21,
-            "is_weekend": 1,
+            "is_weekend": 2,
             "latitude": 2,
             "longitude": 2,
-            "month": 1,
-            "month_cos": 1,
-            "month_sin": 1,
+            "month": 4,
+            "month_cos": 4,
+            "month_sin": 4,
             "nitrogen_dioxide": 2,
-            "ozone": 24,
-            "pm10": 24,
-            "pm2_5": 24,
+            "ozone": 2500,
+            "pm10": 2500,
+            "pm2_5": 2500,
             "precipitation": 1,
-            "relative_humidity_2m": 24,
-            "road_impact_score": 34,
-            "shortwave_radiation": 24,
+            "relative_humidity_2m": 2500,
+            "road_impact_score": 3167,
+            "shortwave_radiation": 2500,
             "sulphur_dioxide": 1,
-            "temperature_2m": 24,
-            "time": 24,
-            "us_aqi": 25,
+            "temperature_2m": 2500,
+            "time": 2500,
+            "us_aqi": 2501,
             "uv_index": 1,
             "uv_index_clear_sky": 1,
-            "wind_direction_100m_cos": 24,
-            "wind_direction_100m_sin": 24,
-            "wind_direction_10m_cos": 24,
-            "wind_direction_10m_sin": 24,
+            "wind_direction_100m_cos": 2051,
+            "wind_direction_100m_sin": 2037,
+            "wind_direction_10m_cos": 2045,
+            "wind_direction_10m_sin": 2042,
             "wind_gusts_10m": 1,
             "wind_speed_100m": 2,
             "wind_speed_10m": 2,
@@ -352,7 +352,7 @@
           "summary_json": "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\benchmarks\\runs\\tiny_csv_smoke\\run_2\\features\\metadata\\pipeline_summary.json"
         }
       },
-      "wall_clock_seconds": 1.8765
+      "wall_clock_seconds": 8.9358
     },
     {
       "run": 3,
@@ -361,9 +361,9 @@
         "input_dir": "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\benchmarks\\runs\\tiny_csv_smoke\\run_3\\input_data",
         "air_quality_csv": "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\benchmarks\\runs\\tiny_csv_smoke\\run_3\\input_data\\april_1_air_quality_hourly_smoke.csv",
         "weather_csv": "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\benchmarks\\runs\\tiny_csv_smoke\\run_3\\input_data\\april_1_weather_hourly_smoke.csv",
-        "air_quality_rows": 48,
-        "weather_rows": 48,
-        "hours": 24,
+        "air_quality_rows": 5000,
+        "weather_rows": 5000,
+        "hours": 2500,
         "zips": [
           "77002",
           "77003"
@@ -371,25 +371,25 @@
       },
       "step_times": {
         "generate_inputs_seconds": 0.0,
-        "merge_to_master_seconds": 0.095,
-        "strip_air_seconds": 0.0773,
-        "strip_weather_seconds": 0.0809,
-        "preprocessing_seconds": 1.6159
+        "merge_to_master_seconds": 0.1696,
+        "strip_air_seconds": 0.1091,
+        "strip_weather_seconds": 0.113,
+        "preprocessing_seconds": 8.3455
       },
-      "total_seconds": 1.8691,
+      "total_seconds": 8.7371,
       "output_rows": {
-        "air_quality_master": 48,
-        "weather_master": 48,
-        "air_quality_master_tz_stripped": 48,
-        "weather_master_tz_stripped": 48,
-        "all_features": 48
+        "air_quality_master": 5000,
+        "weather_master": 5000,
+        "air_quality_master_tz_stripped": 5000,
+        "weather_master_tz_stripped": 5000,
+        "all_features": 5000
       },
       "output_sizes_mib": {
-        "air_quality_master": 0.0051,
-        "weather_master": 0.0055,
-        "air_quality_master_tz_stripped": 0.0051,
-        "weather_master_tz_stripped": 0.0055,
-        "all_features": 0.0177
+        "air_quality_master": 0.5942,
+        "weather_master": 0.6023,
+        "air_quality_master_tz_stripped": 0.5942,
+        "weather_master_tz_stripped": 0.6023,
+        "all_features": 1.8636
       },
       "internal_preprocessing_summary": {
         "inputs": {
@@ -443,13 +443,13 @@
         },
         "timing": {
           "step_runtime_seconds": {
-            "pass1_external_sort": 0.019683400008943863,
-            "static_spatial_precompute": 0.6706903000012971,
-            "pass2_stream_merge_transform": 0.06879730000218842,
+            "pass1_external_sort": 0.15870349999750033,
+            "static_spatial_precompute": 0.6861293000110891,
+            "pass2_stream_merge_transform": 6.571669500001008,
             "cardinality_filter": 0.0,
             "variance_filter": 0.0
           },
-          "total_pipeline_runtime_seconds": 0.760069800002384
+          "total_pipeline_runtime_seconds": 7.418152800004464
         },
         "io_summary": {
           "total_read_ops": 8,
@@ -470,43 +470,43 @@
         "cardinality_summary": {
           "column_cardinality": {
             "aerosol_optical_depth": 1,
-            "carbon_monoxide": 24,
+            "carbon_monoxide": 2500,
             "cloud_cover": 1,
-            "day": 1,
-            "day_of_week": 1,
-            "day_of_week_cos": 1,
-            "day_of_week_sin": 1,
-            "day_of_year": 1,
+            "day": 31,
+            "day_of_week": 7,
+            "day_of_week_cos": 7,
+            "day_of_week_sin": 7,
+            "day_of_year": 105,
             "diffuse_radiation": 1,
             "dust": 1,
-            "facility_impact_score": 48,
+            "facility_impact_score": 4101,
             "hour": 24,
             "hour_cos": 22,
             "hour_sin": 21,
-            "is_weekend": 1,
+            "is_weekend": 2,
             "latitude": 2,
             "longitude": 2,
-            "month": 1,
-            "month_cos": 1,
-            "month_sin": 1,
+            "month": 4,
+            "month_cos": 4,
+            "month_sin": 4,
             "nitrogen_dioxide": 2,
-            "ozone": 24,
-            "pm10": 24,
-            "pm2_5": 24,
+            "ozone": 2500,
+            "pm10": 2500,
+            "pm2_5": 2500,
             "precipitation": 1,
-            "relative_humidity_2m": 24,
-            "road_impact_score": 34,
-            "shortwave_radiation": 24,
+            "relative_humidity_2m": 2500,
+            "road_impact_score": 3167,
+            "shortwave_radiation": 2500,
             "sulphur_dioxide": 1,
-            "temperature_2m": 24,
-            "time": 24,
-            "us_aqi": 25,
+            "temperature_2m": 2500,
+            "time": 2500,
+            "us_aqi": 2501,
             "uv_index": 1,
             "uv_index_clear_sky": 1,
-            "wind_direction_100m_cos": 24,
-            "wind_direction_100m_sin": 24,
-            "wind_direction_10m_cos": 24,
-            "wind_direction_10m_sin": 24,
+            "wind_direction_100m_cos": 2051,
+            "wind_direction_100m_sin": 2037,
+            "wind_direction_10m_cos": 2045,
+            "wind_direction_10m_sin": 2042,
             "wind_gusts_10m": 1,
             "wind_speed_100m": 2,
             "wind_speed_10m": 2,
@@ -523,7 +523,7 @@
           "summary_json": "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\benchmarks\\runs\\tiny_csv_smoke\\run_3\\features\\metadata\\pipeline_summary.json"
         }
       },
-      "wall_clock_seconds": 1.8927
+      "wall_clock_seconds": 8.9984
     }
   ],
   "aggregate": {
@@ -536,45 +536,45 @@
     },
     "merge_to_master": {
       "runs": 3,
-      "min_seconds": 0.095,
-      "median_seconds": 0.0962,
-      "max_seconds": 0.1061,
-      "mean_seconds": 0.0991
+      "min_seconds": 0.1677,
+      "median_seconds": 0.1692,
+      "max_seconds": 0.1696,
+      "mean_seconds": 0.1688
     },
     "strip_air": {
       "runs": 3,
-      "min_seconds": 0.0755,
-      "median_seconds": 0.0764,
-      "max_seconds": 0.0773,
-      "mean_seconds": 0.0764
+      "min_seconds": 0.1081,
+      "median_seconds": 0.1084,
+      "max_seconds": 0.1091,
+      "mean_seconds": 0.1085
     },
     "strip_weather": {
       "runs": 3,
-      "min_seconds": 0.0806,
-      "median_seconds": 0.0809,
-      "max_seconds": 0.095,
-      "mean_seconds": 0.0855
+      "min_seconds": 0.1072,
+      "median_seconds": 0.113,
+      "max_seconds": 0.113,
+      "mean_seconds": 0.1111
     },
     "preprocessing": {
       "runs": 3,
-      "min_seconds": 1.6012,
-      "median_seconds": 1.6159,
-      "max_seconds": 1.8059,
-      "mean_seconds": 1.6743
+      "min_seconds": 8.322,
+      "median_seconds": 8.3422,
+      "max_seconds": 8.3455,
+      "mean_seconds": 8.3366
     },
     "total": {
       "runs": 3,
-      "min_seconds": 1.8533,
-      "median_seconds": 1.8691,
-      "max_seconds": 2.0834,
-      "mean_seconds": 1.9353
+      "min_seconds": 8.7109,
+      "median_seconds": 8.727,
+      "max_seconds": 8.7371,
+      "mean_seconds": 8.725
     },
     "wall_clock": {
       "runs": 3,
-      "min_seconds": 1.8765,
-      "median_seconds": 1.8927,
-      "max_seconds": 2.1068,
-      "mean_seconds": 1.9587
+      "min_seconds": 8.9307,
+      "median_seconds": 8.9358,
+      "max_seconds": 8.9984,
+      "mean_seconds": 8.955
     }
   }
 }
