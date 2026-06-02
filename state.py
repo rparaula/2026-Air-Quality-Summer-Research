@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from datetime import date, timedelta, datetime, datetime
+from datetime import date, timedelta, datetime
 
 STATE_FILE = Path("state.json")
 BACKFILL_START = "2026-02-01"  # first-ever run starts here  

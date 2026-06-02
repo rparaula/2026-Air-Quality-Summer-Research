@@ -3,7 +3,7 @@ import subprocess
 import sys
 from datetime import date, timedelta
 from pathlib import Path
-from state import compute_window, save_state, load_state, mark_in_progress, clear_in_progress
+from state import compute_window, save_state
 from metadata_tracker import PipelineRunTracker
 
 
