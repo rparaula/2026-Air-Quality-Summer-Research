@@ -10,6 +10,7 @@ from retry_requests import retry
 import openmeteo_requests
 import math
 import os
+import shutil
 
 # Open Meteo client setup
 cache_session = requests_cache.CachedSession(".cache", expire_after=3600)
@@ -197,35 +198,38 @@ def response_to_dataframe(resp, location_row, hourly_vars: list[str], timezone: 
 
     return pd.DataFrame(data)
 
-
-def fetch_and_save_csv(
+#edited from fetch_and_save_csv to transition to parquet batch migration by rparaula
+def fetch_and_save_parquet_batches(
         loc_df: pd.DataFrame,
         start_date: str,
         end_date: str,
-        output_file: Path,
+        output_run_dir: Path, # originally output_file
         timezone: str,
         batch_size: int,
         url: str,  # Added by rparaula for dynamic open meteo queries
         hourly_vars: list[str],
         limiter: WeightRateLimiter = None,
 ):
-    first_write = True
+
 
     if limiter is None:
         limiter = WeightRateLimiter(max_weight=600.0, window_seconds=60)
+        
+    output_run_dir.mkdir(parents=True, exist_ok=True)
+    part_files = []
+    total_rows = 0
 
     d0 = pd.to_datetime(start_date)
     d1 = pd.to_datetime(end_date)
     days = int((d1 - d0).days) + 1
     days = max(days, 1)
 
-    for batch in chunked(loc_df, batch_size):
+    for batch_idx, batch in enumerate(chunked(loc_df, batch_size)):
         req_weight = compute_request_weight(
             num_vars=len(hourly_vars),
             days=days,
             locations=len(batch),
         )
-
         limiter.acquire(req_weight)
 
         params = {
@@ -252,13 +256,24 @@ def fetch_and_save_csv(
             )
 
         batch_df = pd.concat(batch_frames, ignore_index=True)
+        part_path = output_run_dir / f"part-{batch_idx:05d}.parquet"
+        batch_df.to_parquet(
+            part_path,
+            index=False,
+            engine="pyarrow",
+            compression="snappy",
+        )
+        
+        part_files.append(part_path)
+        total_rows += len(batch_df)
+        print(f"Saved batch of {len(batch)} locations -> {part_path.name}")
 
-        batch_df.to_csv(output_file, mode="a", header=first_write, index=False)
-        first_write = False
-
-        print(f"Saved batch of {len(batch)} locations -> {output_file.name}")
-
-    print(f"\nDONE: saved to {output_file}")
+    print(f"\nDONE: saved parquet dataset to {output_run_dir}")
+    return {
+        "run_dir": output_run_dir,
+        "parts": part_files,
+        "row_count": total_rows,
+    }
 
 
 def parse_args():
@@ -278,7 +293,7 @@ def parse_args():
                    help="Path to simplemaps uszips.csv, you can get this at https://simplemaps.com/data/us-zips")
     p.add_argument("--zip-traffic", default=None,
                    help="Optional: CSV with columns zip,traffic_density to augment features (your precomputed static file).")
-    p.add_argument("--out-dir", default="data", help="Output directory")
+    p.add_argument("--out-dir", default=".", help="Output directory")
     p.add_argument("--out-prefix", default="multi", help="Output filename prefix")
     return p.parse_args()
 
@@ -290,8 +305,13 @@ def main():
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     out_dir = Path(args.out_dir)
     out_dir.mkdir(exist_ok=True)
-    output_file = out_dir / f"{args.out_prefix}_air_quality_hourly_{timestamp}.csv"
-    output_file_weather = out_dir / f"{args.out_prefix}_weather_hourly_{timestamp}.csv"  # added by rparaula to create output file for weather data
+    
+    #Converting to parquet storage by rparaula
+    bronze_air_dir = out_dir / "bronze" / "air"
+    bronze_weather_dir = out_dir / "bronze" / "weather"
+
+    output_run_dir = bronze_air_dir / f"{args.out_prefix}_air_quality_hourly_{timestamp}"
+    output_run_dir_weather = bronze_weather_dir / f"{args.out_prefix}_weather_hourly_{timestamp}"
 
     # Initialize the metadata tracker and log the start of this pipeline run, including the input parameters and which script is running.
     tracker = PipelineRunTracker(out_dir=out_dir)
@@ -352,11 +372,11 @@ def main():
     try:
         aq_url_used = AQ_URL
         try:
-            fetch_and_save_csv(
+            fetch_and_save_parquet_batches(
                 loc_df=loc_df,
                 start_date=args.start_date,
                 end_date=args.end_date,
-                output_file=output_file,
+                output_run_dir=output_run_dir,
                 timezone=args.timezone,
                 batch_size=batch_size,
                 url=AQ_URL,
@@ -366,14 +386,14 @@ def main():
         except Exception as aq_exc:
             if AQ_URL != AQ_FREE_URL and _is_auth_error(aq_exc):
                 print(f"WARNING: Paid AQ endpoint failed ({aq_exc}). Retrying with Open-Meteo free tier...")
-                if output_file.exists():  # remove any partial output before retry
-                    output_file.unlink()
+                if output_run_dir.exists():  # remove any partial output before retry
+                    shutil.rmtree(output_run_dir)
                 aq_url_used = AQ_FREE_URL
-                fetch_and_save_csv(
+                fetch_and_save_parquet_batches(
                     loc_df=loc_df,
                     start_date=args.start_date,
                     end_date=args.end_date,
-                    output_file=output_file,
+                    output_run_dir=output_run_dir,
                     timezone=args.timezone,
                     batch_size=batch_size,
                     url=AQ_FREE_URL,
@@ -382,22 +402,22 @@ def main():
                 )
             else:
                 raise
-        tracker.record_output("air_quality", output_file, HOURLY_VARS, aq_url_used,
+        tracker.record_output("air_quality", output_run_dir, HOURLY_VARS, aq_url_used,
                               batch_size)  # added by rparaula to log the details of the air quality data fetching to the metadata log, including which variables we fetched, which API endpoint we used, and what batch size we used
 
         # second pass to fetch weather data for the same locations and time range, using the same batching and rate limiting logic
-        fetch_and_save_csv(
+        fetch_and_save_parquet_batches(
             loc_df=loc_df,
             start_date=args.start_date,
             end_date=args.end_date,
-            output_file=output_file_weather,
+            output_run_dir=output_run_dir_weather,
             timezone=args.timezone,
             batch_size=batch_size_weather,
             url=WEATHER_URL,
             hourly_vars=WEATHER_HOURLY_VARS,
             limiter=shared_limiter,
         )
-        tracker.record_output("weather", output_file_weather, WEATHER_HOURLY_VARS, WEATHER_URL,
+        tracker.record_output("weather", output_run_dir_weather, WEATHER_HOURLY_VARS, WEATHER_URL,
                               batch_size_weather)  # added by rparaula to log the details of the weather data fetching to the metadata log, including which variables we fetched, which API endpoint we used, and what batch size we used
 
         # added by rparaula to log the status of the run within metadata tracker

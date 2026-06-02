@@ -8,7 +8,7 @@ from metadata_tracker import PipelineRunTracker
 
 
 def build_prefix(start: str, end: str) -> str:
-    """Build a human-readable CSV prefix from the collection window.
+    """Build a human-readable output prefix from the collection window.
     e.g. 'march_14' for a single day, 'march_13_14' for two days."""
     s = date.fromisoformat(start)    
     e = date.fromisoformat(end)   
@@ -24,18 +24,18 @@ def build_prefix(start: str, end: str) -> str:
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Incremental AQ pipeline orchestrator")
     p.add_argument("--cities",        default="Houston,TX",  help="Semicolon-separated City,ST pairs")
-    p.add_argument("--out-dir",       default="data",        help="Output directory for CSVs")
-    p.add_argument("--out-prefix",    default="aq",          help="Prefix for output CSV filenames")
+    p.add_argument("--out-dir",       default="data",        help="Output directory for pipeline artifacts")
+    p.add_argument("--out-prefix",    default="aq",          help="Prefix for output dataset names")
     p.add_argument("--timezone",      default="America/Chicago")
     p.add_argument("--batch-size",    type=int, default=50)
     p.add_argument("--uszips",        default="uszips.csv")
-    p.add_argument("--zip-traffic",   default=None,          help="Optional road-density CSV to join")
+    p.add_argument("--zip-traffic",   default=None,          help="Optional road-density file to join")
     p.add_argument("--refresh-static", dest="refresh_static", action="store_true",
                    help="Also regenerate static dimension tables (slow)")
     p.add_argument("--start-date",     default=None,
                    help="Backfill start date (YYYY-MM-DD). Required with --per-day.")
     p.add_argument("--per-day",        action="store_true",
-                   help="Collect one CSV per calendar day from --start-date to the archive limit (yesterday).")
+                   help="Collect one bronze dataset per calendar day from --start-date to the archive limit (yesterday).")
     return p.parse_args()
 
 

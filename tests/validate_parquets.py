@@ -6,7 +6,7 @@ import pandas as pd
 
 EXPECTED_SCHEMAS = {
     "air_quality": {
-        "file_pattern": "*air_quality_hourly_*.csv",
+        "file_pattern": "bronze/air/*air_quality_hourly_*.parquet",
         "required_columns": {
             "city",
             "state",
@@ -44,7 +44,7 @@ EXPECTED_SCHEMAS = {
         "key_columns": ["zip", "time"],
     },
     "weather": {
-        "file_pattern": "*weather_hourly_*.csv",
+        "file_pattern": "bronze/weather/*weather_hourly_*.parquet",
         "required_columns": {
             "city",
             "state",
@@ -96,7 +96,7 @@ def latest_file(data_dir: Path, pattern: str) -> Path:
 def validate_csv(file_path: Path, schema_name: str, schema: dict) -> None:
     print(f"Validating {schema_name}: {file_path}")
 
-    df = pd.read_csv(file_path)
+    df = pd.read_parquet(file_path)
 
     if df.empty:
         raise SystemExit(f"{file_path} is empty.")

@@ -21,6 +21,7 @@ Usage (from collect.py):
 import json
 from datetime import datetime
 from pathlib import Path
+import pyarrow.parquet as pq
 
 
 METADATA_FILE = "pipeline_metadata.json"
@@ -115,15 +116,31 @@ class PipelineRunTracker:
         
         
         
+        # We use pyarrow to read the Parquet file and get the row count and file size.
         row_count = None
+        column_count = None
         size_bytes = None
+        part_count = None
+        data_format = None
 
-        # Check if the file exist, then measure the file size (in bytes) and the number of row (excluding header).
         if output_file.exists():
-            size_bytes = output_file.stat().st_size
-            # Count data rows (exclude header)
-            with output_file.open("r", encoding="utf-8", errors="replace") as f:
-                row_count = sum(1 for _ in f) - 1
+            if output_file.is_dir():
+                part_files = sorted(output_file.glob("*.parquet"))
+                data_format = "parquet"
+                part_count = len(part_files)
+                size_bytes = sum(p.stat().st_size for p in part_files)
+
+                row_count = 0
+                for part in part_files:
+                    pf = pq.ParquetFile(part)
+                    row_count += pf.metadata.num_rows
+                    column_count = pf.metadata.num_columns
+
+            elif output_file.suffix == ".csv":
+                data_format = "csv"
+                size_bytes = output_file.stat().st_size
+                with output_file.open("r", encoding="utf-8", errors="replace") as f:
+                    row_count = sum(1 for _ in f) - 1
 
         
         
@@ -137,6 +154,9 @@ class PipelineRunTracker:
             "variables": variables,
             "api_url": api_url,
             "batch_size_used": batch_size_used,
+            "format": data_format,
+            "part_count": part_count,
+            "column_count": column_count,
             # Variables names as is, you luck I didnt use anything like suckIt1 or stuffname2 ;)
         })
 
@@ -176,7 +196,7 @@ class PipelineRunTracker:
         out_dir: Path,
         start: str,
         end: str,
-        script: str = "collect.py",
+        script: str = "collect",
     ) -> bool:
         """Return True if a successful run for this exact date window is already logged."""
         metadata_path = out_dir / METADATA_FILE
@@ -227,28 +247,3 @@ class PipelineRunTracker:
         )
 
 
-@classmethod
-def is_window_already_ingested(cls, out_dir: Path, start_date: str, end_date: str) -> bool:
-#Returns True if the given date window has already been ingested in a previous run, based on the metadata log.
-    metadata_path  = out_dir /  METADATA_FILE
-    if not metadata_path.exists():
-        return False
-    try:
-        records = json.loads(metadata_path.read_text(encoding="utf-8"))
-        if not isinstance(records, list):
-            records = [records]
-    except (json.JSONDecodeError, OSError):
-        return False
-    
-    
-    
-    for record in records:
-        params = record.get("parameters", {})
-        if  (
-             record.get("script") ==  "collect.py"
-             and record.get("status") == "success"
-             and  params.get("start_date") == start_date
-             and params.get("end_date") == end_date
-         ):
-                return True
-    return False
