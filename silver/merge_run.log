@@ -1,0 +1,31 @@
+
+Processing air_quality...
+  Rebuilding master Parquet dataset...
+  Rebuilt Z:\Computer Science\GitHub Repositories\Personal Projects\2026-Air-Quality-Summer-Research\silver\master\air_quality_master from 79 dataset(s), 183912 row(s).
+  Added:
+
+Processing weather...
+  Rebuilding master Parquet dataset...
+Traceback (most recent call last):
+  File "Z:\Computer Science\GitHub Repositories\Personal Projects\2026-Air-Quality-Summer-Research\silver\merge_parquets_into_master_file.py", line 531, in <module>
+    main()
+    ~~~~^^
+  File "Z:\Computer Science\GitHub Repositories\Personal Projects\2026-Air-Quality-Summer-Research\silver\merge_parquets_into_master_file.py", line 512, in main
+    process_category(
+    ~~~~~~~~~~~~~~~~^
+        "weather",
+        ^^^^^^^^^^
+    ...<5 lines>...
+        force_rebuild=args.force_rebuild,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "Z:\Computer Science\GitHub Repositories\Personal Projects\2026-Air-Quality-Summer-Research\silver\merge_parquets_into_master_file.py", line 375, in process_category
+    merged = load_datasets(all_datasets)
+  File "Z:\Computer Science\GitHub Repositories\Personal Projects\2026-Air-Quality-Summer-Research\silver\merge_parquets_into_master_file.py", line 245, in load_datasets
+    df = normalize_common_columns(df)
+  File "Z:\Computer Science\GitHub Repositories\Personal Projects\2026-Air-Quality-Summer-Research\silver\merge_parquets_into_master_file.py", line 223, in normalize_common_columns
+    raise ValueError(
+        f"Found {bad_time_rows} rows with invalid/unparseable time values."
+    )
+ValueError: Found 1 rows with invalid/unparseable time values.

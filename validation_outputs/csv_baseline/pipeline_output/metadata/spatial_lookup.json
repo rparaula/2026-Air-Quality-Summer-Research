@@ -1,0 +1,25 @@
+{
+  "zip_codes_scored": 97,
+  "roads_feature_count": 15420,
+  "facility_lookup_zips": 97,
+  "road_lookup_zips": 72,
+  "parameters": {
+    "road_radius_km": 2.0,
+    "facility_radius_km": 10.0
+  },
+  "detected_columns": {
+    "tri_facilities": {
+      "facility_id": "trifd",
+      "lat": "latitude",
+      "lon": "longitude",
+      "facility_name": "facility"
+    },
+    "tri_chemicals": {
+      "facility_id": "trifd",
+      "chemical_name": "chemical",
+      "amount": "total_air_emissions_lbs"
+    },
+    "zcta_zip_column": "ZCTA5CE20",
+    "facility_amount_column": "total_air_emissions_lbs"
+  }
+}

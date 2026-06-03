@@ -1,0 +1,142 @@
+{
+  "inputs": {
+    "air_quality": "validation_outputs/csv_baseline/master/air_quality_master_tz_stripped.csv",
+    "weather": "validation_outputs/csv_baseline/master/weather_master_tz_stripped.csv",
+    "tri_facilities": "static data/tri_facilities_houston.csv",
+    "tri_chemicals": "static data/tri_chemicals_houston.csv",
+    "zip_shapefile": "preprocessing\\houston-zip-shapefiles\\houston_zcta_filtered.shp",
+    "roads_shapefile": "preprocessing\\road-data\\tl_2025_48_prisecroads.shp"
+  },
+  "parameters": {
+    "time_col": "time",
+    "zip_col": "zip",
+    "key_columns": [
+      "zip",
+      "time"
+    ],
+    "merge_how": "outer",
+    "chunk_rows": 25000,
+    "road_radius_km": 2.0,
+    "facility_radius_km": 10.0,
+    "facility_wind_mode": "blend",
+    "facility_wind_blend_100m": 0.7,
+    "road_wind_mode": "10m",
+    "road_wind_blend_100m": 0.0,
+    "feats_for_past": [
+      "us_aqi"
+    ],
+    "num_past_feats": 8,
+    "variance_threshold": null,
+    "exclude_cardinality": [
+      "time",
+      "zip",
+      "road_impact_score",
+      "facility_impact_score",
+      "day",
+      "day_of_week",
+      "day_of_week_cos",
+      "day_of_week_sin",
+      "day_of_year",
+      "hour",
+      "hour_sin",
+      "hour_cosis_weekend",
+      "latitude",
+      "longitude",
+      "month",
+      "month_cos",
+      "month_sin",
+      "ozone",
+      "us_aqi"
+    ],
+    "cardinality_threshold": null
+  },
+  "timing": {
+    "step_runtime_seconds": {
+      "pass1_external_sort": 4.263312800001586,
+      "static_spatial_precompute": 3.0676059999968857,
+      "pass2_stream_merge_transform": 275.8602891000046,
+      "cardinality_filter": 0.0,
+      "variance_filter": 0.0
+    },
+    "total_pipeline_runtime_seconds": 283.2017870000127
+  },
+  "io_summary": {
+    "total_read_ops": 36,
+    "total_write_ops": 19,
+    "read_breakdown": {
+      "csv_chunk_read": 16,
+      "csv_full_read": 2,
+      "shapefile_read": 2,
+      "sorted_run_read": 16
+    },
+    "write_breakdown": {
+      "final_csv_write": 1,
+      "json_write": 1,
+      "log_write": 1,
+      "sorted_run_write": 16
+    }
+  },
+  "cardinality_summary": {
+    "column_cardinality": {
+      "aerosol_optical_depth": 86,
+      "carbon_monoxide": 547,
+      "cloud_cover": 101,
+      "day": 31,
+      "day_of_week": 7,
+      "day_of_week_cos": 7,
+      "day_of_week_sin": 7,
+      "day_of_year": 77,
+      "diffuse_radiation": 454,
+      "dust": 8,
+      "facility_impact_score": 171954,
+      "hour": 24,
+      "hour_cos": 22,
+      "hour_sin": 21,
+      "is_weekend": 2,
+      "latitude": 97,
+      "longitude": 97,
+      "month": 3,
+      "month_cos": 3,
+      "month_sin": 3,
+      "nitrogen_dioxide": 518,
+      "ozone": 196,
+      "pm10": 358,
+      "pm2_5": 343,
+      "precipitation": 184,
+      "relative_humidity_2m": 35809,
+      "road_impact_score": 74434,
+      "shortwave_radiation": 1003,
+      "sulphur_dioxide": 84,
+      "temperature_2m": 624,
+      "time": 1848,
+      "us_aqi": 3202,
+      "us_aqi_past_1": 3201,
+      "us_aqi_past_2": 3200,
+      "us_aqi_past_3": 3198,
+      "us_aqi_past_4": 3196,
+      "us_aqi_past_5": 3195,
+      "us_aqi_past_6": 3192,
+      "us_aqi_past_7": 3189,
+      "us_aqi_past_8": 3188,
+      "uv_index": 203,
+      "uv_index_clear_sky": 214,
+      "wind_direction_100m_cos": 22236,
+      "wind_direction_100m_sin": 23310,
+      "wind_direction_10m_cos": 12513,
+      "wind_direction_10m_sin": 12996,
+      "wind_gusts_10m": 179,
+      "wind_speed_100m": 10668,
+      "wind_speed_10m": 5214,
+      "zip": 97
+    }
+  },
+  "outputs": {
+    "pre_filter_csv": "validation_outputs/csv_baseline/pipeline_output\\intermediate\\pre_filter_all_features.csv",
+    "pre_variance_csv": "validation_outputs/csv_baseline/pipeline_output\\intermediate\\pre_variance_all_features.csv",
+    "final_csv": "validation_outputs/csv_baseline/pipeline_output\\all_features.csv",
+    "spatial_meta_json": "validation_outputs/csv_baseline/pipeline_output\\metadata\\spatial_lookup.json",
+    "variance_report_json": "validation_outputs/csv_baseline/pipeline_output\\metadata\\variance_report.json",
+    "cardinality_report_json": "validation_outputs/csv_baseline/pipeline_output\\metadata\\cardinality_report.json",
+    "summary_json": "validation_outputs/csv_baseline/pipeline_output\\metadata\\pipeline_summary.json"
+  }
+}

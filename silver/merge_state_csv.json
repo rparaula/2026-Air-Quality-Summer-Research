@@ -1,0 +1,938 @@
+{
+  "air_quality": {
+    "files": [
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_10_air_quality_hourly_20260401_120609.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_11_air_quality_hourly_20260401_120612.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_12_air_quality_hourly_20260401_120616.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_13_air_quality_hourly_20260401_120621.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_14_air_quality_hourly_20260401_120624.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_15_air_quality_hourly_20260401_120727.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_16_air_quality_hourly_20260401_120634.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_17_air_quality_hourly_20260401_120731.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_18_air_quality_hourly_20260401_120736.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_19_air_quality_hourly_20260401_120740.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_20_air_quality_hourly_20260401_120744.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_21_air_quality_hourly_20260401_120748.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_22_air_quality_hourly_20260401_121116.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_23_air_quality_hourly_20260401_121121.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_24_air_quality_hourly_20260401_121125.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_25_air_quality_hourly_20260401_121128.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_26_air_quality_hourly_20260401_121135.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_27_air_quality_hourly_20260401_193711.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_28_air_quality_hourly_20260402_192856.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_29_air_quality_hourly_20260403_191055.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_30_air_quality_hourly_20260404_190758.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_31_air_quality_hourly_20260405_190942.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_3_air_quality_hourly_20260408_194627.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_4_air_quality_hourly_20260409_194605.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_5_air_quality_hourly_20260410_192618.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_6_air_quality_hourly_20260411_191035.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_7_air_quality_hourly_20260412_191322.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_8_air_quality_hourly_20260413_194715.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_9_air_quality_hourly_20260414_194817.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_10_air_quality_hourly_20260415_194839.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_11_air_quality_hourly_20260416_194437.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_12_air_quality_hourly_20260417_193614.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_13_air_quality_hourly_20260418_191351.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_14_air_quality_hourly_20260419_191339.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_15_air_quality_hourly_20260420_194008.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_16_air_quality_hourly_20260421_194453.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_17_air_quality_hourly_20260422_194635.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_18_air_quality_hourly_20260423_194946.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_19_air_quality_hourly_20260424_192758.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_20_air_quality_hourly_20260425_192509.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_21_air_quality_hourly_20260426_192704.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_22_air_quality_hourly_20260427_195424.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_23_air_quality_hourly_20260428_200054.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_24_air_quality_hourly_20260429_195942.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_25_air_quality_hourly_20260430_195559.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_26_air_quality_hourly_20260501_194736.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_27_air_quality_hourly_20260502_193331.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_28_air_quality_hourly_20260503_193247.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_29_air_quality_hourly_20260504_200205.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_30_air_quality_hourly_20260505_195741.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_1_air_quality_hourly_20260506_200925.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_2_air_quality_hourly_20260507_195856.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_3_air_quality_hourly_20260508_195317.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_4_air_quality_hourly_20260509_194012.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_5_air_quality_hourly_20260510_193951.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_6_air_quality_hourly_20260511_201555.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_7_air_quality_hourly_20260512_201443.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_8_air_quality_hourly_20260513_201709.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_9_air_quality_hourly_20260514_201323.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_10_air_quality_hourly_20260515_195914.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_11_air_quality_hourly_20260516_193850.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_12_air_quality_hourly_20260517_194355.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_13_air_quality_hourly_20260518_201209.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_14_air_quality_hourly_20260519_201323.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_15_air_quality_hourly_20260520_192244.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_16_air_quality_hourly_20260521_191330.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_17_air_quality_hourly_20260522_190737.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_18_air_quality_hourly_20260523_185028.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_19_air_quality_hourly_20260524_185331.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_20_air_quality_hourly_20260525_190315.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_21_air_quality_hourly_20260526_191945.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_22_air_quality_hourly_20260527_191943.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_23_air_quality_hourly_20260528_192602.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_24_air_quality_hourly_20260529_192256.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_25_air_quality_hourly_20260530_185211.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_26_air_quality_hourly_20260531_185410.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_27_air_quality_hourly_20260601_200312.csv"
+    ],
+    "sort_keys": {
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_10_air_quality_hourly_20260401_120609.csv": [
+        3,
+        10,
+        "march_10_air_quality_hourly_20260401_120609.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_11_air_quality_hourly_20260401_120612.csv": [
+        3,
+        11,
+        "march_11_air_quality_hourly_20260401_120612.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_12_air_quality_hourly_20260401_120616.csv": [
+        3,
+        12,
+        "march_12_air_quality_hourly_20260401_120616.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_13_air_quality_hourly_20260401_120621.csv": [
+        3,
+        13,
+        "march_13_air_quality_hourly_20260401_120621.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_14_air_quality_hourly_20260401_120624.csv": [
+        3,
+        14,
+        "march_14_air_quality_hourly_20260401_120624.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_15_air_quality_hourly_20260401_120727.csv": [
+        3,
+        15,
+        "march_15_air_quality_hourly_20260401_120727.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_16_air_quality_hourly_20260401_120634.csv": [
+        3,
+        16,
+        "march_16_air_quality_hourly_20260401_120634.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_17_air_quality_hourly_20260401_120731.csv": [
+        3,
+        17,
+        "march_17_air_quality_hourly_20260401_120731.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_18_air_quality_hourly_20260401_120736.csv": [
+        3,
+        18,
+        "march_18_air_quality_hourly_20260401_120736.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_19_air_quality_hourly_20260401_120740.csv": [
+        3,
+        19,
+        "march_19_air_quality_hourly_20260401_120740.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_20_air_quality_hourly_20260401_120744.csv": [
+        3,
+        20,
+        "march_20_air_quality_hourly_20260401_120744.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_21_air_quality_hourly_20260401_120748.csv": [
+        3,
+        21,
+        "march_21_air_quality_hourly_20260401_120748.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_22_air_quality_hourly_20260401_121116.csv": [
+        3,
+        22,
+        "march_22_air_quality_hourly_20260401_121116.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_23_air_quality_hourly_20260401_121121.csv": [
+        3,
+        23,
+        "march_23_air_quality_hourly_20260401_121121.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_24_air_quality_hourly_20260401_121125.csv": [
+        3,
+        24,
+        "march_24_air_quality_hourly_20260401_121125.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_25_air_quality_hourly_20260401_121128.csv": [
+        3,
+        25,
+        "march_25_air_quality_hourly_20260401_121128.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_26_air_quality_hourly_20260401_121135.csv": [
+        3,
+        26,
+        "march_26_air_quality_hourly_20260401_121135.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_27_air_quality_hourly_20260401_193711.csv": [
+        3,
+        27,
+        "march_27_air_quality_hourly_20260401_193711.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_28_air_quality_hourly_20260402_192856.csv": [
+        3,
+        28,
+        "march_28_air_quality_hourly_20260402_192856.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_29_air_quality_hourly_20260403_191055.csv": [
+        3,
+        29,
+        "march_29_air_quality_hourly_20260403_191055.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_30_air_quality_hourly_20260404_190758.csv": [
+        3,
+        30,
+        "march_30_air_quality_hourly_20260404_190758.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_31_air_quality_hourly_20260405_190942.csv": [
+        3,
+        31,
+        "march_31_air_quality_hourly_20260405_190942.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_3_air_quality_hourly_20260408_194627.csv": [
+        4,
+        3,
+        "april_3_air_quality_hourly_20260408_194627.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_4_air_quality_hourly_20260409_194605.csv": [
+        4,
+        4,
+        "april_4_air_quality_hourly_20260409_194605.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_5_air_quality_hourly_20260410_192618.csv": [
+        4,
+        5,
+        "april_5_air_quality_hourly_20260410_192618.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_6_air_quality_hourly_20260411_191035.csv": [
+        4,
+        6,
+        "april_6_air_quality_hourly_20260411_191035.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_7_air_quality_hourly_20260412_191322.csv": [
+        4,
+        7,
+        "april_7_air_quality_hourly_20260412_191322.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_8_air_quality_hourly_20260413_194715.csv": [
+        4,
+        8,
+        "april_8_air_quality_hourly_20260413_194715.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_9_air_quality_hourly_20260414_194817.csv": [
+        4,
+        9,
+        "april_9_air_quality_hourly_20260414_194817.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_10_air_quality_hourly_20260415_194839.csv": [
+        4,
+        10,
+        "april_10_air_quality_hourly_20260415_194839.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_11_air_quality_hourly_20260416_194437.csv": [
+        4,
+        11,
+        "april_11_air_quality_hourly_20260416_194437.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_12_air_quality_hourly_20260417_193614.csv": [
+        4,
+        12,
+        "april_12_air_quality_hourly_20260417_193614.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_13_air_quality_hourly_20260418_191351.csv": [
+        4,
+        13,
+        "april_13_air_quality_hourly_20260418_191351.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_14_air_quality_hourly_20260419_191339.csv": [
+        4,
+        14,
+        "april_14_air_quality_hourly_20260419_191339.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_15_air_quality_hourly_20260420_194008.csv": [
+        4,
+        15,
+        "april_15_air_quality_hourly_20260420_194008.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_16_air_quality_hourly_20260421_194453.csv": [
+        4,
+        16,
+        "april_16_air_quality_hourly_20260421_194453.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_17_air_quality_hourly_20260422_194635.csv": [
+        4,
+        17,
+        "april_17_air_quality_hourly_20260422_194635.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_18_air_quality_hourly_20260423_194946.csv": [
+        4,
+        18,
+        "april_18_air_quality_hourly_20260423_194946.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_19_air_quality_hourly_20260424_192758.csv": [
+        4,
+        19,
+        "april_19_air_quality_hourly_20260424_192758.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_20_air_quality_hourly_20260425_192509.csv": [
+        4,
+        20,
+        "april_20_air_quality_hourly_20260425_192509.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_21_air_quality_hourly_20260426_192704.csv": [
+        4,
+        21,
+        "april_21_air_quality_hourly_20260426_192704.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_22_air_quality_hourly_20260427_195424.csv": [
+        4,
+        22,
+        "april_22_air_quality_hourly_20260427_195424.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_23_air_quality_hourly_20260428_200054.csv": [
+        4,
+        23,
+        "april_23_air_quality_hourly_20260428_200054.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_24_air_quality_hourly_20260429_195942.csv": [
+        4,
+        24,
+        "april_24_air_quality_hourly_20260429_195942.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_25_air_quality_hourly_20260430_195559.csv": [
+        4,
+        25,
+        "april_25_air_quality_hourly_20260430_195559.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_26_air_quality_hourly_20260501_194736.csv": [
+        4,
+        26,
+        "april_26_air_quality_hourly_20260501_194736.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_27_air_quality_hourly_20260502_193331.csv": [
+        4,
+        27,
+        "april_27_air_quality_hourly_20260502_193331.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_28_air_quality_hourly_20260503_193247.csv": [
+        4,
+        28,
+        "april_28_air_quality_hourly_20260503_193247.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_29_air_quality_hourly_20260504_200205.csv": [
+        4,
+        29,
+        "april_29_air_quality_hourly_20260504_200205.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_30_air_quality_hourly_20260505_195741.csv": [
+        4,
+        30,
+        "april_30_air_quality_hourly_20260505_195741.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_1_air_quality_hourly_20260506_200925.csv": [
+        5,
+        1,
+        "may_1_air_quality_hourly_20260506_200925.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_2_air_quality_hourly_20260507_195856.csv": [
+        5,
+        2,
+        "may_2_air_quality_hourly_20260507_195856.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_3_air_quality_hourly_20260508_195317.csv": [
+        5,
+        3,
+        "may_3_air_quality_hourly_20260508_195317.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_4_air_quality_hourly_20260509_194012.csv": [
+        5,
+        4,
+        "may_4_air_quality_hourly_20260509_194012.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_5_air_quality_hourly_20260510_193951.csv": [
+        5,
+        5,
+        "may_5_air_quality_hourly_20260510_193951.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_6_air_quality_hourly_20260511_201555.csv": [
+        5,
+        6,
+        "may_6_air_quality_hourly_20260511_201555.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_7_air_quality_hourly_20260512_201443.csv": [
+        5,
+        7,
+        "may_7_air_quality_hourly_20260512_201443.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_8_air_quality_hourly_20260513_201709.csv": [
+        5,
+        8,
+        "may_8_air_quality_hourly_20260513_201709.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_9_air_quality_hourly_20260514_201323.csv": [
+        5,
+        9,
+        "may_9_air_quality_hourly_20260514_201323.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_10_air_quality_hourly_20260515_195914.csv": [
+        5,
+        10,
+        "may_10_air_quality_hourly_20260515_195914.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_11_air_quality_hourly_20260516_193850.csv": [
+        5,
+        11,
+        "may_11_air_quality_hourly_20260516_193850.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_12_air_quality_hourly_20260517_194355.csv": [
+        5,
+        12,
+        "may_12_air_quality_hourly_20260517_194355.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_13_air_quality_hourly_20260518_201209.csv": [
+        5,
+        13,
+        "may_13_air_quality_hourly_20260518_201209.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_14_air_quality_hourly_20260519_201323.csv": [
+        5,
+        14,
+        "may_14_air_quality_hourly_20260519_201323.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_15_air_quality_hourly_20260520_192244.csv": [
+        5,
+        15,
+        "may_15_air_quality_hourly_20260520_192244.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_16_air_quality_hourly_20260521_191330.csv": [
+        5,
+        16,
+        "may_16_air_quality_hourly_20260521_191330.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_17_air_quality_hourly_20260522_190737.csv": [
+        5,
+        17,
+        "may_17_air_quality_hourly_20260522_190737.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_18_air_quality_hourly_20260523_185028.csv": [
+        5,
+        18,
+        "may_18_air_quality_hourly_20260523_185028.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_19_air_quality_hourly_20260524_185331.csv": [
+        5,
+        19,
+        "may_19_air_quality_hourly_20260524_185331.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_20_air_quality_hourly_20260525_190315.csv": [
+        5,
+        20,
+        "may_20_air_quality_hourly_20260525_190315.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_21_air_quality_hourly_20260526_191945.csv": [
+        5,
+        21,
+        "may_21_air_quality_hourly_20260526_191945.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_22_air_quality_hourly_20260527_191943.csv": [
+        5,
+        22,
+        "may_22_air_quality_hourly_20260527_191943.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_23_air_quality_hourly_20260528_192602.csv": [
+        5,
+        23,
+        "may_23_air_quality_hourly_20260528_192602.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_24_air_quality_hourly_20260529_192256.csv": [
+        5,
+        24,
+        "may_24_air_quality_hourly_20260529_192256.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_25_air_quality_hourly_20260530_185211.csv": [
+        5,
+        25,
+        "may_25_air_quality_hourly_20260530_185211.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_26_air_quality_hourly_20260531_185410.csv": [
+        5,
+        26,
+        "may_26_air_quality_hourly_20260531_185410.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_27_air_quality_hourly_20260601_200312.csv": [
+        5,
+        27,
+        "may_27_air_quality_hourly_20260601_200312.csv"
+      ]
+    }
+  },
+  "weather": {
+    "files": [
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_10_weather_hourly_20260401_120609.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_11_weather_hourly_20260401_120612.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_12_weather_hourly_20260401_120616.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_13_weather_hourly_20260401_120621.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_14_weather_hourly_20260401_120624.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_15_weather_hourly_20260401_120628.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_16_weather_hourly_20260401_120729.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_17_weather_hourly_20260401_120731.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_18_weather_hourly_20260401_120736.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_19_weather_hourly_20260401_120740.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_20_weather_hourly_20260401_120744.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_21_weather_hourly_20260401_120748.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_22_weather_hourly_20260401_121116.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_23_weather_hourly_20260401_121121.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_24_weather_hourly_20260401_121125.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_25_weather_hourly_20260401_121128.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_26_weather_hourly_20260401_121135.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_27_weather_hourly_20260401_193711.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_28_weather_hourly_20260402_192856.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_29_weather_hourly_20260403_191055.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_30_weather_hourly_20260404_190758.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_31_weather_hourly_20260405_190942.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_3_weather_hourly_20260408_194627.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_4_weather_hourly_20260409_194605.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_5_weather_hourly_20260410_192618.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_6_weather_hourly_20260411_191035.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_7_weather_hourly_20260412_191322.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_8_weather_hourly_20260413_194715.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_9_weather_hourly_20260414_194817.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_10_weather_hourly_20260415_194839.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_11_weather_hourly_20260416_194437.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_12_weather_hourly_20260417_193614.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_13_weather_hourly_20260418_191351.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_14_weather_hourly_20260419_191339.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_15_weather_hourly_20260420_194008.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_16_weather_hourly_20260421_194453.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_17_weather_hourly_20260422_194635.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_18_weather_hourly_20260423_194946.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_19_weather_hourly_20260424_192758.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_20_weather_hourly_20260425_192509.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_21_weather_hourly_20260426_192704.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_22_weather_hourly_20260427_195424.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_23_weather_hourly_20260428_200054.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_24_weather_hourly_20260429_195942.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_25_weather_hourly_20260430_195559.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_26_weather_hourly_20260501_194736.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_27_weather_hourly_20260502_193331.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_28_weather_hourly_20260503_193247.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_29_weather_hourly_20260504_200205.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_30_weather_hourly_20260505_195741.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_1_weather_hourly_20260506_200925.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_2_weather_hourly_20260507_195856.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_3_weather_hourly_20260508_195317.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_4_weather_hourly_20260509_194012.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_5_weather_hourly_20260510_193951.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_6_weather_hourly_20260511_201555.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_7_weather_hourly_20260512_201443.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_8_weather_hourly_20260513_201709.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_9_weather_hourly_20260514_201323.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_10_weather_hourly_20260515_195914.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_11_weather_hourly_20260516_193850.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_12_weather_hourly_20260517_194355.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_13_weather_hourly_20260518_201209.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_14_weather_hourly_20260519_201323.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_15_weather_hourly_20260520_192244.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_16_weather_hourly_20260521_191330.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_17_weather_hourly_20260522_190737.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_18_weather_hourly_20260523_185028.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_19_weather_hourly_20260524_185331.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_20_weather_hourly_20260525_190315.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_21_weather_hourly_20260526_191945.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_22_weather_hourly_20260527_191943.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_23_weather_hourly_20260528_192602.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_24_weather_hourly_20260529_192256.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_25_weather_hourly_20260530_185211.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_26_weather_hourly_20260531_185410.csv",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_27_weather_hourly_20260601_200312.csv"
+    ],
+    "sort_keys": {
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_10_weather_hourly_20260401_120609.csv": [
+        3,
+        10,
+        "march_10_weather_hourly_20260401_120609.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_11_weather_hourly_20260401_120612.csv": [
+        3,
+        11,
+        "march_11_weather_hourly_20260401_120612.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_12_weather_hourly_20260401_120616.csv": [
+        3,
+        12,
+        "march_12_weather_hourly_20260401_120616.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_13_weather_hourly_20260401_120621.csv": [
+        3,
+        13,
+        "march_13_weather_hourly_20260401_120621.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_14_weather_hourly_20260401_120624.csv": [
+        3,
+        14,
+        "march_14_weather_hourly_20260401_120624.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_15_weather_hourly_20260401_120628.csv": [
+        3,
+        15,
+        "march_15_weather_hourly_20260401_120628.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_16_weather_hourly_20260401_120729.csv": [
+        3,
+        16,
+        "march_16_weather_hourly_20260401_120729.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_17_weather_hourly_20260401_120731.csv": [
+        3,
+        17,
+        "march_17_weather_hourly_20260401_120731.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_18_weather_hourly_20260401_120736.csv": [
+        3,
+        18,
+        "march_18_weather_hourly_20260401_120736.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_19_weather_hourly_20260401_120740.csv": [
+        3,
+        19,
+        "march_19_weather_hourly_20260401_120740.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_20_weather_hourly_20260401_120744.csv": [
+        3,
+        20,
+        "march_20_weather_hourly_20260401_120744.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_21_weather_hourly_20260401_120748.csv": [
+        3,
+        21,
+        "march_21_weather_hourly_20260401_120748.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_22_weather_hourly_20260401_121116.csv": [
+        3,
+        22,
+        "march_22_weather_hourly_20260401_121116.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_23_weather_hourly_20260401_121121.csv": [
+        3,
+        23,
+        "march_23_weather_hourly_20260401_121121.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_24_weather_hourly_20260401_121125.csv": [
+        3,
+        24,
+        "march_24_weather_hourly_20260401_121125.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_25_weather_hourly_20260401_121128.csv": [
+        3,
+        25,
+        "march_25_weather_hourly_20260401_121128.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_26_weather_hourly_20260401_121135.csv": [
+        3,
+        26,
+        "march_26_weather_hourly_20260401_121135.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_27_weather_hourly_20260401_193711.csv": [
+        3,
+        27,
+        "march_27_weather_hourly_20260401_193711.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_28_weather_hourly_20260402_192856.csv": [
+        3,
+        28,
+        "march_28_weather_hourly_20260402_192856.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_29_weather_hourly_20260403_191055.csv": [
+        3,
+        29,
+        "march_29_weather_hourly_20260403_191055.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_30_weather_hourly_20260404_190758.csv": [
+        3,
+        30,
+        "march_30_weather_hourly_20260404_190758.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\march_31_weather_hourly_20260405_190942.csv": [
+        3,
+        31,
+        "march_31_weather_hourly_20260405_190942.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_3_weather_hourly_20260408_194627.csv": [
+        4,
+        3,
+        "april_3_weather_hourly_20260408_194627.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_4_weather_hourly_20260409_194605.csv": [
+        4,
+        4,
+        "april_4_weather_hourly_20260409_194605.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_5_weather_hourly_20260410_192618.csv": [
+        4,
+        5,
+        "april_5_weather_hourly_20260410_192618.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_6_weather_hourly_20260411_191035.csv": [
+        4,
+        6,
+        "april_6_weather_hourly_20260411_191035.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_7_weather_hourly_20260412_191322.csv": [
+        4,
+        7,
+        "april_7_weather_hourly_20260412_191322.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_8_weather_hourly_20260413_194715.csv": [
+        4,
+        8,
+        "april_8_weather_hourly_20260413_194715.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_9_weather_hourly_20260414_194817.csv": [
+        4,
+        9,
+        "april_9_weather_hourly_20260414_194817.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_10_weather_hourly_20260415_194839.csv": [
+        4,
+        10,
+        "april_10_weather_hourly_20260415_194839.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_11_weather_hourly_20260416_194437.csv": [
+        4,
+        11,
+        "april_11_weather_hourly_20260416_194437.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_12_weather_hourly_20260417_193614.csv": [
+        4,
+        12,
+        "april_12_weather_hourly_20260417_193614.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_13_weather_hourly_20260418_191351.csv": [
+        4,
+        13,
+        "april_13_weather_hourly_20260418_191351.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_14_weather_hourly_20260419_191339.csv": [
+        4,
+        14,
+        "april_14_weather_hourly_20260419_191339.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_15_weather_hourly_20260420_194008.csv": [
+        4,
+        15,
+        "april_15_weather_hourly_20260420_194008.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_16_weather_hourly_20260421_194453.csv": [
+        4,
+        16,
+        "april_16_weather_hourly_20260421_194453.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_17_weather_hourly_20260422_194635.csv": [
+        4,
+        17,
+        "april_17_weather_hourly_20260422_194635.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_18_weather_hourly_20260423_194946.csv": [
+        4,
+        18,
+        "april_18_weather_hourly_20260423_194946.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_19_weather_hourly_20260424_192758.csv": [
+        4,
+        19,
+        "april_19_weather_hourly_20260424_192758.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_20_weather_hourly_20260425_192509.csv": [
+        4,
+        20,
+        "april_20_weather_hourly_20260425_192509.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_21_weather_hourly_20260426_192704.csv": [
+        4,
+        21,
+        "april_21_weather_hourly_20260426_192704.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_22_weather_hourly_20260427_195424.csv": [
+        4,
+        22,
+        "april_22_weather_hourly_20260427_195424.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_23_weather_hourly_20260428_200054.csv": [
+        4,
+        23,
+        "april_23_weather_hourly_20260428_200054.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_24_weather_hourly_20260429_195942.csv": [
+        4,
+        24,
+        "april_24_weather_hourly_20260429_195942.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_25_weather_hourly_20260430_195559.csv": [
+        4,
+        25,
+        "april_25_weather_hourly_20260430_195559.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_26_weather_hourly_20260501_194736.csv": [
+        4,
+        26,
+        "april_26_weather_hourly_20260501_194736.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_27_weather_hourly_20260502_193331.csv": [
+        4,
+        27,
+        "april_27_weather_hourly_20260502_193331.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_28_weather_hourly_20260503_193247.csv": [
+        4,
+        28,
+        "april_28_weather_hourly_20260503_193247.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_29_weather_hourly_20260504_200205.csv": [
+        4,
+        29,
+        "april_29_weather_hourly_20260504_200205.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\april_30_weather_hourly_20260505_195741.csv": [
+        4,
+        30,
+        "april_30_weather_hourly_20260505_195741.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_1_weather_hourly_20260506_200925.csv": [
+        5,
+        1,
+        "may_1_weather_hourly_20260506_200925.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_2_weather_hourly_20260507_195856.csv": [
+        5,
+        2,
+        "may_2_weather_hourly_20260507_195856.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_3_weather_hourly_20260508_195317.csv": [
+        5,
+        3,
+        "may_3_weather_hourly_20260508_195317.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_4_weather_hourly_20260509_194012.csv": [
+        5,
+        4,
+        "may_4_weather_hourly_20260509_194012.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_5_weather_hourly_20260510_193951.csv": [
+        5,
+        5,
+        "may_5_weather_hourly_20260510_193951.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_6_weather_hourly_20260511_201555.csv": [
+        5,
+        6,
+        "may_6_weather_hourly_20260511_201555.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_7_weather_hourly_20260512_201443.csv": [
+        5,
+        7,
+        "may_7_weather_hourly_20260512_201443.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_8_weather_hourly_20260513_201709.csv": [
+        5,
+        8,
+        "may_8_weather_hourly_20260513_201709.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_9_weather_hourly_20260514_201323.csv": [
+        5,
+        9,
+        "may_9_weather_hourly_20260514_201323.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_10_weather_hourly_20260515_195914.csv": [
+        5,
+        10,
+        "may_10_weather_hourly_20260515_195914.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_11_weather_hourly_20260516_193850.csv": [
+        5,
+        11,
+        "may_11_weather_hourly_20260516_193850.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_12_weather_hourly_20260517_194355.csv": [
+        5,
+        12,
+        "may_12_weather_hourly_20260517_194355.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_13_weather_hourly_20260518_201209.csv": [
+        5,
+        13,
+        "may_13_weather_hourly_20260518_201209.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_14_weather_hourly_20260519_201323.csv": [
+        5,
+        14,
+        "may_14_weather_hourly_20260519_201323.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_15_weather_hourly_20260520_192244.csv": [
+        5,
+        15,
+        "may_15_weather_hourly_20260520_192244.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_16_weather_hourly_20260521_191330.csv": [
+        5,
+        16,
+        "may_16_weather_hourly_20260521_191330.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_17_weather_hourly_20260522_190737.csv": [
+        5,
+        17,
+        "may_17_weather_hourly_20260522_190737.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_18_weather_hourly_20260523_185028.csv": [
+        5,
+        18,
+        "may_18_weather_hourly_20260523_185028.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_19_weather_hourly_20260524_185331.csv": [
+        5,
+        19,
+        "may_19_weather_hourly_20260524_185331.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_20_weather_hourly_20260525_190315.csv": [
+        5,
+        20,
+        "may_20_weather_hourly_20260525_190315.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_21_weather_hourly_20260526_191945.csv": [
+        5,
+        21,
+        "may_21_weather_hourly_20260526_191945.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_22_weather_hourly_20260527_191943.csv": [
+        5,
+        22,
+        "may_22_weather_hourly_20260527_191943.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_23_weather_hourly_20260528_192602.csv": [
+        5,
+        23,
+        "may_23_weather_hourly_20260528_192602.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_24_weather_hourly_20260529_192256.csv": [
+        5,
+        24,
+        "may_24_weather_hourly_20260529_192256.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_25_weather_hourly_20260530_185211.csv": [
+        5,
+        25,
+        "may_25_weather_hourly_20260530_185211.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_26_weather_hourly_20260531_185410.csv": [
+        5,
+        26,
+        "may_26_weather_hourly_20260531_185410.csv"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\data\\may_27_weather_hourly_20260601_200312.csv": [
+        5,
+        27,
+        "may_27_weather_hourly_20260601_200312.csv"
+      ]
+    }
+  }
+}

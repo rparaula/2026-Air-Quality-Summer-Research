@@ -5,7 +5,7 @@ data/pipeline_metadata.json
 *.pyc
 venv/
 .venv/
-
+*.parquet
 
 
 

@@ -1,0 +1,184 @@
+{
+  "input_dir": "static data",
+  "output_dir": "bronze\\static_data",
+  "converted_count": 8,
+  "failed_count": 0,
+  "datasets": [
+    {
+      "source_file": "static data\\houston_facilities_TX_20260310_215148.csv",
+      "output_dataset": "bronze\\static_data\\houston_facilities_TX_20260310_215148",
+      "rows": 1215,
+      "columns": [
+        "RegistryId",
+        "FacilityName",
+        "LocationAddress",
+        "SupplementalLocation",
+        "CityName",
+        "CountyName",
+        "StateAbbr",
+        "ZipCode",
+        "FIPSCode",
+        "Latitude83",
+        "Longitude83",
+        "matched_program",
+        "zip"
+      ],
+      "column_count": 13,
+      "parts": 1,
+      "format": "csv"
+    },
+    {
+      "source_file": "static data\\pipeline_metadata.json",
+      "output_dataset": "bronze\\static_data\\pipeline_metadata",
+      "rows": 8,
+      "columns": [
+        "run_id",
+        "script",
+        "status",
+        "started_at",
+        "finished_at",
+        "duration_seconds",
+        "outputs",
+        "error",
+        "parameters.cities",
+        "parameters.uszips",
+        "parameters.radius_m",
+        "parameters.batch_size",
+        "parameters.sleep_s",
+        "parameters.out_dir",
+        "parameters.out_prefix",
+        "locations.total_zip_centroids",
+        "locations.cities_found",
+        "locations.cities_skipped"
+      ],
+      "column_count": 18,
+      "parts": 1,
+      "format": "json"
+    },
+    {
+      "source_file": "static data\\texas_facilities_TX_20260310_190945.csv",
+      "output_dataset": "bronze\\static_data\\texas_facilities_TX_20260310_190945",
+      "rows": 558,
+      "columns": [
+        "RegistryId",
+        "FacilityName",
+        "LocationAddress",
+        "SupplementalLocation",
+        "CityName",
+        "CountyName",
+        "StateAbbr",
+        "ZipCode",
+        "FIPSCode",
+        "Latitude83",
+        "Longitude83",
+        "matched_program",
+        "zip"
+      ],
+      "column_count": 13,
+      "parts": 1,
+      "format": "csv"
+    },
+    {
+      "source_file": "static data\\tri_chemicals_houston.csv",
+      "output_dataset": "bronze\\static_data\\tri_chemicals_houston",
+      "rows": 4821,
+      "columns": [
+        "trifd",
+        "facility",
+        "zip",
+        "latitude",
+        "longitude",
+        "chemical",
+        "carcinogen",
+        "hap",
+        "fugitive_lbs",
+        "stack_lbs",
+        "total_air_emissions_lbs",
+        "reporting_year"
+      ],
+      "column_count": 12,
+      "parts": 1,
+      "format": "csv"
+    },
+    {
+      "source_file": "static data\\tri_chemicals_houston.meta.json",
+      "output_dataset": "bronze\\static_data\\tri_chemicals_houston",
+      "rows": 1,
+      "columns": [
+        "file",
+        "collected_at",
+        "rows",
+        "columns",
+        "notes",
+        "source.name",
+        "source.url"
+      ],
+      "column_count": 7,
+      "parts": 1,
+      "format": "json"
+    },
+    {
+      "source_file": "static data\\tri_facilities_houston.csv",
+      "output_dataset": "bronze\\static_data\\tri_facilities_houston",
+      "rows": 1008,
+      "columns": [
+        "trifd",
+        "facility",
+        "city",
+        "county",
+        "zip",
+        "latitude",
+        "longitude",
+        "total_air_emissions_lbs",
+        "chemicals",
+        "has_carcinogen",
+        "has_hap",
+        "reporting_year"
+      ],
+      "column_count": 12,
+      "parts": 1,
+      "format": "csv"
+    },
+    {
+      "source_file": "static data\\tri_facilities_houston.meta.json",
+      "output_dataset": "bronze\\static_data\\tri_facilities_houston",
+      "rows": 1,
+      "columns": [
+        "file",
+        "collected_at",
+        "rows",
+        "columns",
+        "notes",
+        "source.name",
+        "source.url"
+      ],
+      "column_count": 7,
+      "parts": 1,
+      "format": "json"
+    },
+    {
+      "source_file": "static data\\zip_building_types_20260419_195521.csv",
+      "output_dataset": "bronze\\static_data\\zip_building_types_20260419_195521",
+      "rows": 1445802,
+      "columns": [
+        "osm_id",
+        "osm_type",
+        "zip",
+        "name",
+        "housenumber",
+        "street",
+        "city",
+        "postcode",
+        "building_tag",
+        "amenity_tag",
+        "lat",
+        "lon",
+        "query_radius_m"
+      ],
+      "column_count": 13,
+      "parts": 1,
+      "format": "csv"
+    }
+  ],
+  "failures": []
+}

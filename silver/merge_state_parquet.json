@@ -1,0 +1,784 @@
+{
+  "air_quality": {
+    "datasets": [
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_10_air_quality_hourly_20260401_120609.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_11_air_quality_hourly_20260401_120612.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_12_air_quality_hourly_20260401_120616.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_13_air_quality_hourly_20260401_120621.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_14_air_quality_hourly_20260401_120624.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_15_air_quality_hourly_20260401_120727.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_16_air_quality_hourly_20260401_120634.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_17_air_quality_hourly_20260401_120731.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_18_air_quality_hourly_20260401_120736.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_19_air_quality_hourly_20260401_120740.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_20_air_quality_hourly_20260401_120744.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_21_air_quality_hourly_20260401_120748.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_22_air_quality_hourly_20260401_121116.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_23_air_quality_hourly_20260401_121121.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_24_air_quality_hourly_20260401_121125.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_25_air_quality_hourly_20260401_121128.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_26_air_quality_hourly_20260401_121135.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_27_air_quality_hourly_20260401_193711.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_28_air_quality_hourly_20260402_192856.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_29_air_quality_hourly_20260403_191055.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_30_air_quality_hourly_20260404_190758.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_31_air_quality_hourly_20260405_190942.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_3_air_quality_hourly_20260408_194627.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_4_air_quality_hourly_20260409_194605.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_5_air_quality_hourly_20260410_192618.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_6_air_quality_hourly_20260411_191035.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_7_air_quality_hourly_20260412_191322.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_8_air_quality_hourly_20260413_194715.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_9_air_quality_hourly_20260414_194817.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_10_air_quality_hourly_20260415_194839.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_11_air_quality_hourly_20260416_194437.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_12_air_quality_hourly_20260417_193614.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_13_air_quality_hourly_20260418_191351.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_14_air_quality_hourly_20260419_191339.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_15_air_quality_hourly_20260420_194008.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_16_air_quality_hourly_20260421_194453.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_17_air_quality_hourly_20260422_194635.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_18_air_quality_hourly_20260423_194946.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_19_air_quality_hourly_20260424_192758.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_20_air_quality_hourly_20260425_192509.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_21_air_quality_hourly_20260426_192704.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_22_air_quality_hourly_20260427_195424.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_23_air_quality_hourly_20260428_200054.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_24_air_quality_hourly_20260429_195942.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_25_air_quality_hourly_20260430_195559.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_26_air_quality_hourly_20260501_194736.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_27_air_quality_hourly_20260502_193331.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_28_air_quality_hourly_20260503_193247.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_29_air_quality_hourly_20260504_200205.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_30_air_quality_hourly_20260505_195741.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_1_air_quality_hourly_20260506_200925.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_2_air_quality_hourly_20260507_195856.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_3_air_quality_hourly_20260508_195317.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_4_air_quality_hourly_20260509_194012.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_5_air_quality_hourly_20260510_193951.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_6_air_quality_hourly_20260511_201555.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_7_air_quality_hourly_20260512_201443.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_8_air_quality_hourly_20260513_201709.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_9_air_quality_hourly_20260514_201323.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_10_air_quality_hourly_20260515_195914.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_11_air_quality_hourly_20260516_193850.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_12_air_quality_hourly_20260517_194355.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_13_air_quality_hourly_20260518_201209.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_14_air_quality_hourly_20260519_201323.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_15_air_quality_hourly_20260520_192244.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_16_air_quality_hourly_20260521_191330.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_17_air_quality_hourly_20260522_190737.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_18_air_quality_hourly_20260523_185028.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_19_air_quality_hourly_20260524_185331.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_20_air_quality_hourly_20260525_190315.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_21_air_quality_hourly_20260526_191945.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_22_air_quality_hourly_20260527_191943.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_23_air_quality_hourly_20260528_192602.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_24_air_quality_hourly_20260529_192256.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_25_air_quality_hourly_20260530_185211.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_26_air_quality_hourly_20260531_185410.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_27_air_quality_hourly_20260601_200312.parquet"
+    ],
+    "sort_keys": {
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_10_air_quality_hourly_20260401_120609.parquet": [
+        "time:2026-03-10T05:00:00",
+        "march_10_air_quality_hourly_20260401_120609.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_11_air_quality_hourly_20260401_120612.parquet": [
+        "time:2026-03-11T05:00:00",
+        "march_11_air_quality_hourly_20260401_120612.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_12_air_quality_hourly_20260401_120616.parquet": [
+        "time:2026-03-12T05:00:00",
+        "march_12_air_quality_hourly_20260401_120616.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_13_air_quality_hourly_20260401_120621.parquet": [
+        "time:2026-03-13T05:00:00",
+        "march_13_air_quality_hourly_20260401_120621.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_14_air_quality_hourly_20260401_120624.parquet": [
+        "time:2026-03-14T05:00:00",
+        "march_14_air_quality_hourly_20260401_120624.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_15_air_quality_hourly_20260401_120727.parquet": [
+        "time:2026-03-15T05:00:00",
+        "march_15_air_quality_hourly_20260401_120727.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_16_air_quality_hourly_20260401_120634.parquet": [
+        "time:2026-03-16T05:00:00",
+        "march_16_air_quality_hourly_20260401_120634.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_17_air_quality_hourly_20260401_120731.parquet": [
+        "time:2026-03-17T05:00:00",
+        "march_17_air_quality_hourly_20260401_120731.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_18_air_quality_hourly_20260401_120736.parquet": [
+        "time:2026-03-18T05:00:00",
+        "march_18_air_quality_hourly_20260401_120736.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_19_air_quality_hourly_20260401_120740.parquet": [
+        "time:2026-03-19T05:00:00",
+        "march_19_air_quality_hourly_20260401_120740.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_20_air_quality_hourly_20260401_120744.parquet": [
+        "time:2026-03-20T05:00:00",
+        "march_20_air_quality_hourly_20260401_120744.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_21_air_quality_hourly_20260401_120748.parquet": [
+        "time:2026-03-21T05:00:00",
+        "march_21_air_quality_hourly_20260401_120748.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_22_air_quality_hourly_20260401_121116.parquet": [
+        "time:2026-03-22T05:00:00",
+        "march_22_air_quality_hourly_20260401_121116.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_23_air_quality_hourly_20260401_121121.parquet": [
+        "time:2026-03-23T05:00:00",
+        "march_23_air_quality_hourly_20260401_121121.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_24_air_quality_hourly_20260401_121125.parquet": [
+        "time:2026-03-24T05:00:00",
+        "march_24_air_quality_hourly_20260401_121125.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_25_air_quality_hourly_20260401_121128.parquet": [
+        "time:2026-03-25T05:00:00",
+        "march_25_air_quality_hourly_20260401_121128.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_26_air_quality_hourly_20260401_121135.parquet": [
+        "time:2026-03-26T05:00:00",
+        "march_26_air_quality_hourly_20260401_121135.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_27_air_quality_hourly_20260401_193711.parquet": [
+        "time:2026-03-27T05:00:00",
+        "march_27_air_quality_hourly_20260401_193711.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_28_air_quality_hourly_20260402_192856.parquet": [
+        "time:2026-03-28T05:00:00",
+        "march_28_air_quality_hourly_20260402_192856.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_29_air_quality_hourly_20260403_191055.parquet": [
+        "time:2026-03-29T05:00:00",
+        "march_29_air_quality_hourly_20260403_191055.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_30_air_quality_hourly_20260404_190758.parquet": [
+        "time:2026-03-30T05:00:00",
+        "march_30_air_quality_hourly_20260404_190758.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\march_31_air_quality_hourly_20260405_190942.parquet": [
+        "time:2026-03-31T05:00:00",
+        "march_31_air_quality_hourly_20260405_190942.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_3_air_quality_hourly_20260408_194627.parquet": [
+        "time:2026-04-03T05:00:00",
+        "april_3_air_quality_hourly_20260408_194627.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_4_air_quality_hourly_20260409_194605.parquet": [
+        "time:2026-04-04T05:00:00",
+        "april_4_air_quality_hourly_20260409_194605.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_5_air_quality_hourly_20260410_192618.parquet": [
+        "time:2026-04-05T05:00:00",
+        "april_5_air_quality_hourly_20260410_192618.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_6_air_quality_hourly_20260411_191035.parquet": [
+        "time:2026-04-06T05:00:00",
+        "april_6_air_quality_hourly_20260411_191035.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_7_air_quality_hourly_20260412_191322.parquet": [
+        "time:2026-04-07T05:00:00",
+        "april_7_air_quality_hourly_20260412_191322.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_8_air_quality_hourly_20260413_194715.parquet": [
+        "time:2026-04-08T05:00:00",
+        "april_8_air_quality_hourly_20260413_194715.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_9_air_quality_hourly_20260414_194817.parquet": [
+        "time:2026-04-09T05:00:00",
+        "april_9_air_quality_hourly_20260414_194817.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_10_air_quality_hourly_20260415_194839.parquet": [
+        "time:2026-04-10T05:00:00",
+        "april_10_air_quality_hourly_20260415_194839.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_11_air_quality_hourly_20260416_194437.parquet": [
+        "time:2026-04-11T05:00:00",
+        "april_11_air_quality_hourly_20260416_194437.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_12_air_quality_hourly_20260417_193614.parquet": [
+        "time:2026-04-12T05:00:00",
+        "april_12_air_quality_hourly_20260417_193614.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_13_air_quality_hourly_20260418_191351.parquet": [
+        "time:2026-04-13T05:00:00",
+        "april_13_air_quality_hourly_20260418_191351.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_14_air_quality_hourly_20260419_191339.parquet": [
+        "time:2026-04-14T05:00:00",
+        "april_14_air_quality_hourly_20260419_191339.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_15_air_quality_hourly_20260420_194008.parquet": [
+        "time:2026-04-15T05:00:00",
+        "april_15_air_quality_hourly_20260420_194008.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_16_air_quality_hourly_20260421_194453.parquet": [
+        "time:2026-04-16T05:00:00",
+        "april_16_air_quality_hourly_20260421_194453.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_17_air_quality_hourly_20260422_194635.parquet": [
+        "time:2026-04-17T05:00:00",
+        "april_17_air_quality_hourly_20260422_194635.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_18_air_quality_hourly_20260423_194946.parquet": [
+        "time:2026-04-18T05:00:00",
+        "april_18_air_quality_hourly_20260423_194946.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_19_air_quality_hourly_20260424_192758.parquet": [
+        "time:2026-04-19T05:00:00",
+        "april_19_air_quality_hourly_20260424_192758.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_20_air_quality_hourly_20260425_192509.parquet": [
+        "time:2026-04-20T05:00:00",
+        "april_20_air_quality_hourly_20260425_192509.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_21_air_quality_hourly_20260426_192704.parquet": [
+        "time:2026-04-21T05:00:00",
+        "april_21_air_quality_hourly_20260426_192704.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_22_air_quality_hourly_20260427_195424.parquet": [
+        "time:2026-04-22T05:00:00",
+        "april_22_air_quality_hourly_20260427_195424.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_23_air_quality_hourly_20260428_200054.parquet": [
+        "time:2026-04-23T05:00:00",
+        "april_23_air_quality_hourly_20260428_200054.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_24_air_quality_hourly_20260429_195942.parquet": [
+        "time:2026-04-24T05:00:00",
+        "april_24_air_quality_hourly_20260429_195942.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_25_air_quality_hourly_20260430_195559.parquet": [
+        "time:2026-04-25T05:00:00",
+        "april_25_air_quality_hourly_20260430_195559.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_26_air_quality_hourly_20260501_194736.parquet": [
+        "time:2026-04-26T05:00:00",
+        "april_26_air_quality_hourly_20260501_194736.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_27_air_quality_hourly_20260502_193331.parquet": [
+        "time:2026-04-27T05:00:00",
+        "april_27_air_quality_hourly_20260502_193331.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_28_air_quality_hourly_20260503_193247.parquet": [
+        "time:2026-04-28T05:00:00",
+        "april_28_air_quality_hourly_20260503_193247.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_29_air_quality_hourly_20260504_200205.parquet": [
+        "time:2026-04-29T05:00:00",
+        "april_29_air_quality_hourly_20260504_200205.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\april_30_air_quality_hourly_20260505_195741.parquet": [
+        "time:2026-04-30T05:00:00",
+        "april_30_air_quality_hourly_20260505_195741.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_1_air_quality_hourly_20260506_200925.parquet": [
+        "time:2026-05-01T05:00:00",
+        "may_1_air_quality_hourly_20260506_200925.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_2_air_quality_hourly_20260507_195856.parquet": [
+        "time:2026-05-02T05:00:00",
+        "may_2_air_quality_hourly_20260507_195856.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_3_air_quality_hourly_20260508_195317.parquet": [
+        "time:2026-05-03T05:00:00",
+        "may_3_air_quality_hourly_20260508_195317.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_4_air_quality_hourly_20260509_194012.parquet": [
+        "time:2026-05-04T05:00:00",
+        "may_4_air_quality_hourly_20260509_194012.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_5_air_quality_hourly_20260510_193951.parquet": [
+        "time:2026-05-05T05:00:00",
+        "may_5_air_quality_hourly_20260510_193951.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_6_air_quality_hourly_20260511_201555.parquet": [
+        "time:2026-05-06T05:00:00",
+        "may_6_air_quality_hourly_20260511_201555.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_7_air_quality_hourly_20260512_201443.parquet": [
+        "time:2026-05-07T05:00:00",
+        "may_7_air_quality_hourly_20260512_201443.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_8_air_quality_hourly_20260513_201709.parquet": [
+        "time:2026-05-08T05:00:00",
+        "may_8_air_quality_hourly_20260513_201709.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_9_air_quality_hourly_20260514_201323.parquet": [
+        "time:2026-05-09T05:00:00",
+        "may_9_air_quality_hourly_20260514_201323.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_10_air_quality_hourly_20260515_195914.parquet": [
+        "time:2026-05-10T05:00:00",
+        "may_10_air_quality_hourly_20260515_195914.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_11_air_quality_hourly_20260516_193850.parquet": [
+        "time:2026-05-11T05:00:00",
+        "may_11_air_quality_hourly_20260516_193850.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_12_air_quality_hourly_20260517_194355.parquet": [
+        "time:2026-05-12T05:00:00",
+        "may_12_air_quality_hourly_20260517_194355.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_13_air_quality_hourly_20260518_201209.parquet": [
+        "time:2026-05-13T05:00:00",
+        "may_13_air_quality_hourly_20260518_201209.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_14_air_quality_hourly_20260519_201323.parquet": [
+        "time:2026-05-14T05:00:00",
+        "may_14_air_quality_hourly_20260519_201323.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_15_air_quality_hourly_20260520_192244.parquet": [
+        "time:2026-05-15T05:00:00",
+        "may_15_air_quality_hourly_20260520_192244.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_16_air_quality_hourly_20260521_191330.parquet": [
+        "time:2026-05-16T05:00:00",
+        "may_16_air_quality_hourly_20260521_191330.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_17_air_quality_hourly_20260522_190737.parquet": [
+        "time:2026-05-17T05:00:00",
+        "may_17_air_quality_hourly_20260522_190737.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_18_air_quality_hourly_20260523_185028.parquet": [
+        "time:2026-05-18T05:00:00",
+        "may_18_air_quality_hourly_20260523_185028.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_19_air_quality_hourly_20260524_185331.parquet": [
+        "time:2026-05-19T05:00:00",
+        "may_19_air_quality_hourly_20260524_185331.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_20_air_quality_hourly_20260525_190315.parquet": [
+        "time:2026-05-20T05:00:00",
+        "may_20_air_quality_hourly_20260525_190315.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_21_air_quality_hourly_20260526_191945.parquet": [
+        "time:2026-05-21T05:00:00",
+        "may_21_air_quality_hourly_20260526_191945.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_22_air_quality_hourly_20260527_191943.parquet": [
+        "time:2026-05-22T05:00:00",
+        "may_22_air_quality_hourly_20260527_191943.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_23_air_quality_hourly_20260528_192602.parquet": [
+        "time:2026-05-23T05:00:00",
+        "may_23_air_quality_hourly_20260528_192602.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_24_air_quality_hourly_20260529_192256.parquet": [
+        "time:2026-05-24T05:00:00",
+        "may_24_air_quality_hourly_20260529_192256.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_25_air_quality_hourly_20260530_185211.parquet": [
+        "time:2026-05-25T05:00:00",
+        "may_25_air_quality_hourly_20260530_185211.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_26_air_quality_hourly_20260531_185410.parquet": [
+        "time:2026-05-26T05:00:00",
+        "may_26_air_quality_hourly_20260531_185410.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\air\\may_27_air_quality_hourly_20260601_200312.parquet": [
+        "time:2026-05-27T05:00:00",
+        "may_27_air_quality_hourly_20260601_200312.parquet"
+      ]
+    }
+  },
+  "weather": {
+    "datasets": [
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_10_weather_hourly_20260401_120609.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_11_weather_hourly_20260401_120612.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_12_weather_hourly_20260401_120616.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_13_weather_hourly_20260401_120621.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_14_weather_hourly_20260401_120624.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_15_weather_hourly_20260401_120628.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_16_weather_hourly_20260401_120729.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_17_weather_hourly_20260401_120731.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_18_weather_hourly_20260401_120736.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_19_weather_hourly_20260401_120740.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_20_weather_hourly_20260401_120744.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_21_weather_hourly_20260401_120748.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_22_weather_hourly_20260401_121116.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_23_weather_hourly_20260401_121121.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_24_weather_hourly_20260401_121125.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_25_weather_hourly_20260401_121128.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_26_weather_hourly_20260401_121135.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_27_weather_hourly_20260401_193711.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_28_weather_hourly_20260402_192856.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_29_weather_hourly_20260403_191055.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_30_weather_hourly_20260404_190758.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_31_weather_hourly_20260405_190942.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_3_weather_hourly_20260408_194627.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_4_weather_hourly_20260409_194605.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_5_weather_hourly_20260410_192618.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_6_weather_hourly_20260411_191035.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_7_weather_hourly_20260412_191322.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_8_weather_hourly_20260413_194715.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_9_weather_hourly_20260414_194817.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_10_weather_hourly_20260415_194839.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_11_weather_hourly_20260416_194437.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_12_weather_hourly_20260417_193614.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_13_weather_hourly_20260418_191351.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_14_weather_hourly_20260419_191339.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_15_weather_hourly_20260420_194008.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_16_weather_hourly_20260421_194453.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_17_weather_hourly_20260422_194635.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_18_weather_hourly_20260423_194946.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_19_weather_hourly_20260424_192758.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_20_weather_hourly_20260425_192509.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_21_weather_hourly_20260426_192704.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_22_weather_hourly_20260427_195424.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_23_weather_hourly_20260428_200054.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_24_weather_hourly_20260429_195942.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_25_weather_hourly_20260430_195559.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_26_weather_hourly_20260501_194736.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_27_weather_hourly_20260502_193331.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_28_weather_hourly_20260503_193247.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_29_weather_hourly_20260504_200205.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_30_weather_hourly_20260505_195741.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_1_weather_hourly_20260506_200925.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_2_weather_hourly_20260507_195856.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_3_weather_hourly_20260508_195317.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_4_weather_hourly_20260509_194012.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_5_weather_hourly_20260510_193951.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_6_weather_hourly_20260511_201555.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_7_weather_hourly_20260512_201443.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_8_weather_hourly_20260513_201709.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_9_weather_hourly_20260514_201323.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_10_weather_hourly_20260515_195914.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_11_weather_hourly_20260516_193850.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_12_weather_hourly_20260517_194355.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_13_weather_hourly_20260518_201209.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_14_weather_hourly_20260519_201323.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_15_weather_hourly_20260520_192244.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_16_weather_hourly_20260521_191330.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_17_weather_hourly_20260522_190737.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_18_weather_hourly_20260523_185028.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_19_weather_hourly_20260524_185331.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_20_weather_hourly_20260525_190315.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_21_weather_hourly_20260526_191945.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_22_weather_hourly_20260527_191943.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_23_weather_hourly_20260528_192602.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_24_weather_hourly_20260529_192256.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_25_weather_hourly_20260530_185211.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_26_weather_hourly_20260531_185410.parquet",
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_27_weather_hourly_20260601_200312.parquet"
+    ],
+    "sort_keys": {
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_10_weather_hourly_20260401_120609.parquet": [
+        "time:2026-03-10T05:00:00",
+        "march_10_weather_hourly_20260401_120609.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_11_weather_hourly_20260401_120612.parquet": [
+        "time:2026-03-11T05:00:00",
+        "march_11_weather_hourly_20260401_120612.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_12_weather_hourly_20260401_120616.parquet": [
+        "time:2026-03-12T05:00:00",
+        "march_12_weather_hourly_20260401_120616.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_13_weather_hourly_20260401_120621.parquet": [
+        "time:2026-03-13T05:00:00",
+        "march_13_weather_hourly_20260401_120621.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_14_weather_hourly_20260401_120624.parquet": [
+        "time:2026-03-14T05:00:00",
+        "march_14_weather_hourly_20260401_120624.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_15_weather_hourly_20260401_120628.parquet": [
+        "time:2026-03-15T05:00:00",
+        "march_15_weather_hourly_20260401_120628.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_16_weather_hourly_20260401_120729.parquet": [
+        "time:2026-03-16T05:00:00",
+        "march_16_weather_hourly_20260401_120729.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_17_weather_hourly_20260401_120731.parquet": [
+        "time:2026-03-17T05:00:00",
+        "march_17_weather_hourly_20260401_120731.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_18_weather_hourly_20260401_120736.parquet": [
+        "time:2026-03-18T05:00:00",
+        "march_18_weather_hourly_20260401_120736.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_19_weather_hourly_20260401_120740.parquet": [
+        "time:2026-03-19T05:00:00",
+        "march_19_weather_hourly_20260401_120740.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_20_weather_hourly_20260401_120744.parquet": [
+        "time:2026-03-20T05:00:00",
+        "march_20_weather_hourly_20260401_120744.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_21_weather_hourly_20260401_120748.parquet": [
+        "time:2026-03-21T05:00:00",
+        "march_21_weather_hourly_20260401_120748.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_22_weather_hourly_20260401_121116.parquet": [
+        "time:2026-03-22T05:00:00",
+        "march_22_weather_hourly_20260401_121116.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_23_weather_hourly_20260401_121121.parquet": [
+        "time:2026-03-23T05:00:00",
+        "march_23_weather_hourly_20260401_121121.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_24_weather_hourly_20260401_121125.parquet": [
+        "time:2026-03-24T05:00:00",
+        "march_24_weather_hourly_20260401_121125.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_25_weather_hourly_20260401_121128.parquet": [
+        "time:2026-03-25T05:00:00",
+        "march_25_weather_hourly_20260401_121128.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_26_weather_hourly_20260401_121135.parquet": [
+        "time:2026-03-26T05:00:00",
+        "march_26_weather_hourly_20260401_121135.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_27_weather_hourly_20260401_193711.parquet": [
+        "time:2026-03-27T05:00:00",
+        "march_27_weather_hourly_20260401_193711.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_28_weather_hourly_20260402_192856.parquet": [
+        "time:2026-03-28T05:00:00",
+        "march_28_weather_hourly_20260402_192856.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_29_weather_hourly_20260403_191055.parquet": [
+        "time:2026-03-29T05:00:00",
+        "march_29_weather_hourly_20260403_191055.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_30_weather_hourly_20260404_190758.parquet": [
+        "time:2026-03-30T05:00:00",
+        "march_30_weather_hourly_20260404_190758.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\march_31_weather_hourly_20260405_190942.parquet": [
+        "time:2026-03-31T05:00:00",
+        "march_31_weather_hourly_20260405_190942.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_3_weather_hourly_20260408_194627.parquet": [
+        "time:2026-04-03T05:00:00",
+        "april_3_weather_hourly_20260408_194627.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_4_weather_hourly_20260409_194605.parquet": [
+        "time:2026-04-04T05:00:00",
+        "april_4_weather_hourly_20260409_194605.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_5_weather_hourly_20260410_192618.parquet": [
+        "time:2026-04-05T05:00:00",
+        "april_5_weather_hourly_20260410_192618.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_6_weather_hourly_20260411_191035.parquet": [
+        "time:2026-04-06T05:00:00",
+        "april_6_weather_hourly_20260411_191035.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_7_weather_hourly_20260412_191322.parquet": [
+        "time:2026-04-07T05:00:00",
+        "april_7_weather_hourly_20260412_191322.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_8_weather_hourly_20260413_194715.parquet": [
+        "time:2026-04-08T05:00:00",
+        "april_8_weather_hourly_20260413_194715.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_9_weather_hourly_20260414_194817.parquet": [
+        "time:2026-04-09T05:00:00",
+        "april_9_weather_hourly_20260414_194817.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_10_weather_hourly_20260415_194839.parquet": [
+        "time:2026-04-10T05:00:00",
+        "april_10_weather_hourly_20260415_194839.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_11_weather_hourly_20260416_194437.parquet": [
+        "time:2026-04-11T05:00:00",
+        "april_11_weather_hourly_20260416_194437.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_12_weather_hourly_20260417_193614.parquet": [
+        "time:2026-04-12T05:00:00",
+        "april_12_weather_hourly_20260417_193614.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_13_weather_hourly_20260418_191351.parquet": [
+        "time:2026-04-13T05:00:00",
+        "april_13_weather_hourly_20260418_191351.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_14_weather_hourly_20260419_191339.parquet": [
+        "time:2026-04-14T05:00:00",
+        "april_14_weather_hourly_20260419_191339.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_15_weather_hourly_20260420_194008.parquet": [
+        "time:2026-04-15T05:00:00",
+        "april_15_weather_hourly_20260420_194008.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_16_weather_hourly_20260421_194453.parquet": [
+        "time:2026-04-16T05:00:00",
+        "april_16_weather_hourly_20260421_194453.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_17_weather_hourly_20260422_194635.parquet": [
+        "time:2026-04-17T05:00:00",
+        "april_17_weather_hourly_20260422_194635.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_18_weather_hourly_20260423_194946.parquet": [
+        "time:2026-04-18T05:00:00",
+        "april_18_weather_hourly_20260423_194946.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_19_weather_hourly_20260424_192758.parquet": [
+        "time:2026-04-19T05:00:00",
+        "april_19_weather_hourly_20260424_192758.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_20_weather_hourly_20260425_192509.parquet": [
+        "time:2026-04-20T05:00:00",
+        "april_20_weather_hourly_20260425_192509.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_21_weather_hourly_20260426_192704.parquet": [
+        "time:2026-04-21T05:00:00",
+        "april_21_weather_hourly_20260426_192704.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_22_weather_hourly_20260427_195424.parquet": [
+        "time:2026-04-22T05:00:00",
+        "april_22_weather_hourly_20260427_195424.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_23_weather_hourly_20260428_200054.parquet": [
+        "time:2026-04-23T05:00:00",
+        "april_23_weather_hourly_20260428_200054.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_24_weather_hourly_20260429_195942.parquet": [
+        "time:2026-04-24T05:00:00",
+        "april_24_weather_hourly_20260429_195942.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_25_weather_hourly_20260430_195559.parquet": [
+        "time:2026-04-25T05:00:00",
+        "april_25_weather_hourly_20260430_195559.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_26_weather_hourly_20260501_194736.parquet": [
+        "time:2026-04-26T05:00:00",
+        "april_26_weather_hourly_20260501_194736.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_27_weather_hourly_20260502_193331.parquet": [
+        "time:2026-04-27T05:00:00",
+        "april_27_weather_hourly_20260502_193331.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_28_weather_hourly_20260503_193247.parquet": [
+        "time:2026-04-28T05:00:00",
+        "april_28_weather_hourly_20260503_193247.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_29_weather_hourly_20260504_200205.parquet": [
+        "time:2026-04-29T05:00:00",
+        "april_29_weather_hourly_20260504_200205.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\april_30_weather_hourly_20260505_195741.parquet": [
+        "time:2026-04-30T05:00:00",
+        "april_30_weather_hourly_20260505_195741.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_1_weather_hourly_20260506_200925.parquet": [
+        "time:2026-05-01T05:00:00",
+        "may_1_weather_hourly_20260506_200925.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_2_weather_hourly_20260507_195856.parquet": [
+        "time:2026-05-02T05:00:00",
+        "may_2_weather_hourly_20260507_195856.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_3_weather_hourly_20260508_195317.parquet": [
+        "time:2026-05-03T05:00:00",
+        "may_3_weather_hourly_20260508_195317.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_4_weather_hourly_20260509_194012.parquet": [
+        "time:2026-05-04T05:00:00",
+        "may_4_weather_hourly_20260509_194012.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_5_weather_hourly_20260510_193951.parquet": [
+        "time:2026-05-05T05:00:00",
+        "may_5_weather_hourly_20260510_193951.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_6_weather_hourly_20260511_201555.parquet": [
+        "time:2026-05-06T05:00:00",
+        "may_6_weather_hourly_20260511_201555.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_7_weather_hourly_20260512_201443.parquet": [
+        "time:2026-05-07T05:00:00",
+        "may_7_weather_hourly_20260512_201443.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_8_weather_hourly_20260513_201709.parquet": [
+        "time:2026-05-08T05:00:00",
+        "may_8_weather_hourly_20260513_201709.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_9_weather_hourly_20260514_201323.parquet": [
+        "time:2026-05-09T05:00:00",
+        "may_9_weather_hourly_20260514_201323.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_10_weather_hourly_20260515_195914.parquet": [
+        "time:2026-05-10T05:00:00",
+        "may_10_weather_hourly_20260515_195914.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_11_weather_hourly_20260516_193850.parquet": [
+        "time:2026-05-11T05:00:00",
+        "may_11_weather_hourly_20260516_193850.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_12_weather_hourly_20260517_194355.parquet": [
+        "time:2026-05-12T05:00:00",
+        "may_12_weather_hourly_20260517_194355.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_13_weather_hourly_20260518_201209.parquet": [
+        "time:2026-05-13T05:00:00",
+        "may_13_weather_hourly_20260518_201209.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_14_weather_hourly_20260519_201323.parquet": [
+        "time:2026-05-14T05:00:00",
+        "may_14_weather_hourly_20260519_201323.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_15_weather_hourly_20260520_192244.parquet": [
+        "time:2026-05-15T05:00:00",
+        "may_15_weather_hourly_20260520_192244.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_16_weather_hourly_20260521_191330.parquet": [
+        "time:2026-05-16T05:00:00",
+        "may_16_weather_hourly_20260521_191330.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_17_weather_hourly_20260522_190737.parquet": [
+        "time:2026-05-17T05:00:00",
+        "may_17_weather_hourly_20260522_190737.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_18_weather_hourly_20260523_185028.parquet": [
+        "time:2026-05-18T05:00:00",
+        "may_18_weather_hourly_20260523_185028.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_19_weather_hourly_20260524_185331.parquet": [
+        "time:2026-05-19T05:00:00",
+        "may_19_weather_hourly_20260524_185331.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_20_weather_hourly_20260525_190315.parquet": [
+        "time:2026-05-20T05:00:00",
+        "may_20_weather_hourly_20260525_190315.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_21_weather_hourly_20260526_191945.parquet": [
+        "time:2026-05-21T05:00:00",
+        "may_21_weather_hourly_20260526_191945.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_22_weather_hourly_20260527_191943.parquet": [
+        "time:2026-05-22T05:00:00",
+        "may_22_weather_hourly_20260527_191943.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_23_weather_hourly_20260528_192602.parquet": [
+        "time:2026-05-23T05:00:00",
+        "may_23_weather_hourly_20260528_192602.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_24_weather_hourly_20260529_192256.parquet": [
+        "time:2026-05-24T05:00:00",
+        "may_24_weather_hourly_20260529_192256.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_25_weather_hourly_20260530_185211.parquet": [
+        "time:2026-05-25T05:00:00",
+        "may_25_weather_hourly_20260530_185211.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_26_weather_hourly_20260531_185410.parquet": [
+        "time:2026-05-26T05:00:00",
+        "may_26_weather_hourly_20260531_185410.parquet"
+      ],
+      "Z:\\Computer Science\\GitHub Repositories\\Personal Projects\\2026-Air-Quality-Summer-Research\\bronze\\weather\\may_27_weather_hourly_20260601_200312.parquet": [
+        "time:2026-05-27T05:00:00",
+        "may_27_weather_hourly_20260601_200312.parquet"
+      ]
+    }
+  }
+}

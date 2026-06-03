@@ -1,0 +1,180 @@
+
+====================================================================================================
+Pass 1 - External sort runs + global key collection
+====================================================================================================
+left_run_count: 8
+right_run_count: 8
+unique_times: 1848
+unique_zips: 97
+pass1_external_sort_runtime_seconds: 4.263313
+
+====================================================================================================
+Static spatial precompute
+====================================================================================================
+spatial_lookup_meta: {
+  "zip_codes_scored": 97,
+  "roads_feature_count": 15420,
+  "facility_lookup_zips": 97,
+  "road_lookup_zips": 72,
+  "parameters": {
+    "road_radius_km": 2.0,
+    "facility_radius_km": 10.0
+  },
+  "detected_columns": {
+    "tri_facilities": {
+      "facility_id": "trifd",
+      "lat": "latitude",
+      "lon": "longitude",
+      "facility_name": "facility"
+    },
+    "tri_chemicals": {
+      "facility_id": "trifd",
+      "chemical_name": "chemical",
+      "amount": "total_air_emissions_lbs"
+    },
+    "zcta_zip_column": "ZCTA5CE20",
+    "facility_amount_column": "total_air_emissions_lbs"
+  }
+}
+static_spatial_precompute_runtime_seconds: 3.067606
+stream_merge_meta: {
+  "output_csv": "validation_outputs/csv_baseline/pipeline_output\\all_features.csv",
+  "rows_written": 179256,
+  "matched_rows": 179256,
+  "left_only_rows": 0,
+  "right_only_rows": 0,
+  "output_columns": [
+    "zip",
+    "time",
+    "latitude",
+    "longitude",
+    "us_aqi",
+    "pm10",
+    "pm2_5",
+    "carbon_monoxide",
+    "nitrogen_dioxide",
+    "sulphur_dioxide",
+    "ozone",
+    "uv_index_clear_sky",
+    "uv_index",
+    "dust",
+    "aerosol_optical_depth",
+    "temperature_2m",
+    "relative_humidity_2m",
+    "precipitation",
+    "wind_speed_10m",
+    "wind_speed_100m",
+    "wind_gusts_10m",
+    "shortwave_radiation",
+    "diffuse_radiation",
+    "cloud_cover",
+    "wind_direction_10m_sin",
+    "wind_direction_10m_cos",
+    "wind_direction_100m_sin",
+    "wind_direction_100m_cos",
+    "month",
+    "month_sin",
+    "month_cos",
+    "day",
+    "hour",
+    "hour_sin",
+    "hour_cos",
+    "day_of_week",
+    "day_of_week_sin",
+    "day_of_week_cos",
+    "day_of_year",
+    "is_weekend",
+    "road_impact_score",
+    "facility_impact_score",
+    "us_aqi_past_1",
+    "us_aqi_past_2",
+    "us_aqi_past_3",
+    "us_aqi_past_4",
+    "us_aqi_past_5",
+    "us_aqi_past_6",
+    "us_aqi_past_7",
+    "us_aqi_past_8"
+  ]
+}
+pass2_stream_merge_transform_runtime_seconds: 275.860289
+cardinality_filter_runtime_seconds: 0.0
+variance_filter_runtime_seconds: 0.0
+io_summary: {
+  "total_read_ops": 36,
+  "total_write_ops": 18,
+  "read_breakdown": {
+    "csv_chunk_read": 16,
+    "csv_full_read": 2,
+    "shapefile_read": 2,
+    "sorted_run_read": 16
+  },
+  "write_breakdown": {
+    "final_csv_write": 1,
+    "json_write": 1,
+    "sorted_run_write": 16
+  }
+}
+cardinality_summary: {
+  "column_cardinality": {
+    "aerosol_optical_depth": 86,
+    "carbon_monoxide": 547,
+    "cloud_cover": 101,
+    "day": 31,
+    "day_of_week": 7,
+    "day_of_week_cos": 7,
+    "day_of_week_sin": 7,
+    "day_of_year": 77,
+    "diffuse_radiation": 454,
+    "dust": 8,
+    "facility_impact_score": 171954,
+    "hour": 24,
+    "hour_cos": 22,
+    "hour_sin": 21,
+    "is_weekend": 2,
+    "latitude": 97,
+    "longitude": 97,
+    "month": 3,
+    "month_cos": 3,
+    "month_sin": 3,
+    "nitrogen_dioxide": 518,
+    "ozone": 196,
+    "pm10": 358,
+    "pm2_5": 343,
+    "precipitation": 184,
+    "relative_humidity_2m": 35809,
+    "road_impact_score": 74434,
+    "shortwave_radiation": 1003,
+    "sulphur_dioxide": 84,
+    "temperature_2m": 624,
+    "time": 1848,
+    "us_aqi": 3202,
+    "us_aqi_past_1": 3201,
+    "us_aqi_past_2": 3200,
+    "us_aqi_past_3": 3198,
+    "us_aqi_past_4": 3196,
+    "us_aqi_past_5": 3195,
+    "us_aqi_past_6": 3192,
+    "us_aqi_past_7": 3189,
+    "us_aqi_past_8": 3188,
+    "uv_index": 203,
+    "uv_index_clear_sky": 214,
+    "wind_direction_100m_cos": 22236,
+    "wind_direction_100m_sin": 23310,
+    "wind_direction_10m_cos": 12513,
+    "wind_direction_10m_sin": 12996,
+    "wind_gusts_10m": 179,
+    "wind_speed_100m": 10668,
+    "wind_speed_10m": 5214,
+    "zip": 97
+  }
+}
+
+====================================================================================================
+TIMING SUMMARY
+====================================================================================================
+pass1_external_sort: 4.263313 seconds
+static_spatial_precompute: 3.067606 seconds
+pass2_stream_merge_transform: 275.860289 seconds
+cardinality_filter: 0.000000 seconds
+variance_filter: 0.000000 seconds
+total_pipeline_runtime: 283.201787 seconds
