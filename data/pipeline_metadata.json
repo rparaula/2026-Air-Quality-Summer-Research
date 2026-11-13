@@ -16569,5 +16569,78 @@
       }
     ],
     "error": null
+  },
+  {
+    "run_id": "20261113_183506",
+    "script": "collect",
+    "status": "success",
+    "started_at": "2026-11-13T18:35:06.434244",
+    "finished_at": "2026-11-13T18:35:08.351823",
+    "duration_seconds": 1.92,
+    "parameters": {
+      "cities": "Houston,TX",
+      "start_date": "2026-11-08",
+      "end_date": "2026-11-08",
+      "timezone": "America/Chicago",
+      "batch_size": 50,
+      "uszips": "uszips.csv",
+      "zip_traffic": null,
+      "out_dir": "data",
+      "out_prefix": "november_8"
+    },
+    "locations": {
+      "total_zip_centroids": 97,
+      "cities_found": [
+        "Houston,TX"
+      ],
+      "cities_skipped": []
+    },
+    "outputs": [
+      {
+        "type": "air_quality",
+        "file": "data/november_8_air_quality_hourly_20261113_183506.csv",
+        "row_count": 2328,
+        "size_bytes": 273218,
+        "variable_count": 11,
+        "variables": [
+          "us_aqi",
+          "pm10",
+          "pm2_5",
+          "carbon_monoxide",
+          "nitrogen_dioxide",
+          "sulphur_dioxide",
+          "ozone",
+          "uv_index_clear_sky",
+          "uv_index",
+          "dust",
+          "aerosol_optical_depth"
+        ],
+        "api_url": "https://air-quality-api.open-meteo.com/v1/air-quality",
+        "batch_size_used": 50
+      },
+      {
+        "type": "weather",
+        "file": "data/november_8_weather_hourly_20261113_183506.csv",
+        "row_count": 2328,
+        "size_bytes": 330278,
+        "variable_count": 11,
+        "variables": [
+          "temperature_2m",
+          "relative_humidity_2m",
+          "precipitation",
+          "wind_speed_10m",
+          "wind_speed_100m",
+          "wind_direction_10m",
+          "wind_direction_100m",
+          "wind_gusts_10m",
+          "shortwave_radiation",
+          "diffuse_radiation",
+          "cloud_cover"
+        ],
+        "api_url": "https://archive-api.open-meteo.com/v1/archive",
+        "batch_size_used": 50
+      }
+    ],
+    "error": null
   }
 ]
